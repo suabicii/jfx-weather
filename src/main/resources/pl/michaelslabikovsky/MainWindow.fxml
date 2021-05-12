@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="703.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Separator layoutX="417.0" orientation="VERTICAL" prefHeight="703.0" prefWidth="0.0" />
+      <Label layoutX="27.0" layoutY="23.0" text="Miejscowość:" />
+      <Label layoutX="437.0" layoutY="23.0" text="Miejscowość:" />
+      <ChoiceBox layoutX="116.0" layoutY="19.0" prefHeight="26.0" prefWidth="279.0" />
+      <ChoiceBox layoutX="528.0" layoutY="19.0" prefHeight="26.0" prefWidth="279.0" />
+      <BorderPane layoutY="58.0" prefHeight="644.0" prefWidth="419.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0">
+         <bottom>
+            <HBox prefHeight="280.0" prefWidth="419.0" BorderPane.alignment="CENTER" />
+         </bottom>
+         <top>
+            <Pane prefHeight="366.0" prefWidth="419.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="currentWeatherCityOneImg" fitHeight="172.0" fitWidth="207.0" layoutX="106.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="123.0" layoutY="174.0" prefHeight="18.0" prefWidth="173.0" text="«miejsce na rodzaj pogody»" />
+                  <Label layoutX="27.0" layoutY="217.0" prefHeight="18.0" prefWidth="97.0" text="Temperatura:" />
+                  <Label layoutX="27.0" layoutY="249.0" prefHeight="18.0" prefWidth="97.0" text="Ciśnienie:" />
+                  <Label layoutX="27.0" layoutY="283.0" prefHeight="18.0" prefWidth="97.0" text="Wiatr:" />
+                  <Label layoutX="27.0" layoutY="314.0" prefHeight="18.0" prefWidth="143.0" text="Wilgotność powietrza:" />
+                  <Label layoutX="220.0" layoutY="217.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label layoutX="220.0" layoutY="249.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label layoutX="220.0" layoutY="283.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label layoutX="220.0" layoutY="314.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+               </children>
+            </Pane>
+         </top>
+      </BorderPane>
+      <BorderPane layoutX="419.0" layoutY="58.0" prefHeight="644.0" prefWidth="411.0" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="0.0">
+         <top>
+            <Pane prefHeight="366.0" prefWidth="419.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="currentWeatherCityTwoImg" fitHeight="172.0" fitWidth="207.0" layoutX="106.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="123.0" layoutY="174.0" prefHeight="18.0" prefWidth="173.0" text="«miejsce na rodzaj pogody»" />
+                  <Label layoutX="27.0" layoutY="217.0" prefHeight="18.0" prefWidth="97.0" text="Temperatura:" />
+                  <Label layoutX="27.0" layoutY="249.0" prefHeight="18.0" prefWidth="97.0" text="Ciśnienie:" />
+                  <Label layoutX="27.0" layoutY="283.0" prefHeight="18.0" prefWidth="97.0" text="Wiatr:" />
+                  <Label layoutX="27.0" layoutY="314.0" prefHeight="18.0" prefWidth="143.0" text="Wilgotność powietrza:" />
+                  <Label layoutX="220.0" layoutY="217.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label layoutX="220.0" layoutY="249.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label layoutX="220.0" layoutY="283.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label layoutX="220.0" layoutY="314.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+               </children>
+            </Pane>
+         </top>
+         <bottom>
+            <HBox prefHeight="280.0" prefWidth="419.0" BorderPane.alignment="CENTER" />
+         </bottom></BorderPane>
+   </children>
+</AnchorPane>
