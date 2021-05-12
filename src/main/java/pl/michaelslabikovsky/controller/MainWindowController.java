@@ -1,11 +1,69 @@
 package pl.michaelslabikovsky.controller;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import pl.michaelslabikovsky.Launcher;
 import pl.michaelslabikovsky.WeatherManager;
 import pl.michaelslabikovsky.view.ViewFactory;
 
-public class MainWindowController extends BaseController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class MainWindowController extends BaseController implements Initializable {
+
+    @FXML
+    private ChoiceBox<String> cityOneChoiceBox;
+
+    @FXML
+    private ChoiceBox<String> cityTwoChoiceBox;
+
+    @FXML
+    private ImageView currentWeatherCityOneImg;
+
+    @FXML
+    private ImageView currentWeatherCityTwoImg;
 
     public MainWindowController(WeatherManager weatherManager, ViewFactory viewFactory, String fxmlName) {
         super(weatherManager, viewFactory, fxmlName);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        cityOneChoiceBox.getItems().addAll("Warszawa", "Dodaj miejscowość...");
+        cityTwoChoiceBox.getItems().addAll("Londyn", "Dodaj miejscowość...");
+        cityOneChoiceBox.getSelectionModel().selectFirst();
+        cityTwoChoiceBox.getSelectionModel().selectFirst();
+
+        cityOneChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                addCity(cityOneChoiceBox, oldValue);
+            }
+        });
+
+        cityTwoChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                addCity(cityTwoChoiceBox, oldValue);
+            }
+        });
+
+        currentWeatherCityOneImg.setImage(setImageUrl("icons/sun.png"));
+        currentWeatherCityTwoImg.setImage(setImageUrl("icons/lightly_cloudy.png"));
+    }
+
+    private void addCity(ChoiceBox<String> cityChoiceBox, Number oldValue) {
+        if (cityChoiceBox.getSelectionModel().getSelectedIndex() == cityChoiceBox.getItems().size() - 1) {
+            cityChoiceBox.getSelectionModel().select(oldValue.intValue());
+        }
+    }
+
+    private Image setImageUrl(String url) {
+        return new Image(String.valueOf(new Launcher().getClass().getResource(url)));
     }
 }
