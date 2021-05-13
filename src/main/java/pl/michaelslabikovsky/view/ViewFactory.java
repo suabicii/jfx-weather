@@ -41,6 +41,10 @@ public class ViewFactory {
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.setMinWidth(830);
+        stage.setMaxWidth(830);
+        stage.setMinHeight(703);
+        stage.setMaxHeight(703);
         stage.show();
         activeStages.add(stage);
     }
