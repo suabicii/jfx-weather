@@ -39,19 +39,9 @@ public class MainWindowController extends BaseController implements Initializabl
         cityOneChoiceBox.getSelectionModel().selectFirst();
         cityTwoChoiceBox.getSelectionModel().selectFirst();
 
-        cityOneChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                addCity(cityOneChoiceBox, oldValue);
-            }
-        });
+        cityOneChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> addCity(cityOneChoiceBox, oldValue));
 
-        cityTwoChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                addCity(cityTwoChoiceBox, oldValue);
-            }
-        });
+        cityTwoChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> addCity(cityTwoChoiceBox, oldValue));
 
         currentWeatherCityOneImg.setImage(setImageUrl("icons/sun.png"));
         currentWeatherCityTwoImg.setImage(setImageUrl("icons/lightly_cloudy.png"));
@@ -64,6 +54,6 @@ public class MainWindowController extends BaseController implements Initializabl
     }
 
     private Image setImageUrl(String url) {
-        return new Image(String.valueOf(new Launcher().getClass().getResource(url)));
+        return new Image(String.valueOf(Launcher.class.getResource(url)));
     }
 }
