@@ -1,16 +1,18 @@
 package pl.michaelslabikovsky.controller;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import pl.michaelslabikovsky.Launcher;
 import pl.michaelslabikovsky.WeatherManager;
+import pl.michaelslabikovsky.model.WeatherData;
 import pl.michaelslabikovsky.view.ViewFactory;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -27,6 +29,14 @@ public class MainWindowController extends BaseController implements Initializabl
 
     @FXML
     private ImageView currentWeatherCityTwoImg;
+
+    @FXML
+    private Label currentWeatherResultCityOne;
+
+    @FXML
+    private Label currentWeatherResultCityTwo;
+
+    private WeatherData weatherData;
 
     public MainWindowController(WeatherManager weatherManager, ViewFactory viewFactory, String fxmlName) {
         super(weatherManager, viewFactory, fxmlName);
@@ -45,6 +55,17 @@ public class MainWindowController extends BaseController implements Initializabl
 
         currentWeatherCityOneImg.setImage(setImageUrl("icons/sun.png"));
         currentWeatherCityTwoImg.setImage(setImageUrl("icons/lightly_cloudy.png"));
+
+        showWeatherData();
+    }
+
+    public void showWeatherData() {
+        try {
+            weatherData = new WeatherData("Warszawa");
+            System.out.println(weatherData.getResult());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void addCity(ChoiceBox<String> cityChoiceBox, Number oldValue) {
