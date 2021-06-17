@@ -1,5 +1,7 @@
 package pl.michaelslabikovsky.model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import pl.michaelslabikovsky.utils.DotenvLoader;
 
 import java.io.IOException;
@@ -12,8 +14,7 @@ public class WeatherData {
 
     private URL url;
     private String CityName;
-    private String result;
-
+    private String result = "";
     private int responseCode;
     private final static String API_KEY = DotenvLoader.loadEnvVariable("API_KEY");
 
@@ -51,9 +52,11 @@ public class WeatherData {
             throw new RuntimeException("HttpResponseCode: " + responseCode);
         } else {
             Scanner sc = new Scanner(url.openStream());
-            while (sc.hasNext()) {
-                result += sc.nextLine();
-            }
+            while (sc.hasNext()) result += sc.nextLine();
+            sc.close();
+            JSONObject jsonObject = new JSONObject(result);
+            JSONArray array = jsonObject.getJSONArray("list");
+            System.out.println(array);
             return result;
         }
     }

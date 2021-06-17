@@ -6,9 +6,13 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 import pl.michaelslabikovsky.Launcher;
 import pl.michaelslabikovsky.WeatherManager;
 import pl.michaelslabikovsky.model.WeatherData;
+import pl.michaelslabikovsky.utils.JSONConverter;
 import pl.michaelslabikovsky.view.ViewFactory;
 
 import java.io.IOException;
@@ -63,6 +67,12 @@ public class MainWindowController extends BaseController implements Initializabl
         try {
             weatherData = new WeatherData("Warszawa");
             System.out.println(weatherData.getResult());
+            /*JSONArray jsonArray = JSONConverter.convertStringObjectToJSONArray(weatherData.getResult());
+            for (int i = 0; i < jsonArray.size(); i++) {
+                JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+                System.out.println("Dane pogodowe nr " + i +  ":");
+                System.out.println("\nlist: " + jsonObject);
+            }*/
         } catch (IOException e) {
             e.printStackTrace();
         }
