@@ -61,4 +61,8 @@ public class WeatherData {
     public void setResult(String result) {
         this.result = result;
     }
+
+    public URL getUrl() {
+        return url;
+    }
 }

@@ -78,22 +78,19 @@ public class MainWindowController extends BaseController implements Initializabl
 
         cityTwoChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> addCity(cityTwoChoiceBox, oldValue));
 
-        currentWeatherCityOneImg.setImage(setImageUrl("icons/sun.png"));
-        currentWeatherCityTwoImg.setImage(setImageUrl("icons/lightly_cloudy.png"));
-
         showWeatherData();
     }
 
     public void showWeatherData() {
         try {
-            getCurrentWeather("Warszawa", currentWeatherResultCityOne, currentTemperatureCityOne, currentPressureCityOne, currentWindSpeedCityOne, currentHumidityCityOne);
-            getCurrentWeather("Londyn", currentWeatherResultCityTwo, currentTemperatureCityTwo, currentPressureCityTwo, currentWindSpeedCityTwo, currentHumidityCityTwo);
+            getCurrentWeather("Warszawa", currentWeatherResultCityOne, currentTemperatureCityOne, currentPressureCityOne, currentWindSpeedCityOne, currentHumidityCityOne, currentWeatherCityOneImg);
+            getCurrentWeather("Londyn", currentWeatherResultCityTwo, currentTemperatureCityTwo, currentPressureCityTwo, currentWindSpeedCityTwo, currentHumidityCityTwo, currentWeatherCityTwoImg);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void getCurrentWeather(String cityName, Label weatherLabel, Label temperatureLabel, Label pressureLabel, Label windSpeedLabel, Label humidityLabel) throws IOException {
+    private void getCurrentWeather(String cityName, Label weatherLabel, Label temperatureLabel, Label pressureLabel, Label windSpeedLabel, Label humidityLabel, ImageView weatherIcon) throws IOException {
         weatherData = new WeatherData(cityName);
         String weatherDataResult = weatherData.getResult();
         JSONArray jsonArray = JSONConverter.convertStringObjectToJSONArray(weatherDataResult);
@@ -102,6 +99,12 @@ public class MainWindowController extends BaseController implements Initializabl
         pressureLabel.setText(String.valueOf(jsonArray.getJSONObject(1).getJSONObject("main").getInt("pressure")) + " hPa");
         windSpeedLabel.setText(String.valueOf(jsonArray.getJSONObject(1).getJSONObject("wind").getDouble("speed")) + " m/s");
         humidityLabel.setText(String.valueOf(jsonArray.getJSONObject(1).getJSONObject("main").getInt("humidity")) + "%");
+        weatherIcon.setImage(setImageUrl(getIconUrl(jsonArray)));
+    }
+
+    private String getIconUrl(JSONArray jsonArray) {
+        String weatherIconId = jsonArray.getJSONObject(0).getJSONArray("weather").getJSONObject(0).getString("icon");
+        return "https://openweathermap.org/img/wn/" + weatherIconId + "@2x.png";
     }
 
     private void addCity(ChoiceBox<String> cityChoiceBox, Number oldValue) {
@@ -111,6 +114,6 @@ public class MainWindowController extends BaseController implements Initializabl
     }
 
     private Image setImageUrl(String url) {
-        return new Image(String.valueOf(Launcher.class.getResource(url)));
+        return new Image(url);
     }
 }
