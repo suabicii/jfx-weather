@@ -19,7 +19,7 @@ public class WeatherData {
     private final static String API_KEY = DotenvLoader.loadEnvVariable("API_KEY");
 
     public WeatherData(String cityName) throws MalformedURLException {
-        this.url = new URL("https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + API_KEY + "&lang=pl");
+        this.url = new URL("https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + API_KEY + "&lang=pl&units=metric");
         HttpURLConnection conn = null;
         try {
             conn = (HttpURLConnection)url.openConnection();

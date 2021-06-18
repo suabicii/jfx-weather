@@ -35,7 +35,31 @@ public class MainWindowController extends BaseController implements Initializabl
     private Label currentWeatherResultCityOne;
 
     @FXML
+    private Label currentTemperatureCityOne;
+
+    @FXML
+    private Label currentPressureCityOne;
+
+    @FXML
+    private Label currentWindSpeedCityOne;
+
+    @FXML
     private Label currentWeatherResultCityTwo;
+
+    @FXML
+    private Label currentTemperatureCityTwo;
+
+    @FXML
+    private Label currentHumidityCityOne;
+
+    @FXML
+    private Label currentPressureCityTwo;
+
+    @FXML
+    private Label currentWindSpeedCityTwo;
+
+    @FXML
+    private Label currentHumidityCityTwo;
 
     private WeatherData weatherData;
 
@@ -62,13 +86,22 @@ public class MainWindowController extends BaseController implements Initializabl
 
     public void showWeatherData() {
         try {
-            weatherData = new WeatherData("Warszawa");
-            System.out.println(weatherData.getResult());
-            JSONArray jsonArray = JSONConverter.convertStringObjectToJSONArray(weatherData.getResult());
-            System.out.println(jsonArray);
+            getCurrentWeather("Warszawa", currentWeatherResultCityOne, currentTemperatureCityOne, currentPressureCityOne, currentWindSpeedCityOne, currentHumidityCityOne);
+            getCurrentWeather("Londyn", currentWeatherResultCityTwo, currentTemperatureCityTwo, currentPressureCityTwo, currentWindSpeedCityTwo, currentHumidityCityTwo);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void getCurrentWeather(String cityName, Label weatherLabel, Label temperatureLabel, Label pressureLabel, Label windSpeedLabel, Label humidityLabel) throws IOException {
+        weatherData = new WeatherData(cityName);
+        String weatherDataResult = weatherData.getResult();
+        JSONArray jsonArray = JSONConverter.convertStringObjectToJSONArray(weatherDataResult);
+        weatherLabel.setText(jsonArray.getJSONObject(0).getJSONArray("weather").getJSONObject(0).getString("description"));
+        temperatureLabel.setText(String.valueOf(jsonArray.getJSONObject(1).getJSONObject("main").getInt("temp")) + "°C");
+        pressureLabel.setText(String.valueOf(jsonArray.getJSONObject(1).getJSONObject("main").getInt("pressure")) + " hPa");
+        windSpeedLabel.setText(String.valueOf(jsonArray.getJSONObject(1).getJSONObject("wind").getDouble("speed")) + " m/s");
+        humidityLabel.setText(String.valueOf(jsonArray.getJSONObject(1).getJSONObject("main").getInt("humidity")) + "%");
     }
 
     private void addCity(ChoiceBox<String> cityChoiceBox, Number oldValue) {

@@ -19,15 +19,15 @@
             <Pane prefHeight="366.0" prefWidth="419.0" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fx:id="currentWeatherCityOneImg" fitHeight="159.0" fitWidth="188.0" layoutX="110.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="currentWeatherResultCityOne" layoutX="117.0" layoutY="183.0" prefHeight="18.0" prefWidth="173.0" text="«miejsce na rodzaj pogody»" />
-                  <Label layoutX="75.0" layoutY="217.0" prefHeight="18.0" prefWidth="97.0" text="Temperatura:" />
-                  <Label layoutX="76.0" layoutY="249.0" prefHeight="18.0" prefWidth="97.0" text="Ciśnienie:" />
-                  <Label layoutX="75.0" layoutY="283.0" prefHeight="18.0" prefWidth="97.0" text="Wiatr:" />
-                  <Label layoutX="76.0" layoutY="314.0" prefHeight="18.0" prefWidth="143.0" text="Wilgotność powietrza:" />
-                  <Label layoutX="282.0" layoutY="217.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
-                  <Label layoutX="282.0" layoutY="249.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
-                  <Label layoutX="282.0" layoutY="283.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
-                  <Label layoutX="282.0" layoutY="314.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label fx:id="currentWeatherResultCityOne" alignment="CENTER" contentDisplay="CENTER" layoutX="77.0" layoutY="183.0" prefHeight="18.0" prefWidth="239.0" text="«miejsce na rodzaj pogody»" />
+                  <Label layoutX="76.0" layoutY="228.0" prefHeight="18.0" prefWidth="97.0" text="Temperatura:" />
+                  <Label layoutX="77.0" layoutY="260.0" prefHeight="18.0" prefWidth="97.0" text="Ciśnienie:" />
+                  <Label layoutX="76.0" layoutY="294.0" prefHeight="18.0" prefWidth="97.0" text="Wiatr:" />
+                  <Label layoutX="77.0" layoutY="325.0" prefHeight="18.0" prefWidth="143.0" text="Wilgotność powietrza:" />
+                  <Label fx:id="currentTemperatureCityOne" layoutX="283.0" layoutY="228.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label fx:id="currentPressureCityOne" layoutX="283.0" layoutY="260.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label fx:id="currentWindSpeedCityOne" layoutX="283.0" layoutY="294.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label fx:id="currentHumidityCityOne" layoutX="283.0" layoutY="325.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
                </children>
             </Pane>
          </top>
@@ -37,15 +37,15 @@
             <Pane prefHeight="366.0" prefWidth="419.0" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fx:id="currentWeatherCityTwoImg" fitHeight="159.0" fitWidth="188.0" layoutX="109.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="currentWeatherResultCityTwo" layoutX="116.0" layoutY="186.0" prefHeight="18.0" prefWidth="173.0" text="«miejsce na rodzaj pogody»" />
-                  <Label layoutX="67.0" layoutY="217.0" prefHeight="18.0" prefWidth="97.0" text="Temperatura:" />
-                  <Label layoutX="67.0" layoutY="249.0" prefHeight="18.0" prefWidth="97.0" text="Ciśnienie:" />
-                  <Label layoutX="67.0" layoutY="283.0" prefHeight="18.0" prefWidth="97.0" text="Wiatr:" />
-                  <Label layoutX="67.0" layoutY="314.0" prefHeight="18.0" prefWidth="143.0" text="Wilgotność powietrza:" />
-                  <Label layoutX="282.0" layoutY="217.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
-                  <Label layoutX="282.0" layoutY="249.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
-                  <Label layoutX="282.0" layoutY="283.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
-                  <Label layoutX="282.0" layoutY="314.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label fx:id="currentWeatherResultCityTwo" alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="186.0" prefHeight="18.0" prefWidth="247.0" text="«miejsce na rodzaj pogody»" />
+                  <Label layoutX="68.0" layoutY="229.0" prefHeight="18.0" prefWidth="97.0" text="Temperatura:" />
+                  <Label layoutX="68.0" layoutY="261.0" prefHeight="18.0" prefWidth="97.0" text="Ciśnienie:" />
+                  <Label layoutX="68.0" layoutY="295.0" prefHeight="18.0" prefWidth="97.0" text="Wiatr:" />
+                  <Label layoutX="68.0" layoutY="326.0" prefHeight="18.0" prefWidth="143.0" text="Wilgotność powietrza:" />
+                  <Label fx:id="currentTemperatureCityTwo" layoutX="283.0" layoutY="229.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label fx:id="currentPressureCityTwo" layoutX="283.0" layoutY="261.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label fx:id="currentWindSpeedCityTwo" layoutX="283.0" layoutY="295.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label fx:id="currentHumidityCityTwo" layoutX="283.0" layoutY="326.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
                </children>
             </Pane>
          </top>
