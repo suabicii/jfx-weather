@@ -1,7 +1,5 @@
 package pl.michaelslabikovsky.model;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import pl.michaelslabikovsky.utils.DotenvLoader;
 
 import java.io.IOException;

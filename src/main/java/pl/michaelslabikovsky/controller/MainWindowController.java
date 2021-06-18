@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.json.JSONArray;
-import pl.michaelslabikovsky.Launcher;
 import pl.michaelslabikovsky.WeatherManager;
 import pl.michaelslabikovsky.model.WeatherData;
 import pl.michaelslabikovsky.utils.JSONConverter;
