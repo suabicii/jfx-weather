@@ -2,7 +2,6 @@ module pl.michaelslabikovsky {
     requires javafx.controls;
     requires javafx.fxml;
     requires dotenv.java;
-    requires json.simple;
     requires jdk.jsobject;
     requires org.json;
 

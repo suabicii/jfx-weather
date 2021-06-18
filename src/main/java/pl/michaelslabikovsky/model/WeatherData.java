@@ -54,9 +54,6 @@ public class WeatherData {
             Scanner sc = new Scanner(url.openStream());
             while (sc.hasNext()) result += sc.nextLine();
             sc.close();
-            JSONObject jsonObject = new JSONObject(result);
-            JSONArray array = jsonObject.getJSONArray("list");
-            System.out.println(array);
             return result;
         }
     }
