@@ -18,6 +18,8 @@ import java.util.ResourceBundle;
 
 public class MainWindowController extends BaseController implements Initializable {
 
+//    NEED REFACTOR HERE
+
     @FXML
     private ChoiceBox<String> cityOneChoiceBox;
 
