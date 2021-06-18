@@ -19,19 +19,19 @@
          <top>
             <Pane prefHeight="366.0" prefWidth="419.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fx:id="currentWeatherCityOneImg" fitHeight="79.0" fitWidth="96.0" layoutX="162.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="currentWeatherCityOneImg" fitHeight="79.0" fitWidth="96.0" layoutX="177.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
                      <effect>
                         <InnerShadow />
                      </effect></ImageView>
-                  <Label fx:id="currentWeatherResultCityOne" alignment="CENTER" contentDisplay="CENTER" layoutX="74.0" layoutY="128.0" prefHeight="18.0" prefWidth="247.0" text="«miejsce na rodzaj pogody»" />
-                  <Label layoutX="73.0" layoutY="173.0" prefHeight="18.0" prefWidth="97.0" text="Temperatura:" />
-                  <Label layoutX="74.0" layoutY="205.0" prefHeight="18.0" prefWidth="97.0" text="Ciśnienie:" />
-                  <Label layoutX="73.0" layoutY="239.0" prefHeight="18.0" prefWidth="97.0" text="Wiatr:" />
-                  <Label layoutX="74.0" layoutY="270.0" prefHeight="18.0" prefWidth="143.0" text="Wilgotność powietrza:" />
-                  <Label fx:id="currentTemperatureCityOne" layoutX="280.0" layoutY="173.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
-                  <Label fx:id="currentPressureCityOne" layoutX="280.0" layoutY="205.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
-                  <Label fx:id="currentWindSpeedCityOne" layoutX="280.0" layoutY="239.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
-                  <Label fx:id="currentHumidityCityOne" layoutX="280.0" layoutY="270.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label fx:id="currentWeatherResultCityOne" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="128.0" prefHeight="18.0" prefWidth="347.0" text="«miejsce na rodzaj pogody»" />
+                  <Label layoutX="42.0" layoutY="174.0" prefHeight="18.0" prefWidth="97.0" text="Temperatura:" />
+                  <Label layoutX="42.0" layoutY="205.0" prefHeight="18.0" prefWidth="97.0" text="Ciśnienie:" />
+                  <Label layoutX="42.0" layoutY="239.0" prefHeight="18.0" prefWidth="97.0" text="Wiatr:" />
+                  <Label layoutX="42.0" layoutY="270.0" prefHeight="18.0" prefWidth="143.0" text="Wilgotność powietrza:" />
+                  <Label fx:id="currentTemperatureCityOne" layoutX="299.0" layoutY="174.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label fx:id="currentPressureCityOne" layoutX="299.0" layoutY="205.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label fx:id="currentWindSpeedCityOne" layoutX="299.0" layoutY="239.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label fx:id="currentHumidityCityOne" layoutX="299.0" layoutY="270.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
                </children>
             </Pane>
          </top>
@@ -40,19 +40,19 @@
          <top>
             <Pane prefHeight="366.0" prefWidth="419.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fx:id="currentWeatherCityTwoImg" fitHeight="79.0" fitWidth="96.0" layoutX="162.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="currentWeatherCityTwoImg" fitHeight="79.0" fitWidth="96.0" layoutX="177.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
                      <effect>
                         <InnerShadow />
                      </effect></ImageView>
-                  <Label fx:id="currentWeatherResultCityTwo" alignment="CENTER" contentDisplay="CENTER" layoutX="64.0" layoutY="132.0" prefHeight="18.0" prefWidth="247.0" text="«miejsce na rodzaj pogody»" />
-                  <Label layoutX="64.0" layoutY="175.0" prefHeight="18.0" prefWidth="97.0" text="Temperatura:" />
-                  <Label layoutX="64.0" layoutY="207.0" prefHeight="18.0" prefWidth="97.0" text="Ciśnienie:" />
-                  <Label layoutX="64.0" layoutY="241.0" prefHeight="18.0" prefWidth="97.0" text="Wiatr:" />
-                  <Label layoutX="64.0" layoutY="272.0" prefHeight="18.0" prefWidth="143.0" text="Wilgotność powietrza:" />
-                  <Label fx:id="currentTemperatureCityTwo" layoutX="279.0" layoutY="175.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
-                  <Label fx:id="currentPressureCityTwo" layoutX="279.0" layoutY="207.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
-                  <Label fx:id="currentWindSpeedCityTwo" layoutX="279.0" layoutY="241.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
-                  <Label fx:id="currentHumidityCityTwo" layoutX="279.0" layoutY="272.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label fx:id="currentWeatherResultCityTwo" alignment="CENTER" contentDisplay="CENTER" layoutX="39.0" layoutY="135.0" prefHeight="18.0" prefWidth="341.0" text="«miejsce na rodzaj pogody»" />
+                  <Label layoutX="39.0" layoutY="174.0" prefHeight="18.0" prefWidth="97.0" text="Temperatura:" />
+                  <Label layoutX="39.0" layoutY="207.0" prefHeight="18.0" prefWidth="97.0" text="Ciśnienie:" />
+                  <Label layoutX="39.0" layoutY="241.0" prefHeight="18.0" prefWidth="97.0" text="Wiatr:" />
+                  <Label layoutX="39.0" layoutY="272.0" prefHeight="18.0" prefWidth="143.0" text="Wilgotność powietrza:" />
+                  <Label fx:id="currentTemperatureCityTwo" layoutX="294.0" layoutY="174.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label fx:id="currentPressureCityTwo" layoutX="294.0" layoutY="207.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label fx:id="currentWindSpeedCityTwo" layoutX="294.0" layoutY="241.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+                  <Label fx:id="currentHumidityCityTwo" layoutX="294.0" layoutY="272.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
                </children>
             </Pane>
          </top>
