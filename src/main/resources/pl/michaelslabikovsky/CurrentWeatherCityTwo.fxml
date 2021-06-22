@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane prefHeight="366.0" prefWidth="419.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.michaelslabikovsky.controller.CurrentWeatherCityTwoController">
+    <children>
+        <ImageView fx:id="currentWeatherCityTwoImg" fitHeight="79.0" fitWidth="96.0" layoutX="177.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+            <effect>
+                <InnerShadow />
+            </effect></ImageView>
+        <Label fx:id="currentWeatherResultCityTwo" alignment="CENTER" contentDisplay="CENTER" layoutX="39.0" layoutY="135.0" prefHeight="18.0" prefWidth="341.0" text="«miejsce na rodzaj pogody»" />
+        <Label layoutX="39.0" layoutY="174.0" prefHeight="18.0" prefWidth="97.0" text="Temperatura:" />
+        <Label layoutX="39.0" layoutY="207.0" prefHeight="18.0" prefWidth="97.0" text="Ciśnienie:" />
+        <Label layoutX="39.0" layoutY="241.0" prefHeight="18.0" prefWidth="97.0" text="Wiatr:" />
+        <Label layoutX="39.0" layoutY="272.0" prefHeight="18.0" prefWidth="143.0" text="Wilgotność powietrza:" />
+        <Label fx:id="currentTemperatureCityTwo" layoutX="294.0" layoutY="174.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+        <Label fx:id="currentPressureCityTwo" layoutX="294.0" layoutY="207.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+        <Label fx:id="currentWindSpeedCityTwo" layoutX="294.0" layoutY="241.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+        <Label fx:id="currentHumidityCityTwo" layoutX="294.0" layoutY="272.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
+    </children>
+</Pane>

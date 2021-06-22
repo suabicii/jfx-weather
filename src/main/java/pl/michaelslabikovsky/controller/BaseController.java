@@ -1,5 +1,7 @@
 package pl.michaelslabikovsky.controller;
 
+import javafx.scene.image.Image;
+import org.json.JSONArray;
 import pl.michaelslabikovsky.WeatherManager;
 import pl.michaelslabikovsky.view.ViewFactory;
 
@@ -17,5 +19,14 @@ public abstract class BaseController {
 
     public String getFxmlName() {
         return fxmlName;
+    }
+
+    protected String getIconUrl(JSONArray jsonArray) {
+        String weatherIconId = jsonArray.getJSONObject(0).getJSONArray("weather").getJSONObject(0).getString("icon");
+        return "https://openweathermap.org/img/wn/" + weatherIconId + "@2x.png";
+    }
+
+    protected Image setImageUrl(String url) {
+        return new Image(url);
     }
 }
