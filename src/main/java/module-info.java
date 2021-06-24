@@ -8,4 +8,5 @@ module pl.michaelslabikovsky {
     opens pl.michaelslabikovsky to javafx.fxml;
     opens pl.michaelslabikovsky.controller to javafx.fxml;
     exports pl.michaelslabikovsky;
+    opens pl.michaelslabikovsky.controller.currentweather to javafx.fxml;
 }

@@ -1,14 +1,12 @@
-package pl.michaelslabikovsky.controller;
+package pl.michaelslabikovsky.controller.currentweather;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import pl.michaelslabikovsky.WeatherManager;
-import pl.michaelslabikovsky.view.ViewFactory;
 
 import java.io.IOException;
 
-public class CurrentWeatherCityOneController extends MainWindowController {
+public class CurrentWeatherCityOneController extends CurrentWeatherController {
 
     @FXML
     private ImageView currentWeatherCityOneImg;
@@ -28,10 +26,16 @@ public class CurrentWeatherCityOneController extends MainWindowController {
     @FXML
     private Label currentHumidityCityOne;
 
-    public CurrentWeatherCityOneController(WeatherManager weatherManager, ViewFactory viewFactory, String fxmlName) {
-        super(weatherManager, viewFactory, fxmlName);
+    public CurrentWeatherCityOneController() {
+        currentWeatherCityOneImg = new ImageView();
+        currentWeatherResultCityOne = new Label();
+        currentTemperatureCityOne = new Label();
+        currentPressureCityOne = new Label();
+        currentWindSpeedCityOne = new Label();
+        currentHumidityCityOne = new Label();
     }
 
+    @Override
     public void showWeatherData() {
         try {
             getCurrentWeather("Warszawa", currentWeatherResultCityOne, currentTemperatureCityOne, currentPressureCityOne, currentWindSpeedCityOne, currentHumidityCityOne, currentWeatherCityOneImg);

@@ -21,12 +21,12 @@ public abstract class BaseController {
         return fxmlName;
     }
 
-    protected String getIconUrl(JSONArray jsonArray) {
+    public static String getIconUrl(JSONArray jsonArray) {
         String weatherIconId = jsonArray.getJSONObject(0).getJSONArray("weather").getJSONObject(0).getString("icon");
         return "https://openweathermap.org/img/wn/" + weatherIconId + "@2x.png";
     }
 
-    protected Image setImageUrl(String url) {
+    public static Image setImageUrl(String url) {
         return new Image(url);
     }
 }
