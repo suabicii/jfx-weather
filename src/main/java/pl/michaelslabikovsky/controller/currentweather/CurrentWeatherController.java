@@ -16,10 +16,10 @@ public abstract class CurrentWeatherController {
         String weatherDataResult = weatherData.getResult();
         JSONArray jsonArray = JSONConverter.convertStringObjectToJSONArray(weatherDataResult);
         weatherLabel.setText(jsonArray.getJSONObject(0).getJSONArray("weather").getJSONObject(0).getString("description"));
-        temperatureLabel.setText(String.valueOf(jsonArray.getJSONObject(1).getJSONObject("main").getInt("temp")) + "°C");
-        pressureLabel.setText(String.valueOf(jsonArray.getJSONObject(1).getJSONObject("main").getInt("pressure")) + " hPa");
-        windSpeedLabel.setText(String.valueOf(jsonArray.getJSONObject(1).getJSONObject("wind").getDouble("speed")) + " m/s");
-        humidityLabel.setText(String.valueOf(jsonArray.getJSONObject(1).getJSONObject("main").getInt("humidity")) + "%");
+        temperatureLabel.setText(jsonArray.getJSONObject(1).getJSONObject("main").getInt("temp") + "°C");
+        pressureLabel.setText(jsonArray.getJSONObject(1).getJSONObject("main").getInt("pressure") + " hPa");
+        windSpeedLabel.setText(jsonArray.getJSONObject(1).getJSONObject("wind").getDouble("speed") + " m/s");
+        humidityLabel.setText(jsonArray.getJSONObject(1).getJSONObject("main").getInt("humidity") + "%");
         weatherIcon.setImage(BaseController.setImageUrl(BaseController.getIconUrl(jsonArray)));
     }
 
