@@ -1,5 +1,6 @@
 package pl.michaelslabikovsky.controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -7,7 +8,6 @@ import pl.michaelslabikovsky.WeatherManager;
 import pl.michaelslabikovsky.controller.currentweather.CurrentWeatherCityOneController;
 import pl.michaelslabikovsky.controller.currentweather.CurrentWeatherCityTwoController;
 import pl.michaelslabikovsky.controller.currentweather.CurrentWeatherController;
-import pl.michaelslabikovsky.model.WeatherData;
 import pl.michaelslabikovsky.view.ViewFactory;
 
 import java.net.URL;
@@ -21,11 +21,9 @@ public class MainWindowController extends BaseController implements Initializabl
     @FXML
     private ChoiceBox<String> cityTwoChoiceBox;
 
-    private WeatherData weatherData;
+    private CurrentWeatherController currentWeatherCityOneController = new CurrentWeatherCityOneController();
 
-    private CurrentWeatherController currentWeatherCityOneController;
-
-    private CurrentWeatherController currentWeatherCityTwoController;
+    private CurrentWeatherController currentWeatherCityTwoController = new CurrentWeatherCityTwoController();
 
     public MainWindowController(WeatherManager weatherManager, ViewFactory viewFactory, String fxmlName) {
         super(weatherManager, viewFactory, fxmlName);
@@ -33,20 +31,15 @@ public class MainWindowController extends BaseController implements Initializabl
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        currentWeatherCityOneController = new CurrentWeatherCityOneController();
-        currentWeatherCityTwoController = new CurrentWeatherCityTwoController();
-
         cityOneChoiceBox.getItems().addAll("Warszawa", "Dodaj miejscowość...");
         cityTwoChoiceBox.getItems().addAll("Londyn", "Dodaj miejscowość...");
         cityOneChoiceBox.getSelectionModel().selectFirst();
         cityTwoChoiceBox.getSelectionModel().selectFirst();
 
         cityOneChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> addCity(cityOneChoiceBox, oldValue));
-
         cityTwoChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> addCity(cityTwoChoiceBox, oldValue));
 
         new Thread(() -> currentWeatherCityOneController.showWeatherData()).start();
-
         new Thread(() -> currentWeatherCityTwoController.showWeatherData()).start();
     }
 
