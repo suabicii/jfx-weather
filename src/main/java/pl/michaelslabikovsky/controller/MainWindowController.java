@@ -103,18 +103,9 @@ public class MainWindowController extends BaseController implements Initializabl
         weatherIcon.setImage(setImageUrl(getIconUrl(jsonArray)));
     }
 
-    private String getIconUrl(JSONArray jsonArray) {
-        String weatherIconId = jsonArray.getJSONObject(0).getJSONArray("weather").getJSONObject(0).getString("icon");
-        return "https://openweathermap.org/img/wn/" + weatherIconId + "@2x.png";
-    }
-
     private void addCity(ChoiceBox<String> cityChoiceBox, Number oldValue) {
         if (cityChoiceBox.getSelectionModel().getSelectedIndex() == cityChoiceBox.getItems().size() - 1) {
             cityChoiceBox.getSelectionModel().select(oldValue.intValue());
         }
-    }
-
-    private Image setImageUrl(String url) {
-        return new Image(url);
     }
 }
