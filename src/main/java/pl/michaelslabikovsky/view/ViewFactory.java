@@ -28,7 +28,7 @@ public class ViewFactory {
     }
 
     private void initializeStage(BaseController controller) {
-        FXMLLoader fxmlLoader = new FXMLLoader(new Launcher().getClass().getResource(controller.getFxmlName()));
+        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource(controller.getFxmlName()));
         fxmlLoader.setController(controller);
         Parent parent;
         try {
@@ -41,8 +41,6 @@ public class ViewFactory {
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setMaxWidth(830);
-        stage.setMaxHeight(703);
         stage.setResizable(false);
         stage.show();
         activeStages.add(stage);
