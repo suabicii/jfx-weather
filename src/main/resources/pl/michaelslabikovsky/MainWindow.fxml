@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="703.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
@@ -13,48 +11,16 @@
       <ChoiceBox fx:id="cityOneChoiceBox" layoutX="116.0" layoutY="19.0" prefHeight="26.0" prefWidth="279.0" />
       <ChoiceBox fx:id="cityTwoChoiceBox" layoutX="522.0" layoutY="19.0" prefHeight="26.0" prefWidth="279.0" AnchorPane.rightAnchor="29.0" />
       <BorderPane layoutY="58.0" prefHeight="644.0" prefWidth="419.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0">
+         <top>
+            <fx:include source="CurrentWeatherCityOne.fxml" fx:id="currentWeatherCityOne" />
+         </top>
          <bottom>
             <HBox prefHeight="280.0" prefWidth="419.0" BorderPane.alignment="CENTER" />
          </bottom>
-         <top>
-            <Pane prefHeight="366.0" prefWidth="419.0" BorderPane.alignment="CENTER">
-               <children>
-                  <ImageView fx:id="currentWeatherCityOneImg" fitHeight="79.0" fitWidth="96.0" layoutX="177.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
-                     <effect>
-                        <InnerShadow />
-                     </effect></ImageView>
-                  <Label fx:id="currentWeatherResultCityOne" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="128.0" prefHeight="18.0" prefWidth="347.0" text="«miejsce na rodzaj pogody»" />
-                  <Label layoutX="42.0" layoutY="174.0" prefHeight="18.0" prefWidth="97.0" text="Temperatura:" />
-                  <Label layoutX="42.0" layoutY="205.0" prefHeight="18.0" prefWidth="97.0" text="Ciśnienie:" />
-                  <Label layoutX="42.0" layoutY="239.0" prefHeight="18.0" prefWidth="97.0" text="Wiatr:" />
-                  <Label layoutX="42.0" layoutY="270.0" prefHeight="18.0" prefWidth="143.0" text="Wilgotność powietrza:" />
-                  <Label fx:id="currentTemperatureCityOne" layoutX="299.0" layoutY="174.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
-                  <Label fx:id="currentPressureCityOne" layoutX="299.0" layoutY="205.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
-                  <Label fx:id="currentWindSpeedCityOne" layoutX="299.0" layoutY="239.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
-                  <Label fx:id="currentHumidityCityOne" layoutX="299.0" layoutY="270.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
-               </children>
-            </Pane>
-         </top>
       </BorderPane>
       <BorderPane layoutX="419.0" layoutY="58.0" prefHeight="644.0" prefWidth="411.0" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="0.0">
          <top>
-            <Pane prefHeight="366.0" prefWidth="419.0" BorderPane.alignment="CENTER">
-               <children>
-                  <ImageView fx:id="currentWeatherCityTwoImg" fitHeight="79.0" fitWidth="96.0" layoutX="177.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
-                     <effect>
-                        <InnerShadow />
-                     </effect></ImageView>
-                  <Label fx:id="currentWeatherResultCityTwo" alignment="CENTER" contentDisplay="CENTER" layoutX="39.0" layoutY="135.0" prefHeight="18.0" prefWidth="341.0" text="«miejsce na rodzaj pogody»" />
-                  <Label layoutX="39.0" layoutY="174.0" prefHeight="18.0" prefWidth="97.0" text="Temperatura:" />
-                  <Label layoutX="39.0" layoutY="207.0" prefHeight="18.0" prefWidth="97.0" text="Ciśnienie:" />
-                  <Label layoutX="39.0" layoutY="241.0" prefHeight="18.0" prefWidth="97.0" text="Wiatr:" />
-                  <Label layoutX="39.0" layoutY="272.0" prefHeight="18.0" prefWidth="143.0" text="Wilgotność powietrza:" />
-                  <Label fx:id="currentTemperatureCityTwo" layoutX="294.0" layoutY="174.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
-                  <Label fx:id="currentPressureCityTwo" layoutX="294.0" layoutY="207.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
-                  <Label fx:id="currentWindSpeedCityTwo" layoutX="294.0" layoutY="241.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
-                  <Label fx:id="currentHumidityCityTwo" layoutX="294.0" layoutY="272.0" prefHeight="18.0" prefWidth="95.0" text="Label" />
-               </children>
-            </Pane>
+            <fx:include source="CurrentWeatherCityTwo.fxml" fx:id="currentWeatherCityTwo" />
          </top>
          <bottom>
             <HBox prefHeight="280.0" prefWidth="419.0" BorderPane.alignment="CENTER" />
