@@ -26,15 +26,6 @@ public class CurrentWeatherCityTwoController extends CurrentWeatherController {
     @FXML
     private Label currentHumidityCityTwo;
 
-    public CurrentWeatherCityTwoController() {
-        currentWeatherCityTwoImg = new ImageView();
-        currentWeatherResultCityTwo = new Label();
-        currentTemperatureCityTwo = new Label();
-        currentPressureCityTwo = new Label();
-        currentWindSpeedCityTwo = new Label();
-        currentHumidityCityTwo = new Label();
-    }
-
     @Override
     public void showWeatherData() {
         try {
