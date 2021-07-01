@@ -6,7 +6,6 @@ import javafx.scene.control.ChoiceBox;
 import pl.michaelslabikovsky.WeatherManager;
 import pl.michaelslabikovsky.controller.currentweather.CurrentWeatherCityOneController;
 import pl.michaelslabikovsky.controller.currentweather.CurrentWeatherCityTwoController;
-import pl.michaelslabikovsky.controller.currentweather.CurrentWeatherController;
 import pl.michaelslabikovsky.view.ViewFactory;
 
 import java.net.URL;
@@ -20,9 +19,11 @@ public class MainWindowController extends BaseController implements Initializabl
     @FXML
     private ChoiceBox<String> cityTwoChoiceBox;
 
-    private CurrentWeatherController currentWeatherCityOneController = new CurrentWeatherCityOneController();
+    @FXML
+    private CurrentWeatherCityOneController currentWeatherCityOneController;
 
-    private CurrentWeatherController currentWeatherCityTwoController = new CurrentWeatherCityTwoController();
+    @FXML
+    private CurrentWeatherCityTwoController currentWeatherCityTwoController;
 
     public MainWindowController(WeatherManager weatherManager, ViewFactory viewFactory, String fxmlName) {
         super(weatherManager, viewFactory, fxmlName);
@@ -38,8 +39,8 @@ public class MainWindowController extends BaseController implements Initializabl
         cityOneChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> addCity(cityOneChoiceBox, oldValue));
         cityTwoChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> addCity(cityTwoChoiceBox, oldValue));
 
-        new Thread(() -> currentWeatherCityOneController.showWeatherData()).start();
-        new Thread(() -> currentWeatherCityTwoController.showWeatherData()).start();
+        currentWeatherCityOneController.showWeatherData();
+        currentWeatherCityTwoController.showWeatherData();
     }
 
     private void addCity(ChoiceBox<String> cityChoiceBox, Number oldValue) {

@@ -12,7 +12,7 @@
       <ChoiceBox fx:id="cityTwoChoiceBox" layoutX="522.0" layoutY="19.0" prefHeight="26.0" prefWidth="279.0" AnchorPane.rightAnchor="29.0" />
       <BorderPane layoutY="58.0" prefHeight="644.0" prefWidth="419.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0">
          <top>
-            <fx:include source="CurrentWeatherCityOne.fxml" />
+            <fx:include source="CurrentWeatherCityOne.fxml" fx:id="currentWeatherCityOne" />
          </top>
          <bottom>
             <HBox prefHeight="280.0" prefWidth="419.0" BorderPane.alignment="CENTER" />
@@ -20,7 +20,7 @@
       </BorderPane>
       <BorderPane layoutX="419.0" layoutY="58.0" prefHeight="644.0" prefWidth="411.0" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="0.0">
          <top>
-            <fx:include source="CurrentWeatherCityTwo.fxml" />
+            <fx:include source="CurrentWeatherCityTwo.fxml" fx:id="currentWeatherCityTwo" />
          </top>
          <bottom>
             <HBox prefHeight="280.0" prefWidth="419.0" BorderPane.alignment="CENTER" />
