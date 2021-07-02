@@ -28,10 +28,10 @@ public class MainWindowController extends BaseController implements Initializabl
     private CurrentWeatherCityTwoController currentWeatherCityTwoController;
 
     @FXML
-    private ForecastCityOneController forecastCityOne;
+    private ForecastCityOneController forecastCityOneController;
 
     @FXML
-    private ForecastCityTwoController forecastCityTwo;
+    private ForecastCityTwoController forecastCityTwoController;
 
     public MainWindowController(WeatherManager weatherManager, ViewFactory viewFactory, String fxmlName) {
         super(weatherManager, viewFactory, fxmlName);
