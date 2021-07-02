@@ -6,6 +6,8 @@ import javafx.scene.control.ChoiceBox;
 import pl.michaelslabikovsky.WeatherManager;
 import pl.michaelslabikovsky.controller.currentweather.CurrentWeatherCityOneController;
 import pl.michaelslabikovsky.controller.currentweather.CurrentWeatherCityTwoController;
+import pl.michaelslabikovsky.controller.forecast.ForecastCityOneController;
+import pl.michaelslabikovsky.controller.forecast.ForecastCityTwoController;
 import pl.michaelslabikovsky.view.ViewFactory;
 
 import java.net.URL;
@@ -24,6 +26,12 @@ public class MainWindowController extends BaseController implements Initializabl
 
     @FXML
     private CurrentWeatherCityTwoController currentWeatherCityTwoController;
+
+    @FXML
+    private ForecastCityOneController forecastCityOne;
+
+    @FXML
+    private ForecastCityTwoController forecastCityTwo;
 
     public MainWindowController(WeatherManager weatherManager, ViewFactory viewFactory, String fxmlName) {
         super(weatherManager, viewFactory, fxmlName);

@@ -3,27 +3,34 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="703.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Separator layoutX="417.0" orientation="VERTICAL" prefHeight="703.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="417.0" AnchorPane.rightAnchor="407.0" AnchorPane.topAnchor="0.0" />
-      <Label layoutX="22.0" layoutY="23.0" text="Miejscowość:" />
-      <Label layoutX="431.0" layoutY="23.0" text="Miejscowość:" AnchorPane.rightAnchor="318.0" />
-      <ChoiceBox fx:id="cityOneChoiceBox" layoutX="116.0" layoutY="19.0" prefHeight="26.0" prefWidth="279.0" />
-      <ChoiceBox fx:id="cityTwoChoiceBox" layoutX="522.0" layoutY="19.0" prefHeight="26.0" prefWidth="279.0" AnchorPane.rightAnchor="29.0" />
-      <BorderPane layoutY="58.0" prefHeight="644.0" prefWidth="419.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0">
-         <top>
-            <fx:include source="CurrentWeatherCityOne.fxml" fx:id="currentWeatherCityOne" />
-         </top>
-         <bottom>
-            <HBox prefHeight="280.0" prefWidth="419.0" BorderPane.alignment="CENTER" />
-         </bottom>
-      </BorderPane>
-      <BorderPane layoutX="419.0" layoutY="58.0" prefHeight="644.0" prefWidth="411.0" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="0.0">
-         <top>
-            <fx:include source="CurrentWeatherCityTwo.fxml" fx:id="currentWeatherCityTwo" />
-         </top>
-         <bottom>
-            <HBox prefHeight="280.0" prefWidth="419.0" BorderPane.alignment="CENTER" />
-         </bottom></BorderPane>
-   </children>
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="703.0" prefWidth="830.0"
+            xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Separator layoutX="417.0" orientation="VERTICAL" prefHeight="703.0" prefWidth="0.0"
+                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="417.0" AnchorPane.rightAnchor="407.0"
+                   AnchorPane.topAnchor="0.0"/>
+        <Label layoutX="22.0" layoutY="23.0" text="Miejscowość:"/>
+        <Label layoutX="431.0" layoutY="23.0" text="Miejscowość:" AnchorPane.rightAnchor="318.0"/>
+        <ChoiceBox fx:id="cityOneChoiceBox" layoutX="116.0" layoutY="19.0" prefHeight="26.0" prefWidth="279.0"/>
+        <ChoiceBox fx:id="cityTwoChoiceBox" layoutX="522.0" layoutY="19.0" prefHeight="26.0" prefWidth="279.0"
+                   AnchorPane.rightAnchor="29.0"/>
+        <BorderPane layoutY="58.0" prefHeight="644.0" prefWidth="419.0" AnchorPane.bottomAnchor="1.0"
+                    AnchorPane.leftAnchor="0.0">
+            <top>
+                <fx:include source="CurrentWeatherCityOne.fxml" fx:id="currentWeatherCityOne"/>
+            </top>
+            <bottom>
+                <fx:include source="ForecastCityOne.fxml" fx:id="forecastCityOne"/>
+            </bottom>
+        </BorderPane>
+        <BorderPane layoutX="419.0" layoutY="58.0" prefHeight="644.0" prefWidth="411.0" AnchorPane.bottomAnchor="1.0"
+                    AnchorPane.rightAnchor="0.0">
+            <top>
+                <fx:include source="CurrentWeatherCityTwo.fxml" fx:id="currentWeatherCityTwo"/>
+            </top>
+            <bottom>
+                <fx:include source="ForecastCityTwo.fxml" fx:id="forecastCityTwo"/>
+            </bottom>
+        </BorderPane>
+    </children>
 </AnchorPane>
