@@ -2,6 +2,7 @@ package pl.michaelslabikovsky.controller.forecast;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
 public class ForecastCityOneController extends ForecastController {
 
@@ -45,6 +46,20 @@ public class ForecastCityOneController extends ForecastController {
     private Label fifthDayTemperatureCityOne;
 
     /** Icons */
+    @FXML
+    private ImageView firstDayIconCityOne;
+
+    @FXML
+    private ImageView secondDayIconCityOne;
+
+    @FXML
+    private ImageView thirdDayIconCityOne;
+
+    @FXML
+    private ImageView fourthDayIconCityOne;
+
+    @FXML
+    private ImageView fifthDayIconCityOne;
 
     @Override
     public void getForecast() {
