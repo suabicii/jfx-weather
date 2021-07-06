@@ -5,6 +5,7 @@
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="418.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.michaelslabikovsky.controller.forecast.ForecastCityOneController">
   <columnConstraints>
@@ -39,60 +40,84 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="155.0" prefWidth="105.0" spacing="8.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+      <VBox alignment="CENTER" prefHeight="155.0" prefWidth="105.0" spacing="6.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <children>
             <Label prefHeight="18.0" prefWidth="59.0" text="+2 dni" />
-            <ImageView fx:id="secondDayIconCityOne" fitHeight="36.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="secondDayIconCityOne" fitHeight="37.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                <effect>
                   <InnerShadow />
                </effect></ImageView>
-            <Label fx:id="secondDayResultCityOne" alignment="CENTER" prefHeight="44.0" prefWidth="80.0" text="« pogoda »" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true" />
-            <Label fx:id="secondDayTemperatureOne" alignment="CENTER" layoutX="45.0" layoutY="90.0" prefHeight="18.0" prefWidth="80.0" text="temperatura" />
+            <Label fx:id="secondDayResultCityOne" alignment="CENTER" prefHeight="47.0" prefWidth="80.0" text="« pogoda »" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+            <Label fx:id="secondDayTemperatureOne" alignment="CENTER" layoutX="45.0" layoutY="90.0" prefHeight="18.0" prefWidth="80.0" text="temperatura">
+               <font>
+                  <Font size="12.0" />
+               </font></Label>
          </children>
          <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
          </padding>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="8.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="6.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
          <children>
             <Label prefHeight="18.0" prefWidth="59.0" text="+3 dni" />
-            <ImageView fx:id="thirdDayIconCityOne" fitHeight="36.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="thirdDayIconCityOne" fitHeight="37.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                <effect>
                   <InnerShadow />
                </effect></ImageView>
-            <Label fx:id="thirdDayResultCityOne" alignment="CENTER" prefHeight="44.0" prefWidth="80.0" text="« pogoda »" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true" />
-            <Label fx:id="thirdDayTemperatureCityOne" alignment="CENTER" layoutX="45.0" layoutY="90.0" prefHeight="18.0" prefWidth="80.0" text="temp" />
+            <Label fx:id="thirdDayResultCityOne" alignment="CENTER" prefHeight="44.0" prefWidth="80.0" text="« pogoda »" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+            <Label fx:id="thirdDayTemperatureCityOne" alignment="CENTER" layoutX="45.0" layoutY="90.0" prefHeight="18.0" prefWidth="80.0" text="temp">
+               <font>
+                  <Font size="12.0" />
+               </font></Label>
          </children>
          <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
          </padding>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="8.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="6.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
          <children>
             <Label prefHeight="18.0" prefWidth="59.0" text="+4 dni" />
-            <ImageView fx:id="fourthDayIconCityOne" fitHeight="36.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="fourthDayIconCityOne" fitHeight="37.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                <effect>
                   <InnerShadow />
                </effect></ImageView>
-            <Label fx:id="fourthDayResultCityOne" alignment="CENTER" prefHeight="44.0" prefWidth="80.0" text="« pogoda »" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true" />
-            <Label fx:id="fourthDayTemperatureCityOne" alignment="CENTER" layoutX="45.0" layoutY="90.0" prefHeight="18.0" prefWidth="80.0" text="temp" />
+            <Label fx:id="fourthDayResultCityOne" alignment="CENTER" prefHeight="44.0" prefWidth="80.0" text="« pogoda »" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+            <Label fx:id="fourthDayTemperatureCityOne" alignment="CENTER" layoutX="45.0" layoutY="90.0" prefHeight="18.0" prefWidth="80.0" text="temp">
+               <font>
+                  <Font size="12.0" />
+               </font></Label>
          </children>
          <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
          </padding>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="133.0" prefWidth="136.0" spacing="8.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
+      <VBox alignment="CENTER" prefHeight="133.0" prefWidth="136.0" spacing="6.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
          <children>
             <Label prefHeight="18.0" prefWidth="59.0" text="+5 dni" />
-            <ImageView fx:id="fifthDayIconCityOne" fitHeight="36.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="fifthDayIconCityOne" fitHeight="47.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                <effect>
                   <InnerShadow />
                </effect></ImageView>
-            <Label fx:id="fifthDayResultCityOne" alignment="CENTER" prefHeight="44.0" prefWidth="80.0" text="« pogoda »" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true" />
-            <Label fx:id="fifthDayTemperatureCityOne" alignment="CENTER" layoutX="45.0" layoutY="90.0" prefHeight="18.0" prefWidth="80.0" text="temp" />
+            <Label fx:id="fifthDayResultCityOne" alignment="CENTER" prefHeight="44.0" prefWidth="80.0" text="« pogoda »" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+            <Label fx:id="fifthDayTemperatureCityOne" alignment="CENTER" layoutX="45.0" layoutY="90.0" prefHeight="18.0" prefWidth="80.0" text="temp">
+               <font>
+                  <Font size="12.0" />
+               </font></Label>
          </children>
          <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
          </padding>
       </VBox>
       <Separator orientation="VERTICAL" prefHeight="280.0" prefWidth="1.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="2147483647" />

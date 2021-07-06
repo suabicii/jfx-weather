@@ -63,10 +63,12 @@ public class ForecastCityOneController extends ForecastController {
     @FXML
     private ImageView fifthDayIconCityOne;
 
+    private String cityName = "Warszawa";
+
     @Override
     public void showWeatherData() {
         try {
-            getWeatherForecast("Warszawa",
+            getWeatherForecast(cityName,
                     1,
                     firstDayResultCityOne,
                     firstDayTemperatureCityOne,
@@ -74,6 +76,38 @@ public class ForecastCityOneController extends ForecastController {
                     windSpeedCityOne,
                     humidityCityOne,
                     firstDayIconCityOne);
+            getWeatherForecast(cityName,
+                    2,
+                    secondDayResultCityOne,
+                    secondDayTemperatureOne,
+                    null,
+                    null,
+                    null,
+                    secondDayIconCityOne);
+            getWeatherForecast(cityName,
+                    3,
+                    thirdDayResultCityOne,
+                    thirdDayTemperatureCityOne,
+                    null,
+                    null,
+                    null,
+                    thirdDayIconCityOne);
+            getWeatherForecast(cityName,
+                    4,
+                    fourthDayResultCityOne,
+                    fourthDayTemperatureCityOne,
+                    null,
+                    null,
+                    null,
+                    fourthDayIconCityOne);
+            getWeatherForecast(cityName,
+                    5,
+                    fifthDayResultCityOne,
+                    fifthDayTemperatureCityOne,
+                    null,
+                    null,
+                    null,
+                    fifthDayIconCityOne);
         } catch (IOException e) {
             e.printStackTrace();
         }
