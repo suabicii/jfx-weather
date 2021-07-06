@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="418.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.michaelslabikovsky.controller.forecast.ForecastCityOneController">
   <columnConstraints>
@@ -25,62 +22,77 @@
     <RowConstraints maxHeight="167.0" minHeight="10.0" prefHeight="148.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox prefHeight="130.0" prefWidth="140.0" spacing="10.0" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">
+      <VBox alignment="CENTER" prefHeight="130.0" prefWidth="140.0" spacing="10.0" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">
          <children>
             <Label alignment="CENTER" contentDisplay="TOP" prefHeight="18.0" prefWidth="86.0" text="Jutro" />
-            <ImageView fx:id="firstDayIconCityOne" fitHeight="56.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="firstDayResultCityOne" alignment="CENTER" prefHeight="18.0" prefWidth="80.0" text="« pogoda »" />
+            <ImageView fx:id="firstDayIconCityOne" fitHeight="56.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <InnerShadow />
+               </effect></ImageView>
+            <Label fx:id="firstDayResultCityOne" alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="84.0" text="« pogoda »" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true" />
             <Label fx:id="firstDayTemperatureCityOne" alignment="CENTER" prefHeight="18.0" prefWidth="84.0" text="Label" />
             <Label fx:id="pressureCityOne" alignment="CENTER" layoutX="45.0" layoutY="142.0" prefHeight="18.0" prefWidth="84.0" text="Label" />
             <Label fx:id="windSpeedCityOne" alignment="CENTER" layoutX="45.0" layoutY="170.0" prefHeight="18.0" prefWidth="84.0" text="Label" />
             <Label fx:id="humidityCityOne" alignment="CENTER" layoutX="45.0" layoutY="198.0" prefHeight="18.0" prefWidth="84.0" text="Label" />
          </children>
          <padding>
-            <Insets bottom="10.0" left="35.0" right="10.0" top="10.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </VBox>
-      <VBox prefHeight="155.0" prefWidth="105.0" spacing="8.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+      <VBox alignment="CENTER" prefHeight="155.0" prefWidth="105.0" spacing="8.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <children>
             <Label prefHeight="18.0" prefWidth="59.0" text="+2 dni" />
-            <ImageView fx:id="secondDayIconCityOne" fitHeight="36.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="secondDayResultCityOne" alignment="CENTER" prefHeight="18.0" prefWidth="80.0" text="« pogoda »" />
+            <ImageView fx:id="secondDayIconCityOne" fitHeight="36.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <InnerShadow />
+               </effect></ImageView>
+            <Label fx:id="secondDayResultCityOne" alignment="CENTER" prefHeight="44.0" prefWidth="80.0" text="« pogoda »" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true" />
             <Label fx:id="secondDayTemperatureOne" alignment="CENTER" layoutX="45.0" layoutY="90.0" prefHeight="18.0" prefWidth="80.0" text="temperatura" />
          </children>
          <padding>
-            <Insets bottom="10.0" left="35.0" right="10.0" top="10.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </VBox>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="8.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
          <children>
             <Label prefHeight="18.0" prefWidth="59.0" text="+3 dni" />
-            <ImageView fx:id="thirdDayIconCityOne" fitHeight="36.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="thirdDayResultCityOne" alignment="CENTER" prefHeight="18.0" prefWidth="80.0" text="« pogoda »" />
+            <ImageView fx:id="thirdDayIconCityOne" fitHeight="36.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <InnerShadow />
+               </effect></ImageView>
+            <Label fx:id="thirdDayResultCityOne" alignment="CENTER" prefHeight="44.0" prefWidth="80.0" text="« pogoda »" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true" />
             <Label fx:id="thirdDayTemperatureCityOne" alignment="CENTER" layoutX="45.0" layoutY="90.0" prefHeight="18.0" prefWidth="80.0" text="temp" />
          </children>
          <padding>
-            <Insets bottom="10.0" left="35.0" right="10.0" top="10.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </VBox>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="8.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
          <children>
             <Label prefHeight="18.0" prefWidth="59.0" text="+4 dni" />
-            <ImageView fx:id="fourthDayIconCityOne" fitHeight="36.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="fourthDayResultCityOne" alignment="CENTER" prefHeight="18.0" prefWidth="80.0" text="« pogoda »" />
+            <ImageView fx:id="fourthDayIconCityOne" fitHeight="36.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <InnerShadow />
+               </effect></ImageView>
+            <Label fx:id="fourthDayResultCityOne" alignment="CENTER" prefHeight="44.0" prefWidth="80.0" text="« pogoda »" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true" />
             <Label fx:id="fourthDayTemperatureCityOne" alignment="CENTER" layoutX="45.0" layoutY="90.0" prefHeight="18.0" prefWidth="80.0" text="temp" />
          </children>
          <padding>
-            <Insets bottom="10.0" left="35.0" right="10.0" top="10.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </VBox>
-      <VBox prefHeight="133.0" prefWidth="136.0" spacing="8.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
+      <VBox alignment="CENTER" prefHeight="133.0" prefWidth="136.0" spacing="8.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
          <children>
             <Label prefHeight="18.0" prefWidth="59.0" text="+5 dni" />
-            <ImageView fx:id="fifthDayIconCityOne" fitHeight="36.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="fifthDayResultCityOne" alignment="CENTER" prefHeight="18.0" prefWidth="80.0" text="« pogoda »" />
+            <ImageView fx:id="fifthDayIconCityOne" fitHeight="36.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <InnerShadow />
+               </effect></ImageView>
+            <Label fx:id="fifthDayResultCityOne" alignment="CENTER" prefHeight="44.0" prefWidth="80.0" text="« pogoda »" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true" />
             <Label fx:id="fifthDayTemperatureCityOne" alignment="CENTER" layoutX="45.0" layoutY="90.0" prefHeight="18.0" prefWidth="80.0" text="temp" />
          </children>
          <padding>
-            <Insets bottom="10.0" left="35.0" right="10.0" top="10.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </VBox>
       <Separator orientation="VERTICAL" prefHeight="280.0" prefWidth="1.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="2147483647" />
