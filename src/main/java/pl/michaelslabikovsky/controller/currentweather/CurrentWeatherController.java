@@ -8,21 +8,31 @@ import pl.michaelslabikovsky.model.WeatherData;
 import pl.michaelslabikovsky.utils.JSONConverter;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import static pl.michaelslabikovsky.controller.BaseController.getIconUrl;
 
 public abstract class CurrentWeatherController {
 
-    protected void getCurrentWeather(String cityName, Label weatherLabel, Label temperatureLabel, Label pressureLabel, Label windSpeedLabel, Label humidityLabel, ImageView weatherIcon) throws IOException {
+    protected void getCurrentWeather(String cityName,
+                                     Label weatherLabel,
+                                     Label temperatureLabel,
+                                     Label pressureLabel,
+                                     Label windSpeedLabel,
+                                     Label humidityLabel,
+                                     ImageView weatherIcon) throws IOException {
         WeatherData weatherData = new WeatherData(cityName);
         String weatherDataResult = weatherData.getResult();
         JSONArray jsonArray = JSONConverter.convertStringObjectToJSONArray(weatherDataResult);
         weatherLabel.setText(jsonArray.getJSONObject(0).getJSONArray("weather").getJSONObject(0).getString("description"));
-        temperatureLabel.setText(jsonArray.getJSONObject(1).getJSONObject("main").getInt("temp") + "°C");
-        pressureLabel.setText(jsonArray.getJSONObject(1).getJSONObject("main").getInt("pressure") + " hPa");
-        windSpeedLabel.setText(jsonArray.getJSONObject(1).getJSONObject("wind").getDouble("speed") + " m/s");
-        humidityLabel.setText(jsonArray.getJSONObject(1).getJSONObject("main").getInt("humidity") + "%");
-        weatherIcon.setImage(BaseController.setImageUrl(getIconUrl(jsonArray)));
+        temperatureLabel.setText(jsonArray.getJSONObject(0).getJSONObject("main").getDouble("temp") + "°C");
+        pressureLabel.setText(jsonArray.getJSONObject(0).getJSONObject("main").getInt("pressure") + " hPa");
+        windSpeedLabel.setText(jsonArray.getJSONObject(0).getJSONObject("wind").getDouble("speed") + " m/s");
+        humidityLabel.setText(jsonArray.getJSONObject(0).getJSONObject("main").getInt("humidity") + "%");
+        weatherIcon.setImage(BaseController.setImageUrl(getIconUrl(jsonArray, 0)));
     }
 
     public abstract void showWeatherData();

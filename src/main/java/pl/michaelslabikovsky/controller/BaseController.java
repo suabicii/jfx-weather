@@ -21,8 +21,8 @@ public abstract class BaseController {
         return fxmlName;
     }
 
-    public static String getIconUrl(JSONArray jsonArray) {
-        String weatherIconId = jsonArray.getJSONObject(0).getJSONArray("weather").getJSONObject(0).getString("icon");
+    public static String getIconUrl(JSONArray jsonArray, int arrayIndex) {
+        String weatherIconId = jsonArray.getJSONObject(arrayIndex).getJSONArray("weather").getJSONObject(0).getString("icon");
         return "https://openweathermap.org/img/wn/" + weatherIconId + "@2x.png";
     }
 

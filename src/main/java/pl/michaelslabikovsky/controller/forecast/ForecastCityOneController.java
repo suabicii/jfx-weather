@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
+import java.io.IOException;
+
 public class ForecastCityOneController extends ForecastController {
 
     @FXML
@@ -62,7 +64,18 @@ public class ForecastCityOneController extends ForecastController {
     private ImageView fifthDayIconCityOne;
 
     @Override
-    public void getForecast() {
-
+    public void showWeatherData() {
+        try {
+            getWeatherForecast("Warszawa",
+                    1,
+                    firstDayResultCityOne,
+                    firstDayTemperatureCityOne,
+                    pressureCityOne,
+                    windSpeedCityOne,
+                    humidityCityOne,
+                    firstDayIconCityOne);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

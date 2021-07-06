@@ -49,6 +49,9 @@ public class MainWindowController extends BaseController implements Initializabl
 
         currentWeatherCityOneController.showWeatherData();
         currentWeatherCityTwoController.showWeatherData();
+
+        forecastCityOneController.showWeatherData();
+        forecastCityTwoController.showWeatherData();
     }
 
     private void addCity(ChoiceBox<String> cityChoiceBox, Number oldValue) {
