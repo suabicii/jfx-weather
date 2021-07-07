@@ -103,7 +103,7 @@
       <VBox alignment="CENTER" prefHeight="133.0" prefWidth="136.0" spacing="6.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
          <children>
             <Label prefHeight="18.0" prefWidth="59.0" text="+5 dni" />
-            <ImageView fx:id="fifthDayIconCityOne" fitHeight="47.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="fifthDayIconCityOne" fitHeight="37.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                <effect>
                   <InnerShadow />
                </effect></ImageView>
