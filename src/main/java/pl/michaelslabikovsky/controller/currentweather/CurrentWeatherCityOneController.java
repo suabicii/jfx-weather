@@ -29,7 +29,7 @@ public class CurrentWeatherCityOneController extends CurrentWeatherController {
     @Override
     public void showWeatherData() {
         try {
-            getCurrentWeather("Warszawa", currentWeatherResultCityOne, currentTemperatureCityOne, currentPressureCityOne, currentWindSpeedCityOne, currentHumidityCityOne, currentWeatherCityOneImg);
+            getCurrentWeather("Warszawa", 0, currentWeatherResultCityOne, currentTemperatureCityOne, currentPressureCityOne, currentWindSpeedCityOne, currentHumidityCityOne, currentWeatherCityOneImg);
         } catch (IOException e) {
             e.printStackTrace();
         }

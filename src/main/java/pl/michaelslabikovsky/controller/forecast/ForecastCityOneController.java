@@ -5,6 +5,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ForecastCityOneController extends ForecastController {
 
@@ -47,7 +49,9 @@ public class ForecastCityOneController extends ForecastController {
     @FXML
     private Label fifthDayTemperatureCityOne;
 
-    /** Icons */
+    /**
+     * Icons
+     */
     @FXML
     private ImageView firstDayIconCityOne;
 
@@ -63,51 +67,42 @@ public class ForecastCityOneController extends ForecastController {
     @FXML
     private ImageView fifthDayIconCityOne;
 
-    private String cityName = "Warszawa";
+    private final String CITY_NAME = "Warszawa";
 
     @Override
     public void showWeatherData() {
+        List<List<Label>> weatherLabels = new ArrayList<>();
+        weatherLabels.add(fillFirstDayControlsList(firstDayResultCityOne, firstDayTemperatureCityOne, pressureCityOne, windSpeedCityOne, humidityCityOne));
+        weatherLabels.add(fillOtherDayControlList(secondDayResultCityOne, secondDayTemperatureOne));
+        weatherLabels.add(fillOtherDayControlList(thirdDayResultCityOne, thirdDayTemperatureCityOne));
+        weatherLabels.add(fillOtherDayControlList(fourthDayResultCityOne, fourthDayTemperatureCityOne));
+        weatherLabels.add(fillOtherDayControlList(fifthDayResultCityOne, fifthDayTemperatureCityOne));
+        List<ImageView> weatherIcons = fillImageViewList(firstDayIconCityOne, secondDayIconCityOne, thirdDayIconCityOne, fourthDayIconCityOne, fifthDayIconCityOne);
+
         try {
-            getWeatherForecast(cityName,
-                    1,
-                    firstDayResultCityOne,
-                    firstDayTemperatureCityOne,
-                    pressureCityOne,
-                    windSpeedCityOne,
-                    humidityCityOne,
-                    firstDayIconCityOne);
-            getWeatherForecast(cityName,
-                    2,
-                    secondDayResultCityOne,
-                    secondDayTemperatureOne,
-                    null,
-                    null,
-                    null,
-                    secondDayIconCityOne);
-            getWeatherForecast(cityName,
-                    3,
-                    thirdDayResultCityOne,
-                    thirdDayTemperatureCityOne,
-                    null,
-                    null,
-                    null,
-                    thirdDayIconCityOne);
-            getWeatherForecast(cityName,
-                    4,
-                    fourthDayResultCityOne,
-                    fourthDayTemperatureCityOne,
-                    null,
-                    null,
-                    null,
-                    fourthDayIconCityOne);
-            getWeatherForecast(cityName,
-                    5,
-                    fifthDayResultCityOne,
-                    fifthDayTemperatureCityOne,
-                    null,
-                    null,
-                    null,
-                    fifthDayIconCityOne);
+            for (int i = 0; i < weatherLabels.size(); i++) {
+                if (i == 0) {
+                    getWeatherForecast(CITY_NAME,
+                            i + 1,
+                            weatherLabels.get(i).get(0),
+                            weatherLabels.get(i).get(1),
+                            weatherLabels.get(i).get(2),
+                            weatherLabels.get(i).get(3),
+                            weatherLabels.get(i).get(4),
+                            weatherIcons.get(i)
+                    );
+                } else {
+                    getWeatherForecast(CITY_NAME,
+                            i + 1,
+                            weatherLabels.get(i).get(0),
+                            weatherLabels.get(i).get(1),
+                            null,
+                            null,
+                            null,
+                            weatherIcons.get(i)
+                    );
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

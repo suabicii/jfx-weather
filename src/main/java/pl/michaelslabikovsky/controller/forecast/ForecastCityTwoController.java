@@ -5,6 +5,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ForecastCityTwoController extends ForecastController {
 
@@ -63,51 +65,42 @@ public class ForecastCityTwoController extends ForecastController {
     @FXML
     private ImageView fifthDayIconCityTwo;
 
-    private String cityName = "Londyn";
+    private String CITY_NAME = "Londyn";
 
     @Override
     public void showWeatherData() {
+        List<List<Label>> weatherLabels = new ArrayList<>();
+        weatherLabels.add(fillFirstDayControlsList(firstDayResultCityTwo, firstDayTemperatureCityTwo, pressureCityTwo, windSpeedCityTwo, humidityCityTwo));
+        weatherLabels.add(fillOtherDayControlList(secondDayResultCityTwo, secondDayTemperatureTwo));
+        weatherLabels.add(fillOtherDayControlList(thirdDayResultCityTwo, thirdDayTemperatureCityTwo));
+        weatherLabels.add(fillOtherDayControlList(fourthDayResultCityTwo, fourthDayTemperatureCityTwo));
+        weatherLabels.add(fillOtherDayControlList(fifthDayResultCityTwo, fifthDayTemperatureCityTwo));
+        List<ImageView> weatherIcons = fillImageViewList(firstDayIconCityTwo, secondDayIconCityTwo, thirdDayIconCityTwo, fourthDayIconCityTwo, fifthDayIconCityTwo);
+
         try {
-            getWeatherForecast(cityName,
-                    1,
-                    firstDayResultCityTwo,
-                    firstDayTemperatureCityTwo,
-                    pressureCityTwo,
-                    windSpeedCityTwo,
-                    humidityCityTwo,
-                    firstDayIconCityTwo);
-            getWeatherForecast(cityName,
-                    2,
-                    secondDayResultCityTwo,
-                    secondDayTemperatureTwo,
-                    null,
-                    null,
-                    null,
-                    secondDayIconCityTwo);
-            getWeatherForecast(cityName,
-                    3,
-                    thirdDayResultCityTwo,
-                    thirdDayTemperatureCityTwo,
-                    null,
-                    null,
-                    null,
-                    thirdDayIconCityTwo);
-            getWeatherForecast(cityName,
-                    4,
-                    fourthDayResultCityTwo,
-                    fourthDayTemperatureCityTwo,
-                    null,
-                    null,
-                    null,
-                    fourthDayIconCityTwo);
-            getWeatherForecast(cityName,
-                    5,
-                    fifthDayResultCityTwo,
-                    fifthDayTemperatureCityTwo,
-                    null,
-                    null,
-                    null,
-                    fifthDayIconCityTwo);
+            for (int i = 0; i < weatherLabels.size(); i++) {
+                if (i == 0) {
+                    getWeatherForecast(CITY_NAME,
+                            i + 1,
+                            weatherLabels.get(i).get(0),
+                            weatherLabels.get(i).get(1),
+                            weatherLabels.get(i).get(2),
+                            weatherLabels.get(i).get(3),
+                            weatherLabels.get(i).get(4),
+                            weatherIcons.get(i)
+                    );
+                } else {
+                    getWeatherForecast(CITY_NAME,
+                            i + 1,
+                            weatherLabels.get(i).get(0),
+                            weatherLabels.get(i).get(1),
+                            null,
+                            null,
+                            null,
+                            weatherIcons.get(i)
+                    );
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
