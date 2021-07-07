@@ -87,7 +87,7 @@
                <effect>
                   <InnerShadow />
                </effect></ImageView>
-            <Label fx:id="fourthDayResultCityOne" alignment="CENTER" prefHeight="44.0" prefWidth="80.0" text="« pogoda »" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true">
+            <Label fx:id="fourthDayResultCityOne" alignment="CENTER" prefHeight="117.0" prefWidth="80.0" text="« pogoda »" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true">
                <font>
                   <Font size="10.0" />
                </font></Label>

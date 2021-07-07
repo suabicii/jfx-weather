@@ -8,10 +8,6 @@ import pl.michaelslabikovsky.model.WeatherData;
 import pl.michaelslabikovsky.utils.JSONConverter;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 import static pl.michaelslabikovsky.controller.BaseController.getIconUrl;
 
