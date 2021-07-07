@@ -89,6 +89,20 @@ public abstract class ForecastController {
         Date laterDate = calendar.getTime();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+        if (timeIntervalInDays == 5) { // ze względu na mniejszą liczbę rekordów z pogody za 5 dni
+            nearestHour = getEarlierHour(nearestHour); // muszę cofnąć czas o 3 godziny
+        }
+
         return dateFormat.format(laterDate).concat(" ").concat(nearestHour);
+    }
+
+    private String getEarlierHour(String nearestHour) throws ParseException {
+        Date baseHour = new SimpleDateFormat("HH:mm:ss").parse(nearestHour);
+        Calendar calendarForHour = Calendar.getInstance();
+        calendarForHour.setTime(baseHour);
+        calendarForHour.add(Calendar.HOUR, -3);
+        Date earlierHour = calendarForHour.getTime();
+        SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
+        return hourFormat.format(earlierHour);
     }
 }

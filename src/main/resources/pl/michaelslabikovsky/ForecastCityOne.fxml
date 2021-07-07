@@ -30,7 +30,7 @@
                <effect>
                   <InnerShadow />
                </effect></ImageView>
-            <Label fx:id="firstDayResultCityOne" alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="84.0" text="« pogoda »" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true" />
+            <Label fx:id="firstDayResultCityOne" alignment="CENTER" contentDisplay="CENTER" prefHeight="82.0" prefWidth="84.0" text="« pogoda »" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true" />
             <Label fx:id="firstDayTemperatureCityOne" alignment="CENTER" prefHeight="18.0" prefWidth="84.0" text="Label" />
             <Label fx:id="pressureCityOne" alignment="CENTER" layoutX="45.0" layoutY="142.0" prefHeight="18.0" prefWidth="84.0" text="Label" />
             <Label fx:id="windSpeedCityOne" alignment="CENTER" layoutX="45.0" layoutY="170.0" prefHeight="18.0" prefWidth="84.0" text="Label" />

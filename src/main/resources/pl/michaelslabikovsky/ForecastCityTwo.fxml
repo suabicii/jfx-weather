@@ -30,7 +30,7 @@
                <effect>
                   <InnerShadow />
                </effect></ImageView>
-                <Label fx:id="firstDayResultCityTwo" alignment="CENTER" contentDisplay="TOP" prefHeight="91.0" prefWidth="84.0" text="« pogoda »" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true" />
+                <Label fx:id="firstDayResultCityTwo" alignment="CENTER" contentDisplay="TOP" prefHeight="174.0" prefWidth="84.0" text="« pogoda »" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true" />
                 <Label fx:id="firstDayTemperatureCityTwo" alignment="CENTER" prefHeight="18.0" prefWidth="84.0" text="Label" />
                 <Label fx:id="pressureCityTwo" alignment="CENTER" layoutX="45.0" layoutY="142.0" prefHeight="18.0" prefWidth="84.0" text="Label" />
                 <Label fx:id="windSpeedCityTwo" alignment="CENTER" layoutX="45.0" layoutY="170.0" prefHeight="18.0" prefWidth="84.0" text="Label" />
@@ -103,7 +103,7 @@
         <VBox alignment="CENTER" prefHeight="133.0" prefWidth="136.0" spacing="6.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
             <children>
                 <Label prefHeight="18.0" prefWidth="59.0" text="+5 dni" />
-                <ImageView fx:id="fifthDayIconCityTwo" fitHeight="26.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="fifthDayIconCityTwo" fitHeight="37.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                <effect>
                   <InnerShadow />
                </effect></ImageView>
