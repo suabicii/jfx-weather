@@ -2,15 +2,9 @@ package pl.michaelslabikovsky.controller.currentweather;
 
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import org.json.JSONArray;
-import pl.michaelslabikovsky.controller.BaseController;
 import pl.michaelslabikovsky.controller.WeatherController;
-import pl.michaelslabikovsky.model.WeatherData;
-import pl.michaelslabikovsky.utils.JSONConverter;
 
 import java.io.IOException;
-
-import static pl.michaelslabikovsky.controller.BaseController.getIconUrl;
 
 public abstract class CurrentWeatherController extends WeatherController {
 
