@@ -2,25 +2,41 @@ package pl.michaelslabikovsky.controller.forecast;
 
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import org.json.JSONArray;
-import pl.michaelslabikovsky.controller.BaseController;
 import pl.michaelslabikovsky.controller.WeatherController;
-import pl.michaelslabikovsky.model.WeatherData;
-import pl.michaelslabikovsky.utils.JSONConverter;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-
-import static pl.michaelslabikovsky.controller.BaseController.getIconUrl;
 
 public abstract class ForecastController extends WeatherController {
 
-    protected void getWeatherForecast(String cityName,
+    protected void startWeatherForecast(List<List<Label>> weatherLabels, List<ImageView> weatherIcons, String cityName) throws IOException {
+        for (int i = 0; i < weatherLabels.size(); i++) {
+            if (i == 0) {
+                getWeatherForecast(cityName,
+                        i + 1,
+                        weatherLabels.get(i).get(0),
+                        weatherLabels.get(i).get(1),
+                        weatherLabels.get(i).get(2),
+                        weatherLabels.get(i).get(3),
+                        weatherLabels.get(i).get(4),
+                        weatherIcons.get(i)
+                );
+            } else {
+                getWeatherForecast(cityName,
+                        i + 1,
+                        weatherLabels.get(i).get(0),
+                        weatherLabels.get(i).get(1),
+                        null,
+                        null,
+                        null,
+                        weatherIcons.get(i)
+                );
+            }
+        }
+    }
+
+    private void getWeatherForecast(String cityName,
                                       int timeIntervalInDays,
                                       Label weatherLabel,
                                       Label temperatureLabel,
@@ -52,7 +68,7 @@ public abstract class ForecastController extends WeatherController {
         return firstDayControls;
     }
 
-    protected List<Label> fillOtherDayControlList(Label resultLabel, Label temperatureLabel) {
+    protected List<Label> fillOtherDayControlsList(Label resultLabel, Label temperatureLabel) {
         List<Label> otherDayControls = new ArrayList<>();
         otherDayControls.add(resultLabel);
         otherDayControls.add(temperatureLabel);

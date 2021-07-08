@@ -69,40 +69,23 @@ public class ForecastCityTwoController extends ForecastController {
 
     @Override
     public void showWeatherData() {
-        List<List<Label>> weatherLabels = new ArrayList<>();
-        weatherLabels.add(fillFirstDayControlsList(firstDayResultCityTwo, firstDayTemperatureCityTwo, pressureCityTwo, windSpeedCityTwo, humidityCityTwo));
-        weatherLabels.add(fillOtherDayControlList(secondDayResultCityTwo, secondDayTemperatureTwo));
-        weatherLabels.add(fillOtherDayControlList(thirdDayResultCityTwo, thirdDayTemperatureCityTwo));
-        weatherLabels.add(fillOtherDayControlList(fourthDayResultCityTwo, fourthDayTemperatureCityTwo));
-        weatherLabels.add(fillOtherDayControlList(fifthDayResultCityTwo, fifthDayTemperatureCityTwo));
+        List<List<Label>> weatherLabels = fillLabelsList();
         List<ImageView> weatherIcons = fillImageViewList(firstDayIconCityTwo, secondDayIconCityTwo, thirdDayIconCityTwo, fourthDayIconCityTwo, fifthDayIconCityTwo);
 
         try {
-            for (int i = 0; i < weatherLabels.size(); i++) {
-                if (i == 0) {
-                    getWeatherForecast(CITY_NAME,
-                            i + 1,
-                            weatherLabels.get(i).get(0),
-                            weatherLabels.get(i).get(1),
-                            weatherLabels.get(i).get(2),
-                            weatherLabels.get(i).get(3),
-                            weatherLabels.get(i).get(4),
-                            weatherIcons.get(i)
-                    );
-                } else {
-                    getWeatherForecast(CITY_NAME,
-                            i + 1,
-                            weatherLabels.get(i).get(0),
-                            weatherLabels.get(i).get(1),
-                            null,
-                            null,
-                            null,
-                            weatherIcons.get(i)
-                    );
-                }
-            }
+            startWeatherForecast(weatherLabels, weatherIcons, CITY_NAME);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private List<List<Label>> fillLabelsList() {
+        List<List<Label>> labels = new ArrayList<>();
+        labels.add(fillFirstDayControlsList(firstDayResultCityTwo, firstDayTemperatureCityTwo, pressureCityTwo, windSpeedCityTwo, humidityCityTwo));
+        labels.add(fillOtherDayControlsList(secondDayResultCityTwo, secondDayTemperatureTwo));
+        labels.add(fillOtherDayControlsList(thirdDayResultCityTwo, thirdDayTemperatureCityTwo));
+        labels.add(fillOtherDayControlsList(fourthDayResultCityTwo, fourthDayTemperatureCityTwo));
+        labels.add(fillOtherDayControlsList(fifthDayResultCityTwo, fifthDayTemperatureCityTwo));
+        return labels;
     }
 }
