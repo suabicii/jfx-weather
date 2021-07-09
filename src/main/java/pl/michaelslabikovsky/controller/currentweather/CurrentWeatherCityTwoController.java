@@ -27,9 +27,9 @@ public class CurrentWeatherCityTwoController extends CurrentWeatherController {
     private Label currentHumidityCityTwo;
 
     @Override
-    public void showWeatherData() {
+    public void showWeatherData(String cityName) {
         try {
-            getCurrentWeather("Londyn", 0, currentWeatherResultCityTwo, currentTemperatureCityTwo, currentPressureCityTwo, currentWindSpeedCityTwo, currentHumidityCityTwo, currentWeatherCityTwoImg);
+            getCurrentWeather(cityName, 0, currentWeatherResultCityTwo, currentTemperatureCityTwo, currentPressureCityTwo, currentWindSpeedCityTwo, currentHumidityCityTwo, currentWeatherCityTwoImg);
         } catch (IOException e) {
             e.printStackTrace();
         }

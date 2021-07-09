@@ -47,11 +47,15 @@ public class MainWindowController extends BaseController implements Initializabl
         cityOneChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> addCity(cityOneChoiceBox, oldValue));
         cityTwoChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> addCity(cityTwoChoiceBox, oldValue));
 
-        currentWeatherCityOneController.showWeatherData();
-        currentWeatherCityTwoController.showWeatherData();
+        currentWeatherCityOneController.showWeatherData(getCityName(cityOneChoiceBox));
+        currentWeatherCityTwoController.showWeatherData(getCityName(cityTwoChoiceBox));
 
-        forecastCityOneController.showWeatherData();
-        forecastCityTwoController.showWeatherData();
+        forecastCityOneController.showWeatherData(getCityName(cityOneChoiceBox));
+        forecastCityTwoController.showWeatherData(getCityName(cityTwoChoiceBox));
+    }
+
+    private String getCityName(ChoiceBox<String> choiceBox) {
+        return choiceBox.getSelectionModel().getSelectedItem();
     }
 
     private void addCity(ChoiceBox<String> cityChoiceBox, Number oldValue) {

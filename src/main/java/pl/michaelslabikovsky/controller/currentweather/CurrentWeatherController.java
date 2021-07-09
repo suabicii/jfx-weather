@@ -28,5 +28,5 @@ public abstract class CurrentWeatherController extends WeatherController {
         );
     }
 
-    public abstract void showWeatherData();
+    public abstract void showWeatherData(String cityName);
 }

@@ -56,7 +56,7 @@ public abstract class ForecastController extends WeatherController {
         );
     }
 
-    public abstract void showWeatherData();
+    public abstract void showWeatherData(String cityName);
 
     protected List<Label> fillFirstDayControlsList(Label resultLabel, Label temperatureLabel, Label pressureLabel, Label windSpeedLabel, Label humidityLabel) {
         List<Label> firstDayControls = new ArrayList<>();

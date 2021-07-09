@@ -65,15 +65,13 @@ public class ForecastCityTwoController extends ForecastController {
     @FXML
     private ImageView fifthDayIconCityTwo;
 
-    private String CITY_NAME = "Londyn";
-
     @Override
-    public void showWeatherData() {
+    public void showWeatherData(String cityName) {
         List<List<Label>> weatherLabels = fillLabelsList();
         List<ImageView> weatherIcons = fillImageViewList(firstDayIconCityTwo, secondDayIconCityTwo, thirdDayIconCityTwo, fourthDayIconCityTwo, fifthDayIconCityTwo);
 
         try {
-            startWeatherForecast(weatherLabels, weatherIcons, CITY_NAME);
+            startWeatherForecast(weatherLabels, weatherIcons, cityName);
         } catch (IOException e) {
             e.printStackTrace();
         }
