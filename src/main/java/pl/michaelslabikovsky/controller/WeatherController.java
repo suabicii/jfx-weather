@@ -26,7 +26,7 @@ public class WeatherController {
                                              ImageView weatherIcon) throws IOException {
         WeatherData weatherData = new WeatherData(cityName);
         String weatherDataResult = weatherData.getResult();
-        JSONArray jsonArray = JSONConverter.convertStringObjectToJSONArray(weatherDataResult);
+        JSONArray jsonArray = JSONConverter.convertStringObjectToJSONArrayWithWeatherData(weatherDataResult);
 
         String laterDateTime = null;
         try {
