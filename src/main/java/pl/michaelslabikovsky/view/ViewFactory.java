@@ -5,8 +5,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import pl.michaelslabikovsky.Launcher;
-import pl.michaelslabikovsky.WeatherManager;
 import pl.michaelslabikovsky.controller.BaseController;
+import pl.michaelslabikovsky.controller.CityChoiceController;
 import pl.michaelslabikovsky.controller.MainWindowController;
 
 import java.io.IOException;
@@ -14,16 +14,19 @@ import java.util.ArrayList;
 
 public class ViewFactory {
 
-    private WeatherManager weatherManager;
     private ArrayList<Stage> activeStages;
 
-    public ViewFactory(WeatherManager weatherManager) {
-        this.weatherManager = weatherManager;
+    public ViewFactory() {
         activeStages = new ArrayList<>();
     }
 
     public void showMainWindow() {
-        BaseController controller = new MainWindowController(weatherManager, this, "MainWindow.fxml");
+        BaseController controller = new MainWindowController(this, "MainWindow.fxml");
+        initializeStage(controller);
+    }
+
+    public void showCityChoiceWindow() {
+        BaseController controller = new CityChoiceController(this, "CityChoiceWindow.fxml");
         initializeStage(controller);
     }
 

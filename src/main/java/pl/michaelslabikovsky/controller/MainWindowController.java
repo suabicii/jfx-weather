@@ -3,7 +3,6 @@ package pl.michaelslabikovsky.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
-import pl.michaelslabikovsky.WeatherManager;
 import pl.michaelslabikovsky.controller.currentweather.CurrentWeatherCityOneController;
 import pl.michaelslabikovsky.controller.currentweather.CurrentWeatherCityTwoController;
 import pl.michaelslabikovsky.controller.forecast.ForecastCityOneController;
@@ -33,8 +32,8 @@ public class MainWindowController extends BaseController implements Initializabl
     @FXML
     private ForecastCityTwoController forecastCityTwoController;
 
-    public MainWindowController(WeatherManager weatherManager, ViewFactory viewFactory, String fxmlName) {
-        super(weatherManager, viewFactory, fxmlName);
+    public MainWindowController(ViewFactory viewFactory, String fxmlName) {
+        super(viewFactory, fxmlName);
     }
 
     @Override
@@ -61,6 +60,7 @@ public class MainWindowController extends BaseController implements Initializabl
     private void addCity(ChoiceBox<String> cityChoiceBox, Number oldValue) {
         if (cityChoiceBox.getSelectionModel().getSelectedIndex() == cityChoiceBox.getItems().size() - 1) {
             cityChoiceBox.getSelectionModel().select(oldValue.intValue());
+            viewFactory.showCityChoiceWindow();
         }
     }
 }

@@ -2,17 +2,14 @@ package pl.michaelslabikovsky.controller;
 
 import javafx.scene.image.Image;
 import org.json.JSONArray;
-import pl.michaelslabikovsky.WeatherManager;
 import pl.michaelslabikovsky.view.ViewFactory;
 
 public abstract class BaseController {
 
-    protected WeatherManager weatherManager;
     protected ViewFactory viewFactory;
     private String fxmlName;
 
-    public BaseController(WeatherManager weatherManager, ViewFactory viewFactory, String fxmlName) {
-        this.weatherManager = weatherManager;
+    public BaseController(ViewFactory viewFactory, String fxmlName) {
         this.viewFactory = viewFactory;
         this.fxmlName = fxmlName;
     }
