@@ -2,12 +2,12 @@ package pl.michaelslabikovsky.model;
 
 import java.net.MalformedURLException;
 
-public class WeatherData extends APIData {
+public class Location extends APIData {
 
-    private final static String MAIN_API_PART = "https://api.openweathermap.org/data/2.5/forecast?q=";
-    private final static String ADDITIONAL_API_PART = "&lang=pl&units=metric";
+    private final static String MAIN_API_PART = "https://api.openweathermap.org/geo/1.0/direct?q=";
+    private final static String ADDITIONAL_API_PART = "&limit=5";
 
-    public WeatherData(String cityName) throws MalformedURLException {
+    public Location(String cityName) throws MalformedURLException {
         super(cityName);
     }
 
