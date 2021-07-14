@@ -30,6 +30,11 @@ public class ViewFactory {
         initializeStage(controller);
     }
 
+    public void closeStage(Stage stageToClose) {
+        stageToClose.close();
+        activeStages.remove(stageToClose);
+    }
+
     private void initializeStage(BaseController controller) {
         FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource(controller.getFxmlName()));
         fxmlLoader.setController(controller);
