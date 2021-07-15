@@ -6,10 +6,10 @@
 <AnchorPane prefHeight="451.0" prefWidth="572.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="32.0" layoutY="51.0" prefHeight="18.0" prefWidth="165.0" text="Wpisz nazwę miejscowości" />
-      <TextField fx:id="citySearchField" layoutX="219.0" layoutY="47.0" onKeyReleased="#searchCityAfterKeyIsReleased" prefHeight="26.0" prefWidth="325.0" />
+      <TextField fx:id="citySearchField" layoutX="219.0" layoutY="47.0" onAction="#searchCityAfterTextChange" prefHeight="26.0" prefWidth="325.0" />
       <Button layoutX="420.0" layoutY="402.0" mnemonicParsing="false" onAction="#addCityAction" text="Dodaj" />
       <Button layoutX="486.0" layoutY="402.0" mnemonicParsing="false" onAction="#cancelAction" text="Anuluj" />
-      <TableView layoutX="22.0" layoutY="110.0" prefHeight="279.0" prefWidth="522.0">
+      <TableView fx:id="locationTable" layoutX="22.0" layoutY="110.0" prefHeight="279.0" prefWidth="522.0">
         <columns>
           <TableColumn fx:id="nameCol" prefWidth="255.0" text="Nazwa" />
           <TableColumn fx:id="countyCol" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="266.0" resizable="false" text="Kraj" />

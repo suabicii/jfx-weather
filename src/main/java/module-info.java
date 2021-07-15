@@ -10,4 +10,5 @@ module pl.michaelslabikovsky {
     exports pl.michaelslabikovsky;
     opens pl.michaelslabikovsky.controller.currentweather to javafx.fxml;
     opens pl.michaelslabikovsky.controller.forecast to javafx.fxml;
+    opens pl.michaelslabikovsky.model to javafx.base;
 }

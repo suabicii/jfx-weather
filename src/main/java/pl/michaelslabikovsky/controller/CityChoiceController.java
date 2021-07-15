@@ -3,7 +3,9 @@ package pl.michaelslabikovsky.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import pl.michaelslabikovsky.model.Location;
 import pl.michaelslabikovsky.utils.JSONConverter;
@@ -17,6 +19,9 @@ public class CityChoiceController extends BaseController implements Initializabl
 
     @FXML
     private TextField citySearchField;
+
+    @FXML
+    private TableView<Location> locationTable;
 
     @FXML
     private TableColumn<Location, String> nameCol;
@@ -36,15 +41,18 @@ public class CityChoiceController extends BaseController implements Initializabl
         citySearchField.textProperty().addListener((observable, oldValue, newValue) -> {
             searchFieldValue = newValue;
         });
+        nameCol.setCellValueFactory(new PropertyValueFactory<Location, String>("result"));
+        locationTable.getColumns().add(nameCol);
     }
 
     @FXML
-    public void searchCityAfterKeyIsReleased() {
+    public void searchCityAfterTextChange() {
         new Thread(() -> {
             try {
                 location = new Location(searchFieldValue);
                 String result = location.getResult();
                 System.out.println("Miejscowość: " + JSONConverter.convertStringObjectToJSONArray(result));
+                locationTable.getItems().add(location);
             } catch (IOException e) {
                 e.printStackTrace();
             }
