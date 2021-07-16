@@ -7,6 +7,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import pl.michaelslabikovsky.model.Location;
 import pl.michaelslabikovsky.utils.JSONConverter;
 import pl.michaelslabikovsky.view.ViewFactory;
@@ -26,9 +28,6 @@ public class CityChoiceController extends BaseController implements Initializabl
     @FXML
     private TableColumn<Location, String> nameCol;
 
-    @FXML
-    private TableColumn<Location, String> countyCol;
-
     private String searchFieldValue;
     private Location location;
 
@@ -41,18 +40,20 @@ public class CityChoiceController extends BaseController implements Initializabl
         citySearchField.textProperty().addListener((observable, oldValue, newValue) -> {
             searchFieldValue = newValue;
         });
-        nameCol.setCellValueFactory(new PropertyValueFactory<Location, String>("result"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<Location, String>("city"));
         locationTable.getColumns().add(nameCol);
+        locationTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
     @FXML
     public void searchCityAfterTextChange() {
         new Thread(() -> {
             try {
+                locationTable.getItems().clear();
                 location = new Location(searchFieldValue);
                 String result = location.getResult();
-                System.out.println("Miejscowość: " + JSONConverter.convertStringObjectToJSONArray(result));
-                locationTable.getItems().add(location);
+                JSONArray resultArray = JSONConverter.convertStringObjectToJSONArray(result);
+                fillTableColumn(resultArray, location);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -67,5 +68,30 @@ public class CityChoiceController extends BaseController implements Initializabl
     @FXML
     public void cancelAction() {
         viewFactory.closeStage((Stage) citySearchField.getScene().getWindow());
+    }
+
+    private void fillTableColumn(JSONArray resultArray, Location location) {
+        for (int i = 0; i < resultArray.length(); i++) {
+            String cityData = "";
+            JSONObject resultPart = resultArray.getJSONObject(i);
+            if (resultPart.has("local_names")) {
+                if (resultPart.getJSONObject("local_names").has("pl")) {
+                    String polishLocalName = resultPart.getJSONObject("local_names").getString("pl");
+                    cityData += polishLocalName.contains("Województwo") ? searchFieldValue + ", " + polishLocalName : polishLocalName;
+                } else {
+                    cityData += resultPart.getJSONObject("local_names").getString("feature_name");
+                }
+            } else {
+                cityData += resultPart.getString("name");
+            }
+
+            cityData += ", " + resultPart.getString("country");
+
+            if (resultPart.has("state")) {
+                cityData += ", " + resultPart.getString("state");
+            }
+            location.setCity(cityData);
+            locationTable.getItems().add(location);
+        }
     }
 }
