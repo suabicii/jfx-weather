@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import pl.michaelslabikovsky.model.Location;
+import pl.michaelslabikovsky.model.LocationsDB;
 import pl.michaelslabikovsky.utils.JSONConverter;
 import pl.michaelslabikovsky.view.ViewFactory;
 
@@ -31,6 +32,7 @@ public class CityChoiceController extends BaseController implements Initializabl
 
     private String searchFieldValue;
     private Location location;
+    private LocationsDB locationsDB;
 
     public CityChoiceController(ViewFactory viewFactory, String fxmlName) {
         super(viewFactory, fxmlName);
@@ -58,7 +60,9 @@ public class CityChoiceController extends BaseController implements Initializabl
 
     @FXML
     public void addCityAction() {
-
+        locationsDB = new LocationsDB();
+        String selectedCity = locationTable.getSelectionModel().selectedItemProperty().getValue().getCity();
+        locationsDB.insertIntoTable(selectedCity);
     }
 
     @FXML
