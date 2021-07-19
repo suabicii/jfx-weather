@@ -52,7 +52,6 @@
                 <version>0.0.4</version>
                 <configuration>
                     <mainClass>pl.michaelslabikovsky.Launcher</mainClass>
-                    <executable>/usr/lib/jvm/jdk-11.0.10/bin/java</executable>
                 </configuration>
             </plugin>
         </plugins>
