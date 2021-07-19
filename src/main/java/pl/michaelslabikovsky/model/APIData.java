@@ -33,14 +33,6 @@ public abstract class APIData {
         }
     }
 
-    public String getCityName() {
-        return CityName;
-    }
-
-    public int getResponseCode() {
-        return responseCode;
-    }
-
     public String getResult() throws IOException {
         if (responseCode != 200) {
             throw new RuntimeException("HttpResponseCode: " + responseCode);
@@ -50,14 +42,6 @@ public abstract class APIData {
             sc.close();
             return result;
         }
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
-
-    public URL getUrl() {
-        return url;
     }
 
     protected abstract String getMainAPIPart();
