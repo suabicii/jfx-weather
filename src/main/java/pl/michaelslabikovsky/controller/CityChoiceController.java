@@ -14,6 +14,7 @@ import pl.michaelslabikovsky.utils.JSONConverter;
 import pl.michaelslabikovsky.view.ViewFactory;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -46,18 +47,13 @@ public class CityChoiceController extends BaseController implements Initializabl
     }
 
     @FXML
-    public void searchCityAfterTextChange() {
-        new Thread(() -> {
-            try {
-                locationTable.getItems().clear();
-                location = new Location(searchFieldValue);
-                String result = location.getResult();
-                JSONArray resultArray = JSONConverter.convertStringObjectToJSONArray(result);
-                fillTableColumn(resultArray, location);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }).start();
+    public void citySearchFieldOnAction() {
+        getLocations();
+    }
+
+    @FXML
+    public void findButtonOnAction() {
+        getLocations();
     }
 
     @FXML
@@ -70,7 +66,21 @@ public class CityChoiceController extends BaseController implements Initializabl
         viewFactory.closeStage((Stage) citySearchField.getScene().getWindow());
     }
 
-    private void fillTableColumn(JSONArray resultArray, Location location) {
+    private void getLocations() {
+        new Thread(() -> {
+            try {
+                locationTable.getItems().clear();
+                location = new Location(searchFieldValue);
+                String result = location.getResult();
+                JSONArray resultArray = JSONConverter.convertStringObjectToJSONArray(result);
+                fillTableColumn(resultArray);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+    private void fillTableColumn(JSONArray resultArray) throws MalformedURLException {
         for (int i = 0; i < resultArray.length(); i++) {
             String cityData = "";
             JSONObject resultPart = resultArray.getJSONObject(i);
@@ -90,6 +100,7 @@ public class CityChoiceController extends BaseController implements Initializabl
             if (resultPart.has("state")) {
                 cityData += ", " + resultPart.getString("state");
             }
+            location = new Location(searchFieldValue);
             location.setCity(cityData);
             locationTable.getItems().add(location);
         }
