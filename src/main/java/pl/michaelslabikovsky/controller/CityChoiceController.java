@@ -58,12 +58,12 @@ public class CityChoiceController extends BaseController implements Initializabl
 
     @FXML
     public void citySearchFieldOnAction() {
-        getLocations();
+        getLocationsFromAPI();
     }
 
     @FXML
     public void findButtonOnAction() {
-        getLocations();
+        getLocationsFromAPI();
     }
 
     @FXML
@@ -91,7 +91,7 @@ public class CityChoiceController extends BaseController implements Initializabl
         viewFactory.closeStage((Stage) citySearchField.getScene().getWindow());
     }
 
-    private void getLocations() {
+    private void getLocationsFromAPI() {
         new Thread(() -> {
             try {
                 locationTable.getItems().clear();
