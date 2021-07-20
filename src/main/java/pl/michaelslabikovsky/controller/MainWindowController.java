@@ -37,15 +37,13 @@ public class MainWindowController extends BaseController implements Initializabl
     @FXML
     private ForecastCityTwoController forecastCityTwoController;
 
-    private LocationsDB locationsDB;
-
     public MainWindowController(ViewFactory viewFactory, String fxmlName) {
         super(viewFactory, fxmlName);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        locationsDB = new LocationsDB();
+        LocationsDB locationsDB = new LocationsDB();
 
         try {
             cityOneChoiceBox.getItems().addAll(locationsDB.selectAllFromDB());
