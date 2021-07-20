@@ -21,7 +21,7 @@ public class LocationsDB {
         System.out.println(SUCCESS_OPENING_DB_MSG);
     }
 
-    public void insertIntoTable(String value) {
+    public boolean insertIntoTable(String value) throws SQLException {
         Connection c = null;
         Statement stmt = null;
 
@@ -35,13 +35,19 @@ public class LocationsDB {
             String sql = "INSERT INTO locations" + " VALUES (null , '" + value + "');";
             stmt.executeUpdate(sql);
 
-            stmt.close();
-            c.commit();
-            c.close();
+            closeConnection(c, stmt);
+            return true;
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
+            closeConnection(c, stmt);
+            return false;
         }
+    }
+
+    private void closeConnection(Connection c, Statement stmt) throws SQLException {
+        stmt.close();
+        c.commit();
+        c.close();
     }
 
     public void selectFromDB() {
