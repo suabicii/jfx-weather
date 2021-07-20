@@ -1,5 +1,6 @@
 package pl.michaelslabikovsky.controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -13,6 +14,8 @@ import pl.michaelslabikovsky.view.ViewFactory;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainWindowController extends BaseController implements Initializable {
 
@@ -54,15 +57,52 @@ public class MainWindowController extends BaseController implements Initializabl
         cityTwoChoiceBox.getItems().add("Dodaj miejscowość...");
 
         cityOneChoiceBox.getSelectionModel().selectFirst();
-        cityTwoChoiceBox.getSelectionModel().selectFirst();
+        cityTwoChoiceBox.getSelectionModel().select(1);
 
-        cityOneChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> addCity(cityOneChoiceBox, oldValue));
-        cityTwoChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> addCity(cityTwoChoiceBox, oldValue));
+        cityOneChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            addCity(cityOneChoiceBox, oldValue);
+            updateWeatherDataInPartOne();
+        });
+        cityTwoChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            addCity(cityTwoChoiceBox, oldValue);
+            updateWeatherDataInPartTwo();
+        });
 
+        updateWeatherDataInPartOne();
+        updateWeatherDataInPartTwo();
+    }
+
+    private void updateWeatherDataInPartOne() {
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> getWeatherInFirstCity());
+                timer.cancel();
+            }
+        };
+        timer.schedule(task, 500);
+    }
+
+    private void updateWeatherDataInPartTwo() {
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> getWeatherInSecondCity());
+                timer.cancel();
+            }
+        };
+        timer.schedule(task, 500);
+    }
+
+    private void getWeatherInFirstCity() {
         currentWeatherCityOneController.showWeatherData(getCityName(cityOneChoiceBox));
-        currentWeatherCityTwoController.showWeatherData(getCityName(cityTwoChoiceBox));
-
         forecastCityOneController.showWeatherData(getCityName(cityOneChoiceBox));
+    }
+
+    private void getWeatherInSecondCity() {
+        currentWeatherCityTwoController.showWeatherData(getCityName(cityTwoChoiceBox));
         forecastCityTwoController.showWeatherData(getCityName(cityTwoChoiceBox));
     }
 
