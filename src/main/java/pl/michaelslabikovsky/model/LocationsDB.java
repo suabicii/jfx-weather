@@ -12,7 +12,7 @@ public class LocationsDB {
         Statement stmt = null;
         try {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:LocationsDB");
+            c = DriverManager.getConnection("jdbc:sqlite:LocationsDB.sqlite");
 
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -27,7 +27,7 @@ public class LocationsDB {
 
         try {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:LocationsDB");
+            c = DriverManager.getConnection("jdbc:sqlite:LocationsDB.sqlite");
             c.setAutoCommit(false);
             System.out.println(SUCCESS_OPENING_DB_MSG);
 
@@ -55,7 +55,7 @@ public class LocationsDB {
         Statement stmt = null;
         try {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:LocationsDB");
+            c = DriverManager.getConnection("jdbc:sqlite:LocationsDB.sqlite");
             c.setAutoCommit(false);
             System.out.println(SUCCESS_OPENING_DB_MSG);
 
@@ -93,7 +93,7 @@ public class LocationsDB {
 
         try {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:LocationsDB");
+            c = DriverManager.getConnection("jdbc:sqlite:LocationsDB.sqlite");
             c.setAutoCommit(false);http://google.github.io/lovefield/error_lookup/src/error_lookup.html?c=201&p0=Item.pkItem&p1=100
             System.out.println(SUCCESS_OPENING_DB_MSG);
 
@@ -117,7 +117,7 @@ public class LocationsDB {
 
         try {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:LocationsDB");
+            c = DriverManager.getConnection("jdbc:sqlite:LocationsDB.sqlite");
             c.setAutoCommit(false);
             System.out.println(SUCCESS_OPENING_DB_MSG);
 
