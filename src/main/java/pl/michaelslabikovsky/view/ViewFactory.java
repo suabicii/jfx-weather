@@ -50,6 +50,7 @@ public class ViewFactory {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setResizable(false);
+        stage.setTitle("JFX Weather by Michael Slabikovsky");
         stage.show();
         activeStages.add(stage);
     }
