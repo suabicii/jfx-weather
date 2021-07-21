@@ -8,7 +8,7 @@ import pl.michaelslabikovsky.controller.currentweather.CurrentWeatherCityOneCont
 import pl.michaelslabikovsky.controller.currentweather.CurrentWeatherCityTwoController;
 import pl.michaelslabikovsky.controller.forecast.ForecastCityOneController;
 import pl.michaelslabikovsky.controller.forecast.ForecastCityTwoController;
-import pl.michaelslabikovsky.model.LocationsDB;
+import pl.michaelslabikovsky.model.LocationsDBModel;
 import pl.michaelslabikovsky.view.ViewFactory;
 
 import java.net.URL;
@@ -43,11 +43,11 @@ public class MainWindowController extends BaseController implements Initializabl
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        LocationsDB locationsDB = new LocationsDB();
+        LocationsDBModel locationsDBModel = new LocationsDBModel();
 
         try {
-            cityOneChoiceBox.getItems().addAll(locationsDB.selectAllFromDB());
-            cityTwoChoiceBox.getItems().addAll(locationsDB.selectAllFromDB());
+            cityOneChoiceBox.getItems().addAll(locationsDBModel.selectAllFromDB());
+            cityTwoChoiceBox.getItems().addAll(locationsDBModel.selectAllFromDB());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

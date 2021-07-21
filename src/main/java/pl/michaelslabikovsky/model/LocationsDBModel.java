@@ -1,12 +1,10 @@
 package pl.michaelslabikovsky.model;
 
-import javafx.collections.ObservableList;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocationsDB {
+public class LocationsDBModel {
 
     public static final String SUCCESS_OPENING_DB_MSG = "Opened database successfully";
     public static final String OPERATION_SUCCESS_MSG = "Operation done successfully";

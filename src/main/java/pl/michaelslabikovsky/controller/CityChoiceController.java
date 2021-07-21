@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import pl.michaelslabikovsky.model.Location;
-import pl.michaelslabikovsky.model.LocationsDB;
+import pl.michaelslabikovsky.model.LocationsDBModel;
 import pl.michaelslabikovsky.utils.JSONConverter;
 import pl.michaelslabikovsky.view.ViewFactory;
 
@@ -40,7 +40,7 @@ public class CityChoiceController extends BaseController implements Initializabl
 
     private String searchFieldValue;
     private Location location;
-    private LocationsDB locationsDB;
+    private LocationsDBModel locationsDBModel;
 
     public CityChoiceController(ViewFactory viewFactory, String fxmlName) {
         super(viewFactory, fxmlName);
@@ -68,11 +68,11 @@ public class CityChoiceController extends BaseController implements Initializabl
 
     @FXML
     public void addCityAction() {
-        locationsDB = new LocationsDB();
+        locationsDBModel = new LocationsDBModel();
         String selectedCity = locationTable.getSelectionModel().selectedItemProperty().getValue().getCity();
 
         try {
-            if (locationsDB.insertIntoTable(selectedCity)) {
+            if (locationsDBModel.insertIntoTable(selectedCity)) {
                 messageLabel.setStyle("-fx-text-fill: green");
                 messageLabel.setText("Dodano miejscowość");
             } else {
