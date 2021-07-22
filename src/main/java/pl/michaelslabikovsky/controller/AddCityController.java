@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class CityChoiceController extends BaseController implements Initializable {
+public class AddCityController extends BaseController implements Initializable {
 
     @FXML
     private TextField citySearchField;
@@ -42,7 +42,7 @@ public class CityChoiceController extends BaseController implements Initializabl
     private Location location;
     private LocationsDBModel locationsDBModel;
 
-    public CityChoiceController(ViewFactory viewFactory, String fxmlName) {
+    public AddCityController(ViewFactory viewFactory, String fxmlName) {
         super(viewFactory, fxmlName);
     }
 

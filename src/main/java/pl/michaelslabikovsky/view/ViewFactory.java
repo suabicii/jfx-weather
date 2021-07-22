@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import pl.michaelslabikovsky.Launcher;
 import pl.michaelslabikovsky.controller.BaseController;
-import pl.michaelslabikovsky.controller.CityChoiceController;
+import pl.michaelslabikovsky.controller.AddCityController;
 import pl.michaelslabikovsky.controller.MainWindowController;
 
 import java.io.IOException;
@@ -25,8 +25,8 @@ public class ViewFactory {
         initializeStage(controller);
     }
 
-    public void showCityChoiceWindow() {
-        BaseController controller = new CityChoiceController(this, "CityChoiceWindow.fxml");
+    public void showAddCityWindow() {
+        BaseController controller = new AddCityController(this, "AddCityWindow.fxml");
         initializeStage(controller);
     }
 

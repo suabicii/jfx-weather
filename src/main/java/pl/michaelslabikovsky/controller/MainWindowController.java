@@ -125,7 +125,7 @@ public class MainWindowController extends BaseController implements Initializabl
         int selectedIndex = cityChoiceBox.getSelectionModel().getSelectedIndex();
         if (selectedIndex == cityChoiceBox.getItems().size() - 1 && selectedIndex != -1) {
             cityChoiceBox.getSelectionModel().select(oldValue.intValue());
-            viewFactory.showCityChoiceWindow();
+            viewFactory.showAddCityWindow();
         }
     }
 
