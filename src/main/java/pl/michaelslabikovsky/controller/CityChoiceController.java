@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import pl.michaelslabikovsky.model.Location;
@@ -137,8 +138,8 @@ public class CityChoiceController extends BaseController implements Initializabl
             @Override
             public void run() {
                 Platform.runLater(() -> {
-                        messageLabel.setText("");
-                        timer.cancel();
+                    messageLabel.setText("");
+                    timer.cancel();
                 });
             }
         };

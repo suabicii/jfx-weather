@@ -37,37 +37,50 @@ public class MainWindowController extends BaseController implements Initializabl
     @FXML
     private ForecastCityTwoController forecastCityTwoController;
 
+    private LocationsDBModel locationsDBModel;
+
     public MainWindowController(ViewFactory viewFactory, String fxmlName) {
         super(viewFactory, fxmlName);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        LocationsDBModel locationsDBModel = new LocationsDBModel();
+        locationsDBModel = new LocationsDBModel();
+        updateChoiceBoxes(locationsDBModel);
+        addChoiceBoxesListeners();
+        updateWeatherDataInPartOne();
+        updateWeatherDataInPartTwo();
+    }
 
+    private void addChoiceBoxesListeners() {
+        cityOneChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            addCity(cityOneChoiceBox, oldValue);
+            updateWeatherDataInPartOne();
+            refreshCityList(cityOneChoiceBox);
+        });
+        cityTwoChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            addCity(cityTwoChoiceBox, oldValue);
+            updateWeatherDataInPartTwo();
+            refreshCityList(cityTwoChoiceBox);
+        });
+    }
+
+    private void updateChoiceBoxes(LocationsDBModel locationsDBModel) {
+        cityOneChoiceBox.getItems().clear();
+        cityTwoChoiceBox.getItems().clear();
         try {
             cityOneChoiceBox.getItems().addAll(locationsDBModel.selectAllFromDB());
             cityTwoChoiceBox.getItems().addAll(locationsDBModel.selectAllFromDB());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        cityOneChoiceBox.getItems().add("Odśwież listę miejscowości");
         cityOneChoiceBox.getItems().add("Dodaj miejscowość...");
+        cityTwoChoiceBox.getItems().add("Odśwież listę miejscowości");
         cityTwoChoiceBox.getItems().add("Dodaj miejscowość...");
 
         cityOneChoiceBox.getSelectionModel().selectFirst();
         cityTwoChoiceBox.getSelectionModel().select(1);
-
-        cityOneChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            addCity(cityOneChoiceBox, oldValue);
-            updateWeatherDataInPartOne();
-        });
-        cityTwoChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            addCity(cityTwoChoiceBox, oldValue);
-            updateWeatherDataInPartTwo();
-        });
-
-        updateWeatherDataInPartOne();
-        updateWeatherDataInPartTwo();
     }
 
     private void updateWeatherDataInPartOne() {
@@ -109,9 +122,19 @@ public class MainWindowController extends BaseController implements Initializabl
     }
 
     private void addCity(ChoiceBox<String> cityChoiceBox, Number oldValue) {
-        if (cityChoiceBox.getSelectionModel().getSelectedIndex() == cityChoiceBox.getItems().size() - 1) {
+        int selectedIndex = cityChoiceBox.getSelectionModel().getSelectedIndex();
+        if (selectedIndex == cityChoiceBox.getItems().size() - 1 && selectedIndex != -1) {
             cityChoiceBox.getSelectionModel().select(oldValue.intValue());
             viewFactory.showCityChoiceWindow();
+        }
+    }
+
+    private void refreshCityList(ChoiceBox<String> cityChoiceBox) {
+        int selectedIndex = cityChoiceBox.getSelectionModel().getSelectedIndex();
+        if (selectedIndex == cityChoiceBox.getItems().size() - 2) {
+            cityChoiceBox.getSelectionModel().clearSelection();
+            locationsDBModel = new LocationsDBModel();
+            updateChoiceBoxes(locationsDBModel);
         }
     }
 }
