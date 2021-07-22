@@ -76,6 +76,29 @@ public class LocationsDBModel {
         }
     }
 
+    public boolean DeleteFromTable(String value) throws SQLException {
+        Connection c = null;
+        Statement stmt = null;
+
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:LocationsDB.sqlite");
+            c.setAutoCommit(false);
+            System.out.println(SUCCESS_OPENING_DB_MSG);
+
+            stmt = c.createStatement();
+            String sql = "DELETE FROM locations WHERE name = '" + value + "';";
+            stmt.executeUpdate(sql);
+
+            closeConnection(c, stmt);
+            return true;
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            closeConnection(c, stmt);
+            return false;
+        }
+    }
+
     private void closeConnection(Connection c, Statement stmt) throws SQLException {
         stmt.close();
         c.commit();
