@@ -55,11 +55,13 @@ public class MainWindowController extends BaseController implements Initializabl
     private void addChoiceBoxesListeners() {
         cityOneChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             addCity(cityOneChoiceBox, oldValue);
+            deleteCity(cityOneChoiceBox, oldValue);
             updateWeatherDataInPartOne();
             refreshCityList(cityOneChoiceBox);
         });
         cityTwoChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             addCity(cityTwoChoiceBox, oldValue);
+            deleteCity(cityTwoChoiceBox, oldValue);
             updateWeatherDataInPartTwo();
             refreshCityList(cityTwoChoiceBox);
         });
@@ -74,9 +76,11 @@ public class MainWindowController extends BaseController implements Initializabl
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        cityOneChoiceBox.getItems().add("Odśwież listę miejscowości");
+        cityOneChoiceBox.getItems().add("Odśwież listę miejscowości...");
+        cityOneChoiceBox.getItems().add("Usuń miejscowość...");
         cityOneChoiceBox.getItems().add("Dodaj miejscowość...");
-        cityTwoChoiceBox.getItems().add("Odśwież listę miejscowości");
+        cityTwoChoiceBox.getItems().add("Odśwież listę miejscowości...");
+        cityTwoChoiceBox.getItems().add("Usuń miejscowość...");
         cityTwoChoiceBox.getItems().add("Dodaj miejscowość...");
 
         cityOneChoiceBox.getSelectionModel().selectFirst();
@@ -129,9 +133,17 @@ public class MainWindowController extends BaseController implements Initializabl
         }
     }
 
-    private void refreshCityList(ChoiceBox<String> cityChoiceBox) {
+    private void deleteCity(ChoiceBox<String> cityChoiceBox, Number oldValue) {
         int selectedIndex = cityChoiceBox.getSelectionModel().getSelectedIndex();
         if (selectedIndex == cityChoiceBox.getItems().size() - 2) {
+            cityChoiceBox.getSelectionModel().select(oldValue.intValue());
+            viewFactory.showDeleteCityWindow();
+        }
+    }
+
+    private void refreshCityList(ChoiceBox<String> cityChoiceBox) {
+        int selectedIndex = cityChoiceBox.getSelectionModel().getSelectedIndex();
+        if (selectedIndex == cityChoiceBox.getItems().size() - 3) {
             cityChoiceBox.getSelectionModel().clearSelection();
             locationsDBModel = new LocationsDBModel();
             updateChoiceBoxes(locationsDBModel);

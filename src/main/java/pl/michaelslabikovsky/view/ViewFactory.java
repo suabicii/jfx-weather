@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import pl.michaelslabikovsky.Launcher;
 import pl.michaelslabikovsky.controller.BaseController;
 import pl.michaelslabikovsky.controller.AddCityController;
+import pl.michaelslabikovsky.controller.DeleteCityController;
 import pl.michaelslabikovsky.controller.MainWindowController;
 
 import java.io.IOException;
@@ -27,6 +28,11 @@ public class ViewFactory {
 
     public void showAddCityWindow() {
         BaseController controller = new AddCityController(this, "AddCityWindow.fxml");
+        initializeStage(controller);
+    }
+
+    public void showDeleteCityWindow() {
+        BaseController controller = new DeleteCityController(this, "DeleteCityWindow.fxml");
         initializeStage(controller);
     }
 
