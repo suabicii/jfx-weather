@@ -4,6 +4,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import pl.michaelslabikovsky.controller.currentweather.CurrentWeatherCityOneController;
 import pl.michaelslabikovsky.controller.currentweather.CurrentWeatherCityTwoController;
 import pl.michaelslabikovsky.controller.forecast.ForecastCityOneController;
@@ -37,6 +39,9 @@ public class MainWindowController extends BaseController implements Initializabl
     @FXML
     private ForecastCityTwoController forecastCityTwoController;
 
+    @FXML
+    private Label choiceBoxLabel;
+
     private LocationsDBModel locationsDBModel;
 
     public MainWindowController(ViewFactory viewFactory, String fxmlName) {
@@ -50,6 +55,27 @@ public class MainWindowController extends BaseController implements Initializabl
         addChoiceBoxesListeners();
         updateWeatherDataInPartOne();
         updateWeatherDataInPartTwo();
+    }
+
+    @FXML
+    public void onCloseMenuAction() {
+        viewFactory.closeStage((Stage) choiceBoxLabel.getScene().getWindow());
+    }
+
+    @FXML
+    public void onRefreshMenuAction() {
+        getCitiesFromDB(cityOneChoiceBox);
+        getCitiesFromDB(cityTwoChoiceBox);
+    }
+
+    @FXML
+    public void onAddCityMenuAction() {
+        viewFactory.showAddCityWindow();
+    }
+
+    @FXML
+    public void onDeleteCityMenuAction() {
+        viewFactory.showDeleteCityWindow();
     }
 
     private void addChoiceBoxesListeners() {
@@ -144,9 +170,13 @@ public class MainWindowController extends BaseController implements Initializabl
     private void refreshCityList(ChoiceBox<String> cityChoiceBox) {
         int selectedIndex = cityChoiceBox.getSelectionModel().getSelectedIndex();
         if (selectedIndex == cityChoiceBox.getItems().size() - 3) {
-            cityChoiceBox.getSelectionModel().clearSelection();
-            locationsDBModel = new LocationsDBModel();
-            updateChoiceBoxes(locationsDBModel);
+            getCitiesFromDB(cityChoiceBox);
         }
+    }
+
+    private void getCitiesFromDB(ChoiceBox<String> cityChoiceBox) {
+        cityChoiceBox.getSelectionModel().clearSelection();
+        locationsDBModel = new LocationsDBModel();
+        updateChoiceBoxes(locationsDBModel);
     }
 }

@@ -3,34 +3,49 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="703.0" prefWidth="830.0"
-            xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="829.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Separator layoutX="417.0" orientation="VERTICAL" prefHeight="703.0" prefWidth="0.0"
-                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="417.0" AnchorPane.rightAnchor="407.0"
-                   AnchorPane.topAnchor="0.0"/>
-        <Label layoutX="22.0" layoutY="23.0" text="Miejscowość:"/>
-        <Label layoutX="431.0" layoutY="23.0" text="Miejscowość:" AnchorPane.rightAnchor="318.0"/>
-        <ChoiceBox fx:id="cityOneChoiceBox" layoutX="116.0" layoutY="19.0" prefHeight="26.0" prefWidth="279.0"/>
-        <ChoiceBox fx:id="cityTwoChoiceBox" layoutX="522.0" layoutY="19.0" prefHeight="26.0" prefWidth="279.0"
-                   AnchorPane.rightAnchor="29.0"/>
-        <BorderPane layoutY="58.0" prefHeight="644.0" prefWidth="419.0" AnchorPane.bottomAnchor="1.0"
-                    AnchorPane.leftAnchor="0.0">
+        <Separator layoutX="417.0" orientation="VERTICAL" prefHeight="703.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="417.0" AnchorPane.rightAnchor="407.0" AnchorPane.topAnchor="0.0" />
+        <Label fx:id="choiceBoxLabel" layoutX="25.0" layoutY="61.0" text="Miejscowość:" />
+        <Label layoutX="433.0" layoutY="61.0" text="Miejscowość:" AnchorPane.rightAnchor="316.0" />
+        <ChoiceBox fx:id="cityOneChoiceBox" layoutX="117.0" layoutY="57.0" prefHeight="26.0" prefWidth="279.0" />
+        <ChoiceBox fx:id="cityTwoChoiceBox" layoutX="524.0" layoutY="57.0" prefHeight="26.0" prefWidth="279.0" AnchorPane.rightAnchor="27.0" />
+        <BorderPane layoutY="58.0" prefHeight="747.0" prefWidth="418.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
             <top>
-                <fx:include source="CurrentWeatherCityOne.fxml" fx:id="currentWeatherCityOne"/>
+                <fx:include fx:id="currentWeatherCityOne" source="CurrentWeatherCityOne.fxml" />
             </top>
             <bottom>
-                <fx:include source="ForecastCityOne.fxml" fx:id="forecastCityOne"/>
+                <fx:include fx:id="forecastCityOne" source="ForecastCityOne.fxml" />
             </bottom>
         </BorderPane>
-        <BorderPane layoutX="419.0" layoutY="58.0" prefHeight="644.0" prefWidth="411.0" AnchorPane.bottomAnchor="1.0"
-                    AnchorPane.rightAnchor="0.0">
+        <BorderPane layoutX="419.0" layoutY="58.0" prefHeight="747.0" prefWidth="402.0" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="0.0">
             <top>
-                <fx:include source="CurrentWeatherCityTwo.fxml" fx:id="currentWeatherCityTwo"/>
+                <fx:include fx:id="currentWeatherCityTwo" source="CurrentWeatherCityTwo.fxml" />
             </top>
             <bottom>
-                <fx:include source="ForecastCityTwo.fxml" fx:id="forecastCityTwo"/>
+                <fx:include fx:id="forecastCityTwo" source="ForecastCityTwo.fxml" />
             </bottom>
         </BorderPane>
+      <MenuBar prefHeight="27.0" prefWidth="830.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Plik">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#onCloseMenuAction" text="Wyjdź" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edycja">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#onRefreshMenuAction" text="Odśwież listę miejscowości" />
+                  <MenuItem mnemonicParsing="false" onAction="#onAddCityMenuAction" text="Dodaj miejscowość" />
+                  <MenuItem mnemonicParsing="false" onAction="#onDeleteCityMenuAction" text="Usuń miejscowość" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Pomoc">
+            <items>
+              <MenuItem mnemonicParsing="false" text="O programie" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
     </children>
 </AnchorPane>

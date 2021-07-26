@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane prefHeight="366.0" prefWidth="419.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2"
+<Pane prefHeight="423" prefWidth="419.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="pl.michaelslabikovsky.controller.currentweather.CurrentWeatherCityTwoController">
     <ImageView fx:id="currentWeatherCityTwoImg" fitHeight="79.0" fitWidth="96.0" layoutX="177.0" layoutY="49.0"
