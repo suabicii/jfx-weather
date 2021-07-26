@@ -3,6 +3,7 @@ package pl.michaelslabikovsky.controller;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -76,6 +77,15 @@ public class MainWindowController extends BaseController implements Initializabl
     @FXML
     public void onDeleteCityMenuAction() {
         viewFactory.showDeleteCityWindow();
+    }
+
+    @FXML
+    public void aboutMenuAction() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("JFX Weather by Michael Slabikovsky | O programie");
+        alert.setHeaderText("O programie");
+        alert.setContentText("Wersja: 1.0\nAutor: Michał „Michael Slabikovsky” Słabik\nhttps://dev.michaelslabikovsky.pl");
+        alert.showAndWait();
     }
 
     private void addChoiceBoxesListeners() {
