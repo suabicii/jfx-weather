@@ -12,6 +12,7 @@ import pl.michaelslabikovsky.controller.MainWindowController;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ViewFactory {
 
@@ -54,6 +55,7 @@ public class ViewFactory {
 
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
+        scene.getStylesheets().add(Objects.requireNonNull(Launcher.class.getResource("css/style.css")).toExternalForm());
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setTitle("JFX Weather by Michael Slabikovsky");
