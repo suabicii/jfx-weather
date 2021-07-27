@@ -1,11 +1,14 @@
 package pl.michaelslabikovsky.controller;
 
 import javafx.application.Platform;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.stage.Stage;
 import pl.michaelslabikovsky.controller.currentweather.CurrentWeatherCityOneController;
 import pl.michaelslabikovsky.controller.currentweather.CurrentWeatherCityTwoController;
@@ -16,6 +19,7 @@ import pl.michaelslabikovsky.view.ViewFactory;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -43,7 +47,12 @@ public class MainWindowController extends BaseController implements Initializabl
     @FXML
     private Label choiceBoxLabel;
 
+    @FXML
+    private ProgressIndicator progressIndicator;
+
     private LocationsDBModel locationsDBModel;
+
+    private Service<Void> service;
 
     public MainWindowController(ViewFactory viewFactory, String fxmlName) {
         super(viewFactory, fxmlName);
@@ -124,27 +133,55 @@ public class MainWindowController extends BaseController implements Initializabl
     }
 
     private void updateWeatherDataInPartOne() {
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
+        service = new Service<Void>() {
             @Override
-            public void run() {
-                Platform.runLater(() -> getWeatherInFirstCity());
-                timer.cancel();
+            protected Task<Void> createTask() {
+                return new Task<Void>() {
+                    @Override
+                    protected Void call() throws Exception {
+                        updateProgress(0, 100);
+                        Thread.sleep(1200);
+                        updateProgress(50, 100);
+                        Thread.sleep(1200);
+                        updateProgress(75, 100);
+                        Thread.sleep(1200);
+                        Platform.runLater(() -> getWeatherInFirstCity());
+                        Thread.sleep(1200);
+                        updateProgress(100, 100);
+                        return null;
+                    }
+                };
             }
         };
-        timer.schedule(task, 500);
+        progressIndicator.progressProperty().bind(service.progressProperty());
+        progressIndicator.visibleProperty().bind(service.runningProperty());
+        service.start();
     }
 
     private void updateWeatherDataInPartTwo() {
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
+        service = new Service<Void>() {
             @Override
-            public void run() {
-                Platform.runLater(() -> getWeatherInSecondCity());
-                timer.cancel();
+            protected Task<Void> createTask() {
+                return new Task<Void>() {
+                    @Override
+                    protected Void call() throws Exception {
+                        updateProgress(0, 100);
+                        Thread.sleep(1200);
+                        updateProgress(50, 100);
+                        Thread.sleep(1200);
+                        updateProgress(75, 100);
+                        Thread.sleep(1200);
+                        Platform.runLater(() -> getWeatherInSecondCity());
+                        Thread.sleep(1200);
+                        updateProgress(100, 100);
+                        return null;
+                    }
+                };
             }
         };
-        timer.schedule(task, 500);
+        progressIndicator.progressProperty().bind(service.progressProperty());
+        progressIndicator.visibleProperty().bind(service.runningProperty());
+        service.start();
     }
 
     private void getWeatherInFirstCity() {
