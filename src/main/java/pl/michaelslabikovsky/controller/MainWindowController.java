@@ -145,6 +145,8 @@ public class MainWindowController extends BaseController implements Initializabl
                         Thread.sleep(1200);
                         updateProgress(75, 100);
                         Thread.sleep(1200);
+                        updateProgress(99, 100);
+                        Thread.sleep(500);
                         Platform.runLater(() -> getWeatherInFirstCity());
                         Thread.sleep(1200);
                         updateProgress(100, 100);
@@ -171,6 +173,8 @@ public class MainWindowController extends BaseController implements Initializabl
                         Thread.sleep(1200);
                         updateProgress(75, 100);
                         Thread.sleep(1200);
+                        updateProgress(99, 100);
+                        Thread.sleep(500);
                         Platform.runLater(() -> getWeatherInSecondCity());
                         Thread.sleep(1200);
                         updateProgress(100, 100);
