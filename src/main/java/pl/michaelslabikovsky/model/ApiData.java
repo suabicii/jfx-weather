@@ -12,7 +12,6 @@ import java.util.Scanner;
 public abstract class ApiData {
 
     private URL url;
-    private String result = "";
     private int responseCode;
     private final String apiKey;
 
@@ -41,15 +40,16 @@ public abstract class ApiData {
             throw new RuntimeException("HttpResponseCode: " + responseCode);
         } else {
             Scanner sc = new Scanner(url.openStream());
+            StringBuilder result = new StringBuilder();
             while (sc.hasNext()) {
                 String line = sc.nextLine();
                 byte[] bytes = line.getBytes();
 
                 String utf8Bytes = new String(bytes, StandardCharsets.UTF_8);
-                this.result += utf8Bytes;
+                result.append(utf8Bytes);
             }
             sc.close();
-            return result;
+            return result.toString();
         }
     }
 
