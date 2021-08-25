@@ -4,12 +4,10 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import pl.michaelslabikovsky.view.ViewFactory;
 
-import java.io.IOException;
-
 public class Launcher extends Application {
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         ViewFactory viewFactory = new ViewFactory();
         viewFactory.showMainWindow();
     }
