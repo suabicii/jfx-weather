@@ -12,7 +12,6 @@ import java.util.Scanner;
 public abstract class ApiData {
 
     private URL url;
-    private String CityName;
     private String result = "";
     private int responseCode;
     private final String apiKey;
