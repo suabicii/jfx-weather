@@ -3,6 +3,7 @@ package pl.michaelslabikovsky.controller;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import org.json.JSONArray;
+import org.json.JSONObject;
 import pl.michaelslabikovsky.model.WeatherData;
 import pl.michaelslabikovsky.utils.JSONConverter;
 
@@ -26,7 +27,8 @@ public class WeatherController {
                                              ImageView weatherIcon) throws IOException {
         WeatherData weatherData = new WeatherData(cityName);
         String weatherDataResult = weatherData.getResult();
-        JSONArray jsonArray = JSONConverter.convertStringObjectToJSONArrayWithWeatherData(weatherDataResult);
+        JSONObject jsonObject = JSONConverter.convertStringToJSONObject(weatherDataResult);
+        JSONArray jsonArray = jsonObject.getJSONArray("list");
 
         String laterDateTime = null;
         try {

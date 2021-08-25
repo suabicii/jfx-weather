@@ -97,7 +97,7 @@ public class AddCityController extends BaseController implements Initializable {
                 locationTable.getItems().clear();
                 location = new Location(searchFieldValue);
                 String result = location.getResult();
-                JSONArray resultArray = JSONConverter.convertStringObjectToJSONArray(result);
+                JSONArray resultArray = JSONConverter.convertStringToJSONArray(result);
                 fillTableColumn(resultArray);
             } catch (IOException e) {
                 e.printStackTrace();
