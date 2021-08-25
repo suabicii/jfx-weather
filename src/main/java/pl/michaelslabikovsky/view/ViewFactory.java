@@ -5,22 +5,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import pl.michaelslabikovsky.Launcher;
-import pl.michaelslabikovsky.controller.BaseController;
 import pl.michaelslabikovsky.controller.AddCityController;
+import pl.michaelslabikovsky.controller.BaseController;
 import pl.michaelslabikovsky.controller.DeleteCityController;
 import pl.michaelslabikovsky.controller.MainWindowController;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
+import java.util.List;
 
 public class ViewFactory {
 
-    private ArrayList<Stage> activeStages;
-
-    public ViewFactory() {
-        activeStages = new ArrayList<>();
-    }
+    private final List<Stage> activeStages = new ArrayList<>();
 
     public void showMainWindow() {
         BaseController controller = new MainWindowController(this, "MainWindow.fxml");
@@ -55,7 +51,7 @@ public class ViewFactory {
 
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
-        scene.getStylesheets().add(Objects.requireNonNull(Launcher.class.getResource("css/style.css")).toExternalForm());
+        scene.getStylesheets().add(String.valueOf(Launcher.class.getResource("css/style.css")));
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setTitle("JFX Weather by Michael Slabikovsky");
