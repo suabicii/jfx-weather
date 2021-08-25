@@ -9,20 +9,6 @@ public class LocationsDBModel {
     public static final String SUCCESS_OPENING_DB_MSG = "Opened database successfully";
     public static final String OPERATION_SUCCESS_MSG = "Operation done successfully";
 
-    public void openDB() {
-        Connection c = null;
-        Statement stmt = null;
-        try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:LocationsDB.sqlite");
-
-        } catch (Exception e) {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
-        }
-        System.out.println(SUCCESS_OPENING_DB_MSG);
-    }
-
     public boolean insertIntoTable(String value) throws SQLException {
         Connection c = null;
         Statement stmt = null;
