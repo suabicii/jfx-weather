@@ -40,7 +40,6 @@ public class AddCityController extends BaseController implements Initializable {
 
     private String searchFieldValue;
     private Location location;
-    private LocationsDBModel locationsDBModel;
 
     public AddCityController(ViewFactory viewFactory, String fxmlName) {
         super(viewFactory, fxmlName);
@@ -51,7 +50,7 @@ public class AddCityController extends BaseController implements Initializable {
         citySearchField.textProperty().addListener((observable, oldValue, newValue) -> {
             searchFieldValue = newValue;
         });
-        nameCol.setCellValueFactory(new PropertyValueFactory<Location, String>("city"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<Location, String>("foundCity"));
         locationTable.getColumns().add(nameCol);
         locationTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
@@ -68,8 +67,8 @@ public class AddCityController extends BaseController implements Initializable {
 
     @FXML
     public void addCityAction() {
-        locationsDBModel = new LocationsDBModel();
-        String selectedCity = locationTable.getSelectionModel().selectedItemProperty().getValue().getCity();
+        LocationsDBModel locationsDBModel = new LocationsDBModel();
+        String selectedCity = locationTable.getSelectionModel().selectedItemProperty().getValue().getFoundCity();
 
         try {
             if (locationsDBModel.insertIntoTable(selectedCity)) {
@@ -125,8 +124,7 @@ public class AddCityController extends BaseController implements Initializable {
             if (resultPart.has("state")) {
                 cityData += ", " + resultPart.getString("state");
             }
-            location = new Location(searchFieldValue);
-            location.setCity(cityData);
+            location = new Location(searchFieldValue, cityData);
             locationTable.getItems().add(location);
         }
     }

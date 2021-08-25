@@ -25,6 +25,7 @@ public class WeatherController {
                                              Label windSpeedLabel,
                                              Label humidityLabel,
                                              ImageView weatherIcon) throws IOException {
+        // WeatherData data = weatherDataClient.loadWeather(cityName);
         WeatherData weatherData = new WeatherData(cityName);
         String weatherDataResult = weatherData.getResult();
         JSONObject jsonObject = JSONConverter.convertStringToJSONObject(weatherDataResult);
