@@ -15,14 +15,16 @@ public abstract class APIData {
     private String CityName;
     private String result = "";
     private int responseCode;
-    private final static String API_KEY = DotenvLoader.loadEnvVariable("API_KEY");
+    private final String apiKey;
 
     public APIData(String cityName) throws MalformedURLException {
+        DotenvLoader dotenvLoader = new DotenvLoader();
+        apiKey = dotenvLoader.loadEnvVariable("API_KEY");
         connectToAPI(cityName, getMainAPIPart(), getAdditionalAPIPart());
     }
 
     protected void connectToAPI(String cityName, String mainAPIPart, String additionalAPIPart) throws MalformedURLException {
-        this.url = new URL(mainAPIPart + cityName + "&appid=" + API_KEY + additionalAPIPart);
+        this.url = new URL(mainAPIPart + cityName + "&appid=" + apiKey + additionalAPIPart);
         HttpURLConnection conn;
         try {
             conn = (HttpURLConnection)url.openConnection();
