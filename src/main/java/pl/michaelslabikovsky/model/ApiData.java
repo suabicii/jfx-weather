@@ -9,7 +9,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-public abstract class APIData {
+public abstract class ApiData {
 
     private URL url;
     private String CityName;
@@ -17,7 +17,7 @@ public abstract class APIData {
     private int responseCode;
     private final String apiKey;
 
-    public APIData(String cityName) throws MalformedURLException {
+    public ApiData(String cityName) throws MalformedURLException {
         DotenvLoader dotenvLoader = new DotenvLoader();
         apiKey = dotenvLoader.loadEnvVariable("API_KEY");
         connectToAPI(cityName, getMainAPIPart(), getAdditionalAPIPart());
