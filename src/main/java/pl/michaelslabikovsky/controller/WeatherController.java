@@ -31,12 +31,7 @@ public class WeatherController {
         JSONObject jsonObject = JSONConverter.convertStringToJSONObject(weatherDataResult);
         JSONArray jsonArray = jsonObject.getJSONArray("list");
 
-        String laterDateTime = null;
-        try {
-            laterDateTime = getLaterDateTime(timeIntervalInDays, jsonArray);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        String laterDateTime = getLaterDateTime(timeIntervalInDays, jsonArray);
 
         for (int i = 0; i < jsonArray.length(); i++) {
             String iteratedDate = jsonArray.getJSONObject(i).getString("dt_txt");
@@ -53,7 +48,7 @@ public class WeatherController {
         }
     }
 
-    private String getLaterDateTime(int timeIntervalInDays, JSONArray jsonArray) throws ParseException {
+    private String getLaterDateTime(int timeIntervalInDays, JSONArray jsonArray) {
         String nearestDateTime = jsonArray.getJSONObject(0).getString("dt_txt");
         String nearestHour = getNearestHour(nearestDateTime);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
