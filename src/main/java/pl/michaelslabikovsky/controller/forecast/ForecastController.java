@@ -27,9 +27,6 @@ public abstract class ForecastController extends WeatherController {
                         i + 1,
                         weatherLabels.get(i).get(0),
                         weatherLabels.get(i).get(1),
-                        null,
-                        null,
-                        null,
                         weatherIcons.get(i)
                 );
             }
@@ -52,6 +49,20 @@ public abstract class ForecastController extends WeatherController {
                 pressureLabel,
                 windSpeedLabel,
                 humidityLabel,
+                weatherIcon
+        );
+    }
+
+    private void fillWeatherForecastControls(String cityName,
+                                             int timeIntervalInDays,
+                                             Label weatherLabel,
+                                             Label temperatureLabel,
+                                             ImageView weatherIcon) throws IOException {
+
+        fillControlsByWeatherData(cityName,
+                timeIntervalInDays,
+                weatherLabel,
+                temperatureLabel,
                 weatherIcon
         );
     }

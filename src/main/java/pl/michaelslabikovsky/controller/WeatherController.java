@@ -38,11 +38,31 @@ public class WeatherController {
             if (iteratedDate.equals(laterDateTime)) {
                 weatherLabel.setText(jsonArray.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("description"));
                 temperatureLabel.setText(jsonArray.getJSONObject(i).getJSONObject("main").getInt("temp") + "°C");
-                if (timeIntervalInDays <= 1) {
-                    pressureLabel.setText(jsonArray.getJSONObject(i).getJSONObject("main").getInt("pressure") + " hPa");
-                    windSpeedLabel.setText(jsonArray.getJSONObject(i).getJSONObject("wind").getDouble("speed") + " m/s");
-                    humidityLabel.setText(jsonArray.getJSONObject(i).getJSONObject("main").getInt("humidity") + "%");
-                }
+                pressureLabel.setText(jsonArray.getJSONObject(i).getJSONObject("main").getInt("pressure") + " hPa");
+                windSpeedLabel.setText(jsonArray.getJSONObject(i).getJSONObject("wind").getDouble("speed") + " m/s");
+                humidityLabel.setText(jsonArray.getJSONObject(i).getJSONObject("main").getInt("humidity") + "%");
+                weatherIcon.setImage(BaseController.setImageUrl(getIconUrl(jsonArray, i)));
+            }
+        }
+    }
+
+    protected void fillControlsByWeatherData(String cityName,
+                                             int timeIntervalInDays,
+                                             Label weatherLabel,
+                                             Label temperatureLabel,
+                                             ImageView weatherIcon) throws IOException {
+        WeatherData weatherData = new WeatherData(cityName);
+        String weatherDataResult = weatherData.getResult();
+        JSONObject jsonObject = JSONConverter.convertStringToJSONObject(weatherDataResult);
+        JSONArray jsonArray = jsonObject.getJSONArray("list");
+
+        String laterDateTime = getLaterDateTime(timeIntervalInDays, jsonArray);
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            String iteratedDate = jsonArray.getJSONObject(i).getString("dt_txt");
+            if (iteratedDate.equals(laterDateTime)) {
+                weatherLabel.setText(jsonArray.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("description"));
+                temperatureLabel.setText(jsonArray.getJSONObject(i).getJSONObject("main").getInt("temp") + "°C");
                 weatherIcon.setImage(BaseController.setImageUrl(getIconUrl(jsonArray, i)));
             }
         }
