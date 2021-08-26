@@ -53,6 +53,25 @@ public class WeatherController {
         }
     }
 
+    private String getLaterDateTime(int timeIntervalInDays, JSONArray jsonArray) throws ParseException {
+        String nearestDateTime = jsonArray.getJSONObject(0).getString("dt_txt");
+        String nearestHour = getNearestHour(nearestDateTime);
+        String currentDate = getCurrentDate(nearestDateTime);
+        Date baseDate = new SimpleDateFormat("yyyy-MM-dd").parse(currentDate);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(baseDate);
+        calendar.add(Calendar.DAY_OF_MONTH, timeIntervalInDays);
+        Date laterDate = calendar.getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        if (timeIntervalInDays == 5) { // ze względu na mniejszą liczbę rekordów z pogody za 5 dni
+            nearestHour = getEarlierHour(nearestHour); // muszę cofnąć czas o 3 godziny
+        }
+
+        return dateFormat.format(laterDate).concat(" ").concat(nearestHour);
+    }
+
     private String getNearestHour(String nearestDateTime) {
         String nearestHour = "";
 
@@ -75,25 +94,6 @@ public class WeatherController {
             }
         }
         return date;
-    }
-
-    private String getLaterDateTime(int timeIntervalInDays, JSONArray jsonArray) throws ParseException {
-        String nearestDateTime = jsonArray.getJSONObject(0).getString("dt_txt");
-        String nearestHour = getNearestHour(nearestDateTime);
-        String currentDate = getCurrentDate(nearestDateTime);
-        Date baseDate = new SimpleDateFormat("yyyy-MM-dd").parse(currentDate);
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(baseDate);
-        calendar.add(Calendar.DAY_OF_MONTH, timeIntervalInDays);
-        Date laterDate = calendar.getTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-        if (timeIntervalInDays == 5) { // ze względu na mniejszą liczbę rekordów z pogody za 5 dni
-            nearestHour = getEarlierHour(nearestHour); // muszę cofnąć czas o 3 godziny
-        }
-
-        return dateFormat.format(laterDate).concat(" ").concat(nearestHour);
     }
 
     private String getEarlierHour(String nearestHour) throws ParseException {
