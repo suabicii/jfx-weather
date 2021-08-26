@@ -9,9 +9,9 @@ import pl.michaelslabikovsky.utils.JSONConverter;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import static pl.michaelslabikovsky.controller.BaseController.getIconUrl;
 
@@ -56,20 +56,16 @@ public class WeatherController {
     private String getLaterDateTime(int timeIntervalInDays, JSONArray jsonArray) throws ParseException {
         String nearestDateTime = jsonArray.getJSONObject(0).getString("dt_txt");
         String nearestHour = getNearestHour(nearestDateTime);
-        String currentDate = getCurrentDate(nearestDateTime);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date baseDate = dateFormat.parse(currentDate);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(baseDate);
-        calendar.add(Calendar.DAY_OF_MONTH, timeIntervalInDays);
-        Date laterDate = calendar.getTime();
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime laterDate = now.plusDays(timeIntervalInDays);
 
         if (timeIntervalInDays == 5) { // ze względu na mniejszą liczbę rekordów z pogody za 5 dni
             nearestHour = getEarlierHour(nearestHour); // muszę cofnąć czas o 3 godziny
         }
 
-        return dateFormat.format(laterDate).concat(" ").concat(nearestHour);
+        return formatter.format(laterDate).concat(" ").concat(nearestHour);
     }
 
     private String getNearestHour(String nearestDateTime) {
@@ -84,25 +80,10 @@ public class WeatherController {
         return nearestHour;
     }
 
-    private String getCurrentDate(String nearestDateTime) {
-        String date = "";
-
-        for (int i = 0; i < nearestDateTime.length(); i++) {
-            if (nearestDateTime.charAt(i) == ' ') {
-                date = nearestDateTime.substring(0, i);
-                break;
-            }
-        }
-        return date;
-    }
-
-    private String getEarlierHour(String nearestHour) throws ParseException {
-        SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
-        Date baseHour = hourFormat.parse(nearestHour);
-        Calendar calendarForHour = Calendar.getInstance();
-        calendarForHour.setTime(baseHour);
-        calendarForHour.add(Calendar.HOUR, -3);
-        Date earlierHour = calendarForHour.getTime();
-        return hourFormat.format(earlierHour);
+    private String getEarlierHour(String nearestHour) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalTime baseHour = LocalTime.parse(nearestHour);
+        LocalTime earlierHour = baseHour.minusHours(3);
+        return formatter.format(earlierHour);
     }
 }
