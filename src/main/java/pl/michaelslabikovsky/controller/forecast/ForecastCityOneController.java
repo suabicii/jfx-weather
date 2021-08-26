@@ -73,7 +73,7 @@ public class ForecastCityOneController extends ForecastController {
         List<ImageView> weatherIcons = fillImageViewList(firstDayIconCityOne, secondDayIconCityOne, thirdDayIconCityOne, fourthDayIconCityOne, fifthDayIconCityOne);
 
         try {
-            startWeatherForecast(weatherLabels, weatherIcons, cityName);
+            showWeatherForecast(weatherLabels, weatherIcons, cityName);
         } catch (IOException e) {
             e.printStackTrace();
         }

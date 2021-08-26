@@ -10,10 +10,10 @@ import java.util.List;
 
 public abstract class ForecastController extends WeatherController {
 
-    protected void startWeatherForecast(List<List<Label>> weatherLabels, List<ImageView> weatherIcons, String cityName) throws IOException {
+    protected void showWeatherForecast(List<List<Label>> weatherLabels, List<ImageView> weatherIcons, String cityName) throws IOException {
         for (int i = 0; i < weatherLabels.size(); i++) {
             if (i == 0) {
-                getWeatherForecast(cityName,
+                fillWeatherForecastControls(cityName,
                         i + 1,
                         weatherLabels.get(i).get(0),
                         weatherLabels.get(i).get(1),
@@ -23,7 +23,7 @@ public abstract class ForecastController extends WeatherController {
                         weatherIcons.get(i)
                 );
             } else {
-                getWeatherForecast(cityName,
+                fillWeatherForecastControls(cityName,
                         i + 1,
                         weatherLabels.get(i).get(0),
                         weatherLabels.get(i).get(1),
@@ -36,14 +36,14 @@ public abstract class ForecastController extends WeatherController {
         }
     }
 
-    private void getWeatherForecast(String cityName,
-                                      int timeIntervalInDays,
-                                      Label weatherLabel,
-                                      Label temperatureLabel,
-                                      Label pressureLabel,
-                                      Label windSpeedLabel,
-                                      Label humidityLabel,
-                                      ImageView weatherIcon) throws IOException {
+    private void fillWeatherForecastControls(String cityName,
+                                             int timeIntervalInDays,
+                                             Label weatherLabel,
+                                             Label temperatureLabel,
+                                             Label pressureLabel,
+                                             Label windSpeedLabel,
+                                             Label humidityLabel,
+                                             ImageView weatherIcon) throws IOException {
 
         fillControlsByWeatherData(cityName,
                 timeIntervalInDays,
