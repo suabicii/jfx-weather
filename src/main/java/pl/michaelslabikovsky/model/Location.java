@@ -6,18 +6,20 @@ public class Location extends ApiData {
 
     private final static String MAIN_API_PART = "https://api.openweathermap.org/geo/1.0/direct?q=";
     private final static String ADDITIONAL_API_PART = "&limit=5";
-    private String city = "";
+    private final String foundCity;
 
-    public Location(String cityName) throws MalformedURLException {
-        super(cityName);
+    public Location(String searchedCity) throws MalformedURLException {
+        super(searchedCity);
+        this.foundCity = "";
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public Location(String searchedCity, String foundCity) throws MalformedURLException {
+        super(searchedCity);
+        this.foundCity = foundCity;
     }
 
-    public String getCity() {
-        return city;
+    public String getFoundCity() {
+        return foundCity;
     }
 
     @Override

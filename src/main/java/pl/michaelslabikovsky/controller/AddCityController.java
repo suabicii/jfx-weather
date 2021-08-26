@@ -19,7 +19,6 @@ import pl.michaelslabikovsky.view.ViewFactory;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -70,16 +69,12 @@ public class AddCityController extends BaseController implements Initializable {
         LocationsDBModel locationsDBModel = new LocationsDBModel();
         String selectedCity = locationTable.getSelectionModel().selectedItemProperty().getValue().getFoundCity();
 
-        try {
-            if (locationsDBModel.insertIntoTable(selectedCity)) {
-                messageLabel.setStyle("-fx-text-fill: green");
-                messageLabel.setText("Dodano miejscowość");
-            } else {
-                messageLabel.setStyle("-fx-text-fill: red");
-                messageLabel.setText("Nie udało się dodać miejscowości");
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        if (locationsDBModel.insertIntoTable(selectedCity)) {
+            messageLabel.setStyle("-fx-text-fill: green");
+            messageLabel.setText("Dodano miejscowość");
+        } else {
+            messageLabel.setStyle("-fx-text-fill: red");
+            messageLabel.setText("Nie udało się dodać miejscowości");
         }
 
         clearMessageLabel();
