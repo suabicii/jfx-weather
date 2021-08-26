@@ -8,17 +8,16 @@ import java.io.IOException;
 
 public abstract class CurrentWeatherController extends WeatherController {
 
-    protected void getCurrentWeather(String cityName,
-                                     int timeIntervalInDays,
-                                     Label weatherLabel,
-                                     Label temperatureLabel,
-                                     Label pressureLabel,
-                                     Label windSpeedLabel,
-                                     Label humidityLabel,
-                                     ImageView weatherIcon) throws IOException {
+    protected void showCurrentWeather(String cityName,
+                                      Label weatherLabel,
+                                      Label temperatureLabel,
+                                      Label pressureLabel,
+                                      Label windSpeedLabel,
+                                      Label humidityLabel,
+                                      ImageView weatherIcon) throws IOException {
 
         fillControlsByWeatherData(cityName,
-                timeIntervalInDays,
+                0,
                 weatherLabel,
                 temperatureLabel,
                 pressureLabel,
