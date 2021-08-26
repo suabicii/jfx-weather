@@ -18,11 +18,7 @@ import pl.michaelslabikovsky.model.LocationsDBModel;
 import pl.michaelslabikovsky.view.ViewFactory;
 
 import java.net.URL;
-import java.sql.SQLException;
-import java.util.Random;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainWindowController extends BaseController implements Initializable {
 
