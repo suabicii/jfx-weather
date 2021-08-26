@@ -51,16 +51,12 @@ public class DeleteCityController extends BaseController implements Initializabl
         locationsDBModel = new LocationsDBModel();
         String selectedCity = locationTable.getSelectionModel().selectedItemProperty().getValue().getName();
 
-        try {
-            if (locationsDBModel.DeleteFromTable(selectedCity)) {
-                messageLabel.setStyle("-fx-text-fill: green");
-                messageLabel.setText("Usunięto miejscowość");
-            } else {
-                messageLabel.setStyle("-fx-text-fill: red");
-                messageLabel.setText("Nie udało się usunąć miejscowości");
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        if (locationsDBModel.deleteFromTable(selectedCity)) {
+            messageLabel.setStyle("-fx-text-fill: green");
+            messageLabel.setText("Usunięto miejscowość");
+        } else {
+            messageLabel.setStyle("-fx-text-fill: red");
+            messageLabel.setText("Nie udało się usunąć miejscowości");
         }
 
         updateLocationTable();
@@ -74,11 +70,7 @@ public class DeleteCityController extends BaseController implements Initializabl
 
     private void updateLocationTable() {
         locationTable.getItems().clear();
-        try {
-            locationsList = new ArrayList<>(locationsDBModel.selectAllFromDB());
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        locationsList = new ArrayList<>(locationsDBModel.selectAllFromDB());
 
         for (int i = 0; i < locationsList.size(); i++) {
             savedLocation = new SavedLocation(locationsList.get(i));

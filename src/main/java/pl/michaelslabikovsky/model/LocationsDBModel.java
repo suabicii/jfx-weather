@@ -6,42 +6,21 @@ import java.util.List;
 
 public class LocationsDBModel {
 
-    public static final String SUCCESS_OPENING_DB_MSG = "Opened database successfully";
-    public static final String OPERATION_SUCCESS_MSG = "Operation done successfully";
-
-    public boolean insertIntoTable(String value) throws SQLException {
-        Connection c = null;
-        Statement stmt = null;
-
-        try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:LocationsDB.sqlite");
-            c.setAutoCommit(false);
-            System.out.println(SUCCESS_OPENING_DB_MSG);
-
-            stmt = c.createStatement();
+    public boolean insertIntoTable(String value) {
+        try (Connection c = DriverManager.getConnection("jdbc:sqlite:LocationsDB.sqlite"); Statement stmt = c.createStatement()) {
+            c.setAutoCommit(true);
             String sql = "INSERT INTO locations" + " VALUES (null , '" + value + "');";
             stmt.executeUpdate(sql);
-
-            closeConnection(c, stmt);
             return true;
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            closeConnection(c, stmt);
             return false;
         }
     }
 
-    public List<String> selectAllFromDB() throws SQLException {
-        Connection c = null;
-        Statement stmt = null;
-        try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:LocationsDB.sqlite");
+    public List<String> selectAllFromDB() {
+        try (Connection c = DriverManager.getConnection("jdbc:sqlite:LocationsDB.sqlite"); Statement stmt = c.createStatement()) {
             c.setAutoCommit(false);
-            System.out.println(SUCCESS_OPENING_DB_MSG);
-
-            stmt = c.createStatement();
 
             ResultSet rs = stmt.executeQuery("SELECT * FROM locations;");
 
@@ -51,44 +30,25 @@ public class LocationsDBModel {
                 locations.add(rs.getString("name"));
             }
 
-            rs.close();
-            closeConnection(c, stmt);
-            System.out.println(OPERATION_SUCCESS_MSG);
             return locations;
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            closeConnection(c, stmt);
             return null;
         }
     }
 
-    public boolean DeleteFromTable(String value) throws SQLException {
-        Connection c = null;
-        Statement stmt = null;
+    public boolean deleteFromTable(String value) {
+        try (Connection c = DriverManager.getConnection("jdbc:sqlite:LocationsDB.sqlite"); Statement stmt = c.createStatement()) {
+            c.setAutoCommit(true);
 
-        try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:LocationsDB.sqlite");
-            c.setAutoCommit(false);
-            System.out.println(SUCCESS_OPENING_DB_MSG);
-
-            stmt = c.createStatement();
             String sql = "DELETE FROM locations WHERE name = '" + value + "';";
             stmt.executeUpdate(sql);
 
-            closeConnection(c, stmt);
             return true;
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            closeConnection(c, stmt);
             return false;
         }
-    }
-
-    private void closeConnection(Connection c, Statement stmt) throws SQLException {
-        stmt.close();
-        c.commit();
-        c.close();
     }
 }
 
