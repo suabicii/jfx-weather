@@ -8,7 +8,6 @@ import pl.michaelslabikovsky.model.WeatherData;
 import pl.michaelslabikovsky.utils.JSONConverter;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
