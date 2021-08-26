@@ -25,6 +25,9 @@ import java.util.TimerTask;
 
 public class AddCityController extends BaseController implements Initializable {
 
+    public static final String SUCCESS_MESSAGE = "Dodano miejscowość";
+    public static final String ERROR_MESSAGE = "Nie udało się dodać miejscowości";
+
     @FXML
     private TextField citySearchField;
 
@@ -71,10 +74,10 @@ public class AddCityController extends BaseController implements Initializable {
 
         if (locationsDBModel.insertIntoTable(selectedCity)) {
             messageLabel.setStyle("-fx-text-fill: green");
-            messageLabel.setText("Dodano miejscowość");
+            messageLabel.setText(SUCCESS_MESSAGE);
         } else {
             messageLabel.setStyle("-fx-text-fill: red");
-            messageLabel.setText("Nie udało się dodać miejscowości");
+            messageLabel.setText(ERROR_MESSAGE);
         }
 
         clearMessageLabel();
