@@ -28,7 +28,6 @@ public class DeleteCityController extends BaseController implements Initializabl
     private Label messageLabel;
 
     private LocationsDBModel locationsDBModel;
-    private SavedLocation savedLocation;
     List<String> locationsList;
 
     @Override
@@ -72,10 +71,7 @@ public class DeleteCityController extends BaseController implements Initializabl
         locationTable.getItems().clear();
         locationsList = new ArrayList<>(locationsDBModel.selectAllFromDB());
 
-        for (int i = 0; i < locationsList.size(); i++) {
-            savedLocation = new SavedLocation(locationsList.get(i));
-            locationTable.getItems().add(savedLocation);
-        }
+        locationsList.stream().map(SavedLocation::new).forEach(savedLocation -> locationTable.getItems().add(savedLocation));
     }
 
     private void clearMessageLabel() {
