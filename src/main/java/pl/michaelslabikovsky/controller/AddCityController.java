@@ -49,7 +49,7 @@ public class AddCityController extends BaseController implements Initializable {
         citySearchField.textProperty().addListener((observable, oldValue, newValue) -> {
             searchFieldValue = newValue;
         });
-        nameCol.setCellValueFactory(new PropertyValueFactory<Location, String>("foundCity"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("foundCity"));
         locationTable.getColumns().add(nameCol);
         locationTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
