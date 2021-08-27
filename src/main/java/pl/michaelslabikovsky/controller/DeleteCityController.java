@@ -34,7 +34,7 @@ public class DeleteCityController extends BaseController implements Initializabl
     public void initialize(URL location, ResourceBundle resources) {
         locationsDBModel = new LocationsDBModel();
 
-        nameCol.setCellValueFactory(new PropertyValueFactory<SavedLocation, String>("name"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         locationTable.getColumns().add(nameCol);
         locationTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -51,10 +51,12 @@ public class DeleteCityController extends BaseController implements Initializabl
         String selectedCity = locationTable.getSelectionModel().selectedItemProperty().getValue().getName();
 
         if (locationsDBModel.deleteFromTable(selectedCity)) {
-            messageLabel.setStyle("-fx-text-fill: green");
+            messageLabel.setStyle(null); //czyszczenie stylów (usunięcie uprzednio dodanej klasy, jeśli istnieje)
+            messageLabel.getStyleClass().add("success");
             messageLabel.setText("Usunięto miejscowość");
         } else {
-            messageLabel.setStyle("-fx-text-fill: red");
+            messageLabel.setStyle(null);
+            messageLabel.getStyleClass().add("success");
             messageLabel.setText("Nie udało się usunąć miejscowości");
         }
 

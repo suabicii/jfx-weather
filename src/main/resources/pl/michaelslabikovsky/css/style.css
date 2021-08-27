@@ -1,3 +1,11 @@
 * {
     -fx-font-family: sans-serif;
 }
+
+.success {
+    -fx-text-fill: green;
+}
+
+.danger {
+    -fx-text-fill: red;
+}

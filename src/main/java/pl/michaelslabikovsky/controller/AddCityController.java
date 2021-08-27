@@ -73,10 +73,12 @@ public class AddCityController extends BaseController implements Initializable {
         String selectedCity = locationTable.getSelectionModel().selectedItemProperty().getValue().getFoundCity();
 
         if (locationsDBModel.insertIntoTable(selectedCity)) {
-            messageLabel.setStyle("-fx-text-fill: green");
+            messageLabel.setStyle(null);
+            messageLabel.getStyleClass().add("success");
             messageLabel.setText(SUCCESS_MESSAGE);
         } else {
-            messageLabel.setStyle("-fx-text-fill: red");
+            messageLabel.setStyle(null);
+            messageLabel.getStyleClass().add("danger");
             messageLabel.setText(ERROR_MESSAGE);
         }
 
