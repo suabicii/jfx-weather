@@ -15,10 +15,9 @@ public abstract class ApiData {
     private int responseCode;
     private final String apiKey;
 
-    public ApiData(String cityName) throws MalformedURLException {
+    public ApiData() {
         DotenvLoader dotenvLoader = new DotenvLoader();
         apiKey = dotenvLoader.loadEnvVariable("API_KEY");
-        connectToAPI(cityName, getMainAPIPart(), getAdditionalAPIPart());
     }
 
     protected void connectToAPI(String cityName, String mainAPIPart, String additionalAPIPart) throws MalformedURLException {

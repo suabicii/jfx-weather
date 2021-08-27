@@ -25,8 +25,7 @@ public class WeatherController {
                                              Label humidityLabel,
                                              ImageView weatherIcon) throws IOException {
         // WeatherData data = weatherDataClient.loadWeather(cityName);
-        WeatherData weatherData = new WeatherData(cityName);
-        String weatherDataResult = weatherData.getResult();
+        String weatherDataResult = "";
         JSONObject jsonObject = JSONConverter.convertStringToJSONObject(weatherDataResult);
         JSONArray jsonArray = jsonObject.getJSONArray("list");
 
@@ -50,8 +49,7 @@ public class WeatherController {
                                              Label weatherLabel,
                                              Label temperatureLabel,
                                              ImageView weatherIcon) throws IOException {
-        WeatherData weatherData = new WeatherData(cityName);
-        String weatherDataResult = weatherData.getResult();
+        String weatherDataResult = "";
         JSONObject jsonObject = JSONConverter.convertStringToJSONObject(weatherDataResult);
         JSONArray jsonArray = jsonObject.getJSONArray("list");
 
