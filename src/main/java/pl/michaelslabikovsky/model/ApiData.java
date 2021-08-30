@@ -20,7 +20,7 @@ public abstract class ApiData {
         apiKey = dotenvLoader.loadEnvVariable("API_KEY");
     }
 
-    protected void connectToAPI(String cityName, String mainAPIPart, String additionalAPIPart) throws MalformedURLException {
+    protected void connectToApi(String cityName, String mainAPIPart, String additionalAPIPart) throws MalformedURLException {
         this.url = new URL(mainAPIPart + cityName + "&appid=" + apiKey + additionalAPIPart);
         HttpURLConnection conn;
         try {

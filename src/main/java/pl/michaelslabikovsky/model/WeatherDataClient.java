@@ -6,21 +6,43 @@ import org.json.JSONObject;
 import pl.michaelslabikovsky.utils.JSONConverter;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class WeatherDataClient extends WeatherData {
-    // Nie zapomnij o DateTime!
+
     private JSONArray allDataJsonArray;
 
     public void loadWeatherData(String cityName) throws IOException {
-        connectToAPI(cityName, getMainAPIPart(), getAdditionalAPIPart());
+        connectToApi(cityName, getMainAPIPart(), getAdditionalAPIPart());
         String result = getResult();
 
         JSONObject jsonObject = JSONConverter.convertStringToJSONObject(result);
         allDataJsonArray = jsonObject.getJSONArray("list");
     }
 
+    public String getDateTimeBasedOnTimeInterval(int timeIntervalInDays) {
+        String nearestDateTime = allDataJsonArray.getJSONObject(0).getString("dt_txt");
+        String nearestHour = getNearestHour(nearestDateTime);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime laterDate = now.plusDays(timeIntervalInDays);
+
+        if (timeIntervalInDays == 5) { // ze względu na mniejszą liczbę rekordów z pogody za 5 dni
+            nearestHour = getEarlierHour(nearestHour); // muszę cofnąć czas o 3 godziny
+        }
+
+        return formatter.format(laterDate).concat(" ").concat(nearestHour);
+    }
+
     public int getDataAmount() {
         return allDataJsonArray.length();
+    }
+
+    public String getDateTimeBasedOnArrayIndex(int arrayIndex) {
+        return allDataJsonArray.getJSONObject(arrayIndex).getString("dt_txt");
     }
 
     public String getDescription(int arrayIndex) {
@@ -57,6 +79,25 @@ public class WeatherDataClient extends WeatherData {
     public Image setImageUrl(int arrayIndex) {
         String url = getIconUrl(arrayIndex);
         return new Image(url);
+    }
+
+    private String getNearestHour(String nearestDateTime) {
+        String nearestHour = "";
+
+        for (int i = 0; i < nearestDateTime.length(); i++) {
+            if (nearestDateTime.charAt(i) == ' ') {
+                nearestHour = nearestDateTime.substring(i + 1);
+                break;
+            }
+        }
+        return nearestHour;
+    }
+
+    private String getEarlierHour(String nearestHour) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalTime baseHour = LocalTime.parse(nearestHour);
+        LocalTime earlierHour = baseHour.minusHours(3);
+        return formatter.format(earlierHour);
     }
 
     private String getIconUrl(int arrayIndex) {
