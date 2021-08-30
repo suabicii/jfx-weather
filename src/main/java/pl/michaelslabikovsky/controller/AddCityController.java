@@ -9,15 +9,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import pl.michaelslabikovsky.model.Location;
+import pl.michaelslabikovsky.model.LocationClient;
 import pl.michaelslabikovsky.model.LocationsDBModel;
-import pl.michaelslabikovsky.utils.JSONConverter;
+import pl.michaelslabikovsky.model.SavedLocation;
 import pl.michaelslabikovsky.view.ViewFactory;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -32,16 +29,16 @@ public class AddCityController extends BaseController implements Initializable {
     private TextField citySearchField;
 
     @FXML
-    private TableView<Location> locationTable;
+    private TableView<SavedLocation> locationTable;
 
     @FXML
-    private TableColumn<Location, String> nameCol;
+    private TableColumn<SavedLocation, String> nameCol;
 
     @FXML
     private Label messageLabel;
 
     private String searchFieldValue;
-    private Location location;
+    private LocationClient locationClient;
 
     public AddCityController(ViewFactory viewFactory, String fxmlName) {
         super(viewFactory, fxmlName);
@@ -49,35 +46,32 @@ public class AddCityController extends BaseController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        citySearchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            searchFieldValue = newValue;
-        });
-        nameCol.setCellValueFactory(new PropertyValueFactory<>("foundCity"));
+        citySearchField.textProperty().addListener((observable, oldValue, newValue) -> searchFieldValue = newValue);
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         locationTable.getColumns().add(nameCol);
         locationTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
     @FXML
     public void citySearchFieldOnAction() {
-        getLocationsFromAPI();
+        getLocationsFromApi();
     }
 
     @FXML
     public void findButtonOnAction() {
-        getLocationsFromAPI();
+        getLocationsFromApi();
     }
 
     @FXML
     public void addCityAction() {
         LocationsDBModel locationsDBModel = new LocationsDBModel();
-        String selectedCity = locationTable.getSelectionModel().selectedItemProperty().getValue().getFoundCity();
+        String selectedCity = locationTable.getSelectionModel().selectedItemProperty().getValue().getName();
 
+        messageLabel.setStyle(null);
         if (locationsDBModel.insertIntoTable(selectedCity)) {
-            messageLabel.setStyle(null);
             messageLabel.getStyleClass().add("success");
             messageLabel.setText(SUCCESS_MESSAGE);
         } else {
-            messageLabel.setStyle(null);
             messageLabel.getStyleClass().add("danger");
             messageLabel.setText(ERROR_MESSAGE);
         }
@@ -90,42 +84,24 @@ public class AddCityController extends BaseController implements Initializable {
         viewFactory.closeStage((Stage) citySearchField.getScene().getWindow());
     }
 
-    private void getLocationsFromAPI() {
+    private void getLocationsFromApi() {
         new Thread(() -> {
             try {
                 locationTable.getItems().clear();
-                location = new Location(searchFieldValue);
-                String result = location.getResult();
-                JSONArray resultArray = JSONConverter.convertStringToJSONArray(result);
-                fillTableColumn(resultArray);
+                locationClient = new LocationClient();
+                locationClient.loadLocationData(searchFieldValue);
+                fillTableColumn();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }).start();
     }
 
-    private void fillTableColumn(JSONArray resultArray) throws MalformedURLException {
-        for (int i = 0; i < resultArray.length(); i++) {
-            String cityData = "";
-            JSONObject resultPart = resultArray.getJSONObject(i);
-            if (resultPart.has("local_names")) {
-                if (resultPart.getJSONObject("local_names").has("pl")) {
-                    String polishLocalName = resultPart.getJSONObject("local_names").getString("pl");
-                    cityData += polishLocalName.contains("Województwo") ? searchFieldValue + ", " + polishLocalName : polishLocalName;
-                } else {
-                    cityData += resultPart.getJSONObject("local_names").getString("feature_name");
-                }
-            } else {
-                cityData += resultPart.getString("name");
-            }
-
-            cityData += ", " + resultPart.getString("country");
-
-            if (resultPart.has("state")) {
-                cityData += ", " + resultPart.getString("state");
-            }
-            location = new Location(searchFieldValue, cityData);
-            locationTable.getItems().add(location);
+    private void fillTableColumn() {
+        for (int i = 0; i < locationClient.getLocationDataAmount(); i++) {
+            String foundLocation = locationClient.getFoundLocation(i, searchFieldValue);
+            SavedLocation savedLocation = new SavedLocation(foundLocation);
+            locationTable.getItems().add(savedLocation);
         }
     }
 

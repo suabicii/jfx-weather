@@ -13,7 +13,6 @@ import pl.michaelslabikovsky.model.SavedLocation;
 import pl.michaelslabikovsky.view.ViewFactory;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.*;
 
 public class DeleteCityController extends BaseController implements Initializable {
@@ -50,12 +49,11 @@ public class DeleteCityController extends BaseController implements Initializabl
         locationsDBModel = new LocationsDBModel();
         String selectedCity = locationTable.getSelectionModel().selectedItemProperty().getValue().getName();
 
+        messageLabel.setStyle(null); //czyszczenie stylów (usunięcie uprzednio dodanej klasy, jeśli istnieje)
         if (locationsDBModel.deleteFromTable(selectedCity)) {
-            messageLabel.setStyle(null); //czyszczenie stylów (usunięcie uprzednio dodanej klasy, jeśli istnieje)
             messageLabel.getStyleClass().add("success");
             messageLabel.setText("Usunięto miejscowość");
         } else {
-            messageLabel.setStyle(null);
             messageLabel.getStyleClass().add("success");
             messageLabel.setText("Nie udało się usunąć miejscowości");
         }
