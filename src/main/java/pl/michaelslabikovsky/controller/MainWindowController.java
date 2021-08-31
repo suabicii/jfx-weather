@@ -22,6 +22,9 @@ import java.util.ResourceBundle;
 
 public class MainWindowController extends BaseController implements Initializable {
 
+    private final Runnable getWeatherInFirstCityRunnable = MainWindowController.this::getWeatherInFirstCity;
+    private final Runnable getWeatherInSecondCityRunnable = MainWindowController.this::getWeatherInSecondCity;
+
     @FXML
     private ChoiceBox<String> cityOneChoiceBox;
 
@@ -48,8 +51,6 @@ public class MainWindowController extends BaseController implements Initializabl
 
     private LocationsDBModel locationsDBModel;
 
-    private Service<Void> service;
-
     public MainWindowController(ViewFactory viewFactory, String fxmlName) {
         super(viewFactory, fxmlName);
     }
@@ -59,8 +60,8 @@ public class MainWindowController extends BaseController implements Initializabl
         locationsDBModel = new LocationsDBModel();
         updateChoiceBoxes(locationsDBModel);
         addChoiceBoxesListeners();
-        updateWeatherDataInPartOne();
-        updateWeatherDataInPartTwo();
+        updateWeatherData(getWeatherInFirstCityRunnable);
+        updateWeatherData(getWeatherInSecondCityRunnable);
     }
 
     @FXML
@@ -94,12 +95,10 @@ public class MainWindowController extends BaseController implements Initializabl
     }
 
     private void addChoiceBoxesListeners() {
-        cityOneChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            updateWeatherDataInPartOne();
-        });
-        cityTwoChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            updateWeatherDataInPartTwo();
-        });
+        cityOneChoiceBox.getSelectionModel().selectedIndexProperty()
+                .addListener((observable, oldValue, newValue) -> updateWeatherData(getWeatherInFirstCityRunnable));
+        cityTwoChoiceBox.getSelectionModel().selectedIndexProperty()
+                .addListener((observable, oldValue, newValue) -> updateWeatherData(getWeatherInSecondCityRunnable));
     }
 
     private void updateChoiceBoxes(LocationsDBModel locationsDBModel) {
@@ -111,58 +110,20 @@ public class MainWindowController extends BaseController implements Initializabl
         cityTwoChoiceBox.getSelectionModel().select(1);
     }
 
-    private void updateWeatherDataInPartOne() {
-        service = new Service<Void>() {
+    private void updateWeatherData(Runnable runnable) {
+        Service<Void> service = new Service<>() {
             @Override
             protected Task<Void> createTask() {
-                return new Task<Void>() {
+                return new Task<>() {
                     @Override
-                    protected Void call() throws Exception {
-                        updateProgress(0, 100);
-                        Thread.sleep(1200);
-                        updateProgress(50, 100);
-                        Thread.sleep(1200);
-                        updateProgress(75, 100);
-                        Thread.sleep(1200);
-                        updateProgress(99, 100);
-                        Thread.sleep(500);
-                        Platform.runLater(() -> getWeatherInFirstCity());
-                        Thread.sleep(1200);
-                        updateProgress(100, 100);
+                    protected Void call() throws InterruptedException {
+                        Thread.sleep(1500);
+                        Platform.runLater(runnable);
                         return null;
                     }
                 };
             }
         };
-        progressIndicator.progressProperty().bind(service.progressProperty());
-        progressIndicator.visibleProperty().bind(service.runningProperty());
-        service.start();
-    }
-
-    private void updateWeatherDataInPartTwo() {
-        service = new Service<Void>() {
-            @Override
-            protected Task<Void> createTask() {
-                return new Task<Void>() {
-                    @Override
-                    protected Void call() throws Exception {
-                        updateProgress(0, 100);
-                        Thread.sleep(1200);
-                        updateProgress(50, 100);
-                        Thread.sleep(1200);
-                        updateProgress(75, 100);
-                        Thread.sleep(1200);
-                        updateProgress(99, 100);
-                        Thread.sleep(500);
-                        Platform.runLater(() -> getWeatherInSecondCity());
-                        Thread.sleep(1200);
-                        updateProgress(100, 100);
-                        return null;
-                    }
-                };
-            }
-        };
-        progressIndicator.progressProperty().bind(service.progressProperty());
         progressIndicator.visibleProperty().bind(service.runningProperty());
         service.start();
     }

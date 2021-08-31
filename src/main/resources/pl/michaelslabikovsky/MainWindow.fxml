@@ -1,59 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ProgressIndicator?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="829.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <Separator layoutX="417.0" orientation="VERTICAL" prefHeight="703.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="417.0" AnchorPane.rightAnchor="407.0" AnchorPane.topAnchor="0.0" />
-        <Label fx:id="choiceBoxLabel" layoutX="25.0" layoutY="61.0" text="Miejscowość:" />
-        <Label layoutX="433.0" layoutY="61.0" text="Miejscowość:" AnchorPane.rightAnchor="316.0" />
-        <ChoiceBox fx:id="cityOneChoiceBox" layoutX="117.0" layoutY="57.0" prefHeight="26.0" prefWidth="279.0" />
-        <ChoiceBox fx:id="cityTwoChoiceBox" layoutX="524.0" layoutY="57.0" prefHeight="26.0" prefWidth="279.0" AnchorPane.rightAnchor="27.0" />
-        <BorderPane layoutY="58.0" prefHeight="747.0" prefWidth="418.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
-            <top>
-                <fx:include fx:id="currentWeatherCityOne" source="CurrentWeatherCityOne.fxml" />
-            </top>
-            <bottom>
-                <fx:include fx:id="forecastCityOne" source="ForecastCityOne.fxml" />
-            </bottom>
-        </BorderPane>
-        <BorderPane layoutX="419.0" layoutY="58.0" prefHeight="747.0" prefWidth="402.0" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="0.0">
-            <top>
-                <fx:include fx:id="currentWeatherCityTwo" source="CurrentWeatherCityTwo.fxml" />
-            </top>
-            <bottom>
-                <fx:include fx:id="forecastCityTwo" source="ForecastCityTwo.fxml" />
-            </bottom>
-        </BorderPane>
-      <MenuBar prefHeight="27.0" prefWidth="830.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="Plik">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#onCloseMenuAction" text="Wyjdź" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edycja">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#onRefreshMenuAction" text="Odśwież listę miejscowości" />
-                  <MenuItem mnemonicParsing="false" onAction="#onAddCityMenuAction" text="Dodaj miejscowość" />
-                  <MenuItem mnemonicParsing="false" onAction="#onDeleteCityMenuAction" text="Usuń miejscowość" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Pomoc">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#aboutMenuAction" text="O programie" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <ProgressIndicator fx:id="progressIndicator" layoutX="405.0" layoutY="28.0" prefHeight="42.0" prefWidth="49.0" progress="0.0" />
-    </children>
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="829.0" prefWidth="830.0"
+            xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <Separator layoutX="417.0" orientation="VERTICAL" prefHeight="703.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0"
+               AnchorPane.leftAnchor="417.0" AnchorPane.rightAnchor="407.0" AnchorPane.topAnchor="0.0"/>
+    <Label fx:id="choiceBoxLabel" layoutX="25.0" layoutY="61.0" text="Miejscowość:"/>
+    <Label layoutX="433.0" layoutY="61.0" text="Miejscowość:" AnchorPane.rightAnchor="316.0"/>
+    <ChoiceBox fx:id="cityOneChoiceBox" layoutX="117.0" layoutY="57.0" prefHeight="26.0" prefWidth="279.0"/>
+    <ChoiceBox fx:id="cityTwoChoiceBox" layoutX="524.0" layoutY="57.0" prefHeight="26.0" prefWidth="279.0"
+               AnchorPane.rightAnchor="27.0"/>
+    <BorderPane layoutY="58.0" prefHeight="747.0" prefWidth="418.0" AnchorPane.bottomAnchor="0.0"
+                AnchorPane.leftAnchor="0.0">
+        <top>
+            <fx:include fx:id="currentWeatherCityOne" source="CurrentWeatherCityOne.fxml"/>
+        </top>
+        <bottom>
+            <fx:include fx:id="forecastCityOne" source="ForecastCityOne.fxml"/>
+        </bottom>
+    </BorderPane>
+    <BorderPane layoutX="419.0" layoutY="58.0" prefHeight="747.0" prefWidth="402.0" AnchorPane.bottomAnchor="1.0"
+                AnchorPane.rightAnchor="0.0">
+        <top>
+            <fx:include fx:id="currentWeatherCityTwo" source="CurrentWeatherCityTwo.fxml"/>
+        </top>
+        <bottom>
+            <fx:include fx:id="forecastCityTwo" source="ForecastCityTwo.fxml"/>
+        </bottom>
+    </BorderPane>
+    <MenuBar prefHeight="27.0" prefWidth="830.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+             AnchorPane.topAnchor="1.0">
+        <Menu mnemonicParsing="false" text="Plik">
+            <MenuItem mnemonicParsing="false" onAction="#onCloseMenuAction" text="Wyjdź"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edycja">
+            <MenuItem mnemonicParsing="false" onAction="#onRefreshMenuAction"
+                      text="Odśwież listę miejscowości"/>
+            <MenuItem mnemonicParsing="false" onAction="#onAddCityMenuAction" text="Dodaj miejscowość"/>
+            <MenuItem mnemonicParsing="false" onAction="#onDeleteCityMenuAction" text="Usuń miejscowość"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Pomoc">
+            <MenuItem mnemonicParsing="false" onAction="#aboutMenuAction" text="O programie"/>
+        </Menu>
+    </MenuBar>
+    <ProgressIndicator fx:id="progressIndicator" layoutX="404.0" layoutY="30.0" prefHeight="29.0" prefWidth="33.0"/>
 </AnchorPane>
