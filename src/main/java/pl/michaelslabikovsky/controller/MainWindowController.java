@@ -47,7 +47,10 @@ public class MainWindowController extends BaseController implements Initializabl
     private Label choiceBoxLabel;
 
     @FXML
-    private ProgressIndicator progressIndicator;
+    private ProgressIndicator progressIndicator1;
+
+    @FXML
+    private ProgressIndicator progressIndicator2;
 
     private LocationsDBModel locationsDBModel;
 
@@ -124,7 +127,8 @@ public class MainWindowController extends BaseController implements Initializabl
                 };
             }
         };
-        progressIndicator.visibleProperty().bind(service.runningProperty());
+        progressIndicator1.visibleProperty().bind(service.runningProperty());
+        progressIndicator2.visibleProperty().bind(service.runningProperty());
         service.start();
     }
 
