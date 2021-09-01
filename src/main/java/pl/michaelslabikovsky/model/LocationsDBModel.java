@@ -1,5 +1,7 @@
 package pl.michaelslabikovsky.model;
 
+import pl.michaelslabikovsky.utils.DialogUtils;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,7 @@ public class LocationsDBModel {
 
             return locations;
         } catch (Exception e) {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            DialogUtils.errorDialog(e.getMessage());
             return null;
         }
     }

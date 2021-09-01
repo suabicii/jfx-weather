@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import pl.michaelslabikovsky.model.LocationClient;
 import pl.michaelslabikovsky.model.LocationsDBModel;
 import pl.michaelslabikovsky.model.SavedLocation;
+import pl.michaelslabikovsky.utils.DialogUtils;
 import pl.michaelslabikovsky.view.ViewFactory;
 
 import java.io.IOException;
@@ -92,7 +93,7 @@ public class AddCityController extends BaseController implements Initializable {
                 locationClient.loadLocationData(searchFieldValue);
                 fillTableColumn();
             } catch (IOException e) {
-                e.printStackTrace();
+                DialogUtils.errorDialog(e.getMessage());
             }
         }).start();
     }

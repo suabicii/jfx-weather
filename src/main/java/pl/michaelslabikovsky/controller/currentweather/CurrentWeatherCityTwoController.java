@@ -3,6 +3,7 @@ package pl.michaelslabikovsky.controller.currentweather;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import pl.michaelslabikovsky.utils.DialogUtils;
 
 import java.io.IOException;
 
@@ -29,9 +30,15 @@ public class CurrentWeatherCityTwoController extends CurrentWeatherController {
     @Override
     public void showWeatherData(String cityName) {
         try {
-            showCurrentWeather(cityName, currentWeatherResultCityTwo, currentTemperatureCityTwo, currentPressureCityTwo, currentWindSpeedCityTwo, currentHumidityCityTwo, currentWeatherCityTwoImg);
+            showCurrentWeather(cityName,
+                    currentWeatherResultCityTwo,
+                    currentTemperatureCityTwo,
+                    currentPressureCityTwo,
+                    currentWindSpeedCityTwo,
+                    currentHumidityCityTwo,
+                    currentWeatherCityTwoImg);
         } catch (IOException e) {
-            e.printStackTrace();
+            DialogUtils.errorDialog(e.getMessage());
         }
     }
 }

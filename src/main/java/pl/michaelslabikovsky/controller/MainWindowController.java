@@ -15,6 +15,7 @@ import pl.michaelslabikovsky.controller.currentweather.CurrentWeatherCityTwoCont
 import pl.michaelslabikovsky.controller.forecast.ForecastCityOneController;
 import pl.michaelslabikovsky.controller.forecast.ForecastCityTwoController;
 import pl.michaelslabikovsky.model.LocationsDBModel;
+import pl.michaelslabikovsky.utils.DialogUtils;
 import pl.michaelslabikovsky.view.ViewFactory;
 
 import java.net.URL;
@@ -90,11 +91,7 @@ public class MainWindowController extends BaseController implements Initializabl
 
     @FXML
     public void aboutMenuAction() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("JFX Weather by Michael Slabikovsky | O programie");
-        alert.setHeaderText("O programie");
-        alert.setContentText("Wersja: 1.0\nAutor: Michał „Michael Slabikovsky” Słabik\nhttps://dev.michaelslabikovsky.pl");
-        alert.showAndWait();
+        DialogUtils.aboutDialog();
     }
 
     private void addChoiceBoxesListeners() {

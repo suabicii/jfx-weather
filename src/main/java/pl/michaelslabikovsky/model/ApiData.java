@@ -1,5 +1,6 @@
 package pl.michaelslabikovsky.model;
 
+import pl.michaelslabikovsky.utils.DialogUtils;
 import pl.michaelslabikovsky.utils.DotenvLoader;
 
 import java.io.IOException;
@@ -30,13 +31,15 @@ public abstract class ApiData {
             conn.connect();
             this.responseCode = conn.getResponseCode();
         } catch (IOException e) {
-            e.printStackTrace();
+            DialogUtils.errorDialog(e.getMessage());
         }
     }
 
     public String getResult() throws IOException {
         if (responseCode != 200) {
-            throw new RuntimeException("HttpResponseCode: " + responseCode);
+            RuntimeException exception = new RuntimeException("HttpResponseCode: " + responseCode);
+            DialogUtils.errorDialog(exception.getMessage());
+            throw exception;
         } else {
             Scanner sc = new Scanner(url.openStream());
             StringBuilder result = new StringBuilder();

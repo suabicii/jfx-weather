@@ -4,8 +4,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import pl.michaelslabikovsky.model.WeatherDataClient;
 
-import java.io.IOException;
-
 public class WeatherController {
 
     protected void fillControlsByWeatherData(String cityName,
@@ -15,7 +13,7 @@ public class WeatherController {
                                              Label pressureLabel,
                                              Label windSpeedLabel,
                                              Label humidityLabel,
-                                             ImageView weatherIcon) throws IOException {
+                                             ImageView weatherIcon) {
         WeatherDataClient dataClient = new WeatherDataClient();
         dataClient.loadWeatherData(cityName);
 
@@ -38,7 +36,7 @@ public class WeatherController {
                                              int timeIntervalInDays,
                                              Label weatherLabel,
                                              Label temperatureLabel,
-                                             ImageView weatherIcon) throws IOException {
+                                             ImageView weatherIcon) {
         WeatherDataClient dataClient = new WeatherDataClient();
         dataClient.loadWeatherData(cityName);
 

@@ -3,6 +3,7 @@ package pl.michaelslabikovsky.controller.forecast;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import pl.michaelslabikovsky.utils.DialogUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -73,7 +74,7 @@ public class ForecastCityTwoController extends ForecastController {
         try {
             showWeatherForecast(weatherLabels, weatherIcons, cityName);
         } catch (IOException e) {
-            e.printStackTrace();
+            DialogUtils.errorDialog(e.getMessage());
         }
     }
 

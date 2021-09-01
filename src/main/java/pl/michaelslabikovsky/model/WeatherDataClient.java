@@ -3,9 +3,11 @@ package pl.michaelslabikovsky.model;
 import javafx.scene.image.Image;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import pl.michaelslabikovsky.utils.DialogUtils;
 import pl.michaelslabikovsky.utils.JSONConverter;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -14,9 +16,19 @@ public class WeatherDataClient extends WeatherData {
 
     private JSONArray allDataJsonArray;
 
-    public void loadWeatherData(String cityName) throws IOException {
-        connectToApi(cityName, getMainAPIPart(), getAdditionalAPIPart());
-        String result = getResult();
+    public void loadWeatherData(String cityName)  {
+        try {
+            connectToApi(cityName, getMainAPIPart(), getAdditionalAPIPart());
+        } catch (MalformedURLException e) {
+            DialogUtils.errorDialog(e.getMessage());
+        }
+
+        String result = "";
+        try {
+            result = getResult();
+        } catch (IOException e) {
+            DialogUtils.errorDialog(e.getMessage());
+        }
 
         JSONObject jsonObject = JSONConverter.convertStringToJSONObject(result);
         allDataJsonArray = jsonObject.getJSONArray("list");
