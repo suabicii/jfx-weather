@@ -1,5 +1,6 @@
 package pl.michaelslabikovsky.model;
 
+import io.github.cdimascio.dotenv.DotenvException;
 import pl.michaelslabikovsky.utils.DialogUtils;
 import pl.michaelslabikovsky.utils.DotenvLoader;
 
@@ -17,8 +18,13 @@ public abstract class ApiData {
     private final String apiKey;
 
     public ApiData() {
-        DotenvLoader dotenvLoader = new DotenvLoader();
-        apiKey = dotenvLoader.loadEnvVariable("API_KEY");
+        DotenvLoader dotenvLoader = new DotenvLoader(".env");
+        try {
+            dotenvLoader.loadEnvFile();
+        } catch (DotenvException e) {
+            DialogUtils.errorDialog(e.getMessage());
+        }
+        apiKey = dotenvLoader.getEnvVariable("API_KEY");
     }
 
     protected void connectToApi(String cityName, String mainAPIPart, String additionalAPIPart) throws MalformedURLException {
