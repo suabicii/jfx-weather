@@ -17,7 +17,7 @@ module pl.michaelslabikovsky {
     opens pl.michaelslabikovsky.controller to javafx.fxml;
     opens pl.michaelslabikovsky.controller.currentweather to javafx.fxml;
     opens pl.michaelslabikovsky.controller.forecast to javafx.fxml;
-    opens pl.michaelslabikovsky.model to javafx.base;
+    opens pl.michaelslabikovsky.model to javafx.base, org.junit.platform.commons;
     opens pl.michaelslabikovsky.utils to org.junit.platform.commons;
     exports pl.michaelslabikovsky;
 }
