@@ -7,11 +7,8 @@ import org.mockserver.integration.ClientAndServer;
 import pl.michaelslabikovsky.Launcher;
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
