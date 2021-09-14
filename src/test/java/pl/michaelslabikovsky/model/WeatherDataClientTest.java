@@ -1,40 +1,49 @@
 package pl.michaelslabikovsky.model;
 
+import com.github.tomakehurst.wiremock.WireMockServer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockserver.integration.ClientAndServer;
-import pl.michaelslabikovsky.Launcher;
 
-import java.io.*;
-
-import static org.hamcrest.MatcherAssert.assertThat;
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static io.restassured.RestAssured.given;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 class WeatherDataClientTest {
 
-    private static final String API_RESPONSE_EXAMPLE_FILE = "assets/api_weather_response_example.json";
-    private static final String API_RESPONSE_EXAMPLE_PATH = "file:///" + Launcher.class.getResource(API_RESPONSE_EXAMPLE_FILE).getPath();
     private static final String EXAMPLE_CITY_NAME = "Warszawa";
-    private ClientAndServer mockServer;
+    private static final String API_RESPONSE_EXAMPLE_FILE_NAME = "api_weather_response_example.json";
+    private WireMockServer wireMockServer;
 
     @BeforeEach
-    void startServer() {
-        mockServer = ClientAndServer.startClientAndServer(1080);
+    void setup() {
+        wireMockServer = new WireMockServer(8090);
+        wireMockServer.start();
+        setupStub();
     }
 
     @AfterEach
-    void stopServer() {
-        mockServer.stop();
+    void teardown() {
+        wireMockServer.stop();
     }
 
     @Test
-    void shouldLoadWeatherData() {
+    public void testStatusCodePositive() {
+        given().
+                when().
+                get("http://localhost:8090/an/endpoint").
+                then().
+                assertThat().statusCode(200);
+    }
+
+
+    @Test
+    void shouldConnectToUrlWhenLoadWeatherDataMethodIsInvoked() {
         //given
         WeatherDataClient dataClient = mock(WeatherDataClient.class);
-        given(dataClient.getMainAPIPart()).willReturn(API_RESPONSE_EXAMPLE_PATH);
+        given(dataClient.getMainAPIPart()).willReturn("http://localhost:8090");
         given(dataClient.getAdditionalAPIPart()).willReturn("");
 
         //when
@@ -43,24 +52,6 @@ class WeatherDataClientTest {
         //then
         verify(dataClient).loadWeatherData(EXAMPLE_CITY_NAME);
     }
-
-    /*@Test
-    void weatherDataResultShouldNotBeEmpty() throws IOException {
-        //given
-        WeatherDataClient dataClient = mock(WeatherDataClient.class);
-        URL url = mock(URL.class);
-        HttpURLConnection conn = mock(HttpURLConnection.class);
-        given(dataClient.getMainAPIPart()).willReturn(API_RESPONSE_EXAMPLE_PATH);
-        given(dataClient.getAdditionalAPIPart()).willReturn("");
-        given(dataClient.getApiKey()).willReturn("");
-
-        //when
-        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
-        String result = dataClient.getResult();
-
-        //then
-        assertThat(result, notNullValue());
-    }*/
 
     @Test
     void getDateTimeBasedOnTimeInterval() {
@@ -86,8 +77,15 @@ class WeatherDataClientTest {
     void getHumidity() {
     }
 
-    private String getExampleResultFromApi() {
-        File file = new File(API_RESPONSE_EXAMPLE_PATH);
+    private void setupStub() {
+        wireMockServer.stubFor(get(urlEqualTo("/an/endpoint"))
+                .willReturn(aResponse().withHeader("Content-Type", "text/plain")
+                        .withStatus(200)
+                        .withBodyFile("json/" + API_RESPONSE_EXAMPLE_FILE_NAME)));
+    }
+
+    /*private String getExampleResultFromApi() {
+        File file = new File("file");
         try {
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -102,5 +100,5 @@ class WeatherDataClientTest {
             e.printStackTrace();
         }
         return null;
-    }
+    }*/
 }
