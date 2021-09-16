@@ -95,12 +95,12 @@ class WeatherDataClientTest {
 
         //then
         assertAll(
-                () -> assertThat(dataClient.getDescription(0), is(dateTimeArray[0])),
-                () -> assertThat(dataClient.getDescription(1), is(dateTimeArray[1])),
-                () -> assertThat(dataClient.getDescription(2), is(dateTimeArray[2])),
-                () -> assertThat(dataClient.getDescription(3), is(dateTimeArray[3])),
-                () -> assertThat(dataClient.getDescription(4), is(dateTimeArray[4])),
-                () -> assertThat(dataClient.getDescription(5), is(dateTimeArray[5]))
+                () -> assertThat(dataClient.getDateTimeBasedOnTimeInterval(0), is(dateTimeArray[0])),
+                () -> assertThat(dataClient.getDateTimeBasedOnTimeInterval(1), is(dateTimeArray[1])),
+                () -> assertThat(dataClient.getDateTimeBasedOnTimeInterval(2), is(dateTimeArray[2])),
+                () -> assertThat(dataClient.getDateTimeBasedOnTimeInterval(3), is(dateTimeArray[3])),
+                () -> assertThat(dataClient.getDateTimeBasedOnTimeInterval(4), is(dateTimeArray[4])),
+                () -> assertThat(dataClient.getDateTimeBasedOnTimeInterval(5), is(dateTimeArray[5]))
         );
     }
 
