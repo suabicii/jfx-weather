@@ -1,9 +1,7 @@
 package pl.michaelslabikovsky.model;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
@@ -26,17 +24,17 @@ class WeatherDataClientTest {
     private final static String ADDITIONAL_API_PART = "&lang=pl&units=metric&appid=" + EXAMPLE_API_KEY;
     private final static String ENDPOINT = MAIN_API_PART + EXAMPLE_CITY_NAME + ADDITIONAL_API_PART;
     public static final String LOCALHOST_URL = "http://localhost:8090";
-    private WireMockServer wireMockServer;
+    private static WireMockServer wireMockServer;
 
-    @BeforeEach
-    void setup() {
+    @BeforeAll
+    static void setup() {
         wireMockServer = new WireMockServer(8090);
         wireMockServer.start();
         setupStub();
     }
 
-    @AfterEach
-    void teardown() {
+    @AfterAll
+    static void teardown() {
         wireMockServer.stop();
     }
 
@@ -130,6 +128,18 @@ class WeatherDataClientTest {
     }
 
     @Test
+    void shouldGetPressureAsStringValue() {
+        //given
+        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
+
+        //when
+        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
+
+        //then
+        assertThat(dataClient.getPressure(0), isA(String.class));
+    }
+
+    @Test
     void shouldGetPressure() {
         //given
         WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
@@ -165,6 +175,19 @@ class WeatherDataClientTest {
 
         //then
         assertThat(pressureExtracted, greaterThan(0));
+    }
+
+    @Test
+    void shouldGetWindSpeedAsStringValue() {
+        //given
+        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
+        String exampleWindSpeed = "7.0 m/s";
+
+        //when
+        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
+
+        //then
+        assertThat(dataClient.getWindSpeed(0), isA(String.class));
     }
 
     @Test
@@ -206,6 +229,19 @@ class WeatherDataClientTest {
     }
 
     @Test
+    void shouldGetHumidityAsStringValue() {
+        //given
+        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
+        String exampleHumidity = "53%";
+
+        //when
+        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
+
+        //then
+        assertThat(dataClient.getHumidity(0), isA(String.class));
+    }
+
+    @Test
     void shouldGetHumidity() {
         //given
         WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
@@ -244,7 +280,7 @@ class WeatherDataClientTest {
         assertThat(humidityExtracted, greaterThanOrEqualTo(0));
     }
 
-    private void setupStub() {
+    private static void setupStub() {
         wireMockServer.stubFor(get(urlEqualTo(ENDPOINT))
                 .willReturn(aResponse().withHeader("Content-Type", "text/plain")
                         .withStatus(200)
