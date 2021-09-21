@@ -161,19 +161,61 @@ class WeatherDataClientTest {
 
         //when
         dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
-        String pressureWithUnit = dataClient.getPressure(0);
-        int pressureAsNumber = extractNumberValueOfPressureAndConvertToInt(pressureWithUnit);
+        int pressureExtracted = extractNumberFromStringAndConvertToInt(dataClient.getPressure(0));
 
         //then
-        assertThat(pressureAsNumber, greaterThan(0));
+        assertThat(pressureExtracted, greaterThan(0));
     }
 
     @Test
-    void getWindSpeed() {
+    void shouldGetWindSpeed() {
+        //given
+        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
+        String exampleWindSpeed = "7.0 m/s";
+
+        //when
+        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
+
+        //then
+        assertThat(dataClient.getWindSpeed(0), is(exampleWindSpeed));
     }
 
     @Test
-    void getHumidity() {
+    void shouldGetWindSpeedInMetersPerSecond() {
+        //given
+        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
+
+        //when
+        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
+
+        //then
+        assertTrue(dataClient.getWindSpeed(0).contains("m/s"));
+    }
+
+    @Test
+    void windSpeedValueShouldBeGreaterOrEqualZero() {
+        //given
+        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
+
+        //when
+        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
+        double windSpeedExtracted = extractNumberFromStringAndConvertToDouble(dataClient.getWindSpeed(0));
+
+        //then
+        assertThat(windSpeedExtracted, greaterThanOrEqualTo(0.0));
+    }
+
+    @Test
+    void shouldGetHumidity() {
+        //given
+        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
+        String exampleHumidity = "53%";
+
+        //when
+        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
+
+        //then
+        assertThat(dataClient.getHumidity(0), is(exampleHumidity));
     }
 
     private void setupStub() {
@@ -194,13 +236,23 @@ class WeatherDataClientTest {
         };
     }
 
-    private int extractNumberValueOfPressureAndConvertToInt(String pressureWithUnit) {
+    private int extractNumberFromStringAndConvertToInt(String str) {
         int pressureAsNumber = 0;
-        for (int i = 0; i < pressureWithUnit.length(); i++) {
-            if (pressureWithUnit.charAt(i) == ' ') {
-                pressureAsNumber = Integer.parseInt(pressureWithUnit.substring(0, i));
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ' ') {
+                pressureAsNumber = Integer.parseInt(str.substring(0, i));
             }
         }
         return pressureAsNumber;
+    }
+
+    private double extractNumberFromStringAndConvertToDouble(String str) {
+        double extractedValue = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ' ') {
+                extractedValue = Double.parseDouble(str.substring(0, i));
+            }
+        }
+        return extractedValue;
     }
 }
