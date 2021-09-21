@@ -42,10 +42,10 @@ public class WeatherDataClient extends WeatherData {
         String nearestDateTime = allDataJsonArray.getJSONObject(0).getString("dt_txt");
         String nearestHour = getNearestHour(nearestDateTime);
         DateTimeFormatter mainFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        DateTimeFormatter nearestDateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter baseDateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-        LocalDateTime now = LocalDateTime.parse(nearestDateTime, nearestDateTimeFormatter);
-        LocalDateTime laterDate = now.plusDays(timeIntervalInDays);
+        LocalDateTime baseDate = LocalDateTime.parse(nearestDateTime, baseDateTimeFormatter);
+        LocalDateTime laterDate = baseDate.plusDays(timeIntervalInDays);
 
         if (timeIntervalInDays == 5) { // ze względu na mniejszą liczbę rekordów z pogody za 5 dni
             nearestHour = getEarlierHour(nearestHour); // muszę cofnąć czas o 3 godziny
