@@ -218,6 +218,32 @@ class WeatherDataClientTest {
         assertThat(dataClient.getHumidity(0), is(exampleHumidity));
     }
 
+    @Test
+    void shouldGetHumidityInPercents() {
+        //given
+        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
+
+        //when
+        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
+
+        //then
+        assertTrue(dataClient.getHumidity(0).contains("%"));
+    }
+
+    @Test
+    void humidityValueShouldBeGreaterOrEqualZero() {
+        //given
+        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
+
+        //when
+        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
+        String humidityWithPercentSign = dataClient.getHumidity(0);
+        int humidityExtracted = Integer.parseInt(humidityWithPercentSign.substring(0, humidityWithPercentSign.length() - 1));
+
+        //then
+        assertThat(humidityExtracted, greaterThanOrEqualTo(0));
+    }
+
     private void setupStub() {
         wireMockServer.stubFor(get(urlEqualTo(ENDPOINT))
                 .willReturn(aResponse().withHeader("Content-Type", "text/plain")
