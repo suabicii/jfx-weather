@@ -11,6 +11,8 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.isA;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -85,14 +87,47 @@ class WeatherDataClientTest {
         String exampleDescription = "pochmurnie";
 
         //when
-        dataClient.loadWeatherData("Warszawa");
+        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
 
         //then
         assertThat(dataClient.getDescription(0), is(exampleDescription));
     }
 
     @Test
-    void getTemperatureShouldReturnValueGreaterThanZero() {
+    void shouldGetTemperatureAsStringValue() {
+        //given
+        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
+
+        //when
+        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
+
+        //then
+        assertThat(dataClient.getTemperature(0), isA(String.class));
+    }
+
+    @Test
+    void shouldGetTemperature() {
+        //given
+        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
+        String exampleTemperature = "19°C";
+
+        //when
+        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
+
+        //then
+        assertThat(dataClient.getTemperature(0), is(exampleTemperature));
+    }
+
+    @Test
+    void shouldGetTemperatureInCelsiusDegrees() {
+        //given
+        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
+
+        //when
+        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
+
+        //then
+        assertTrue(dataClient.getTemperature(0).contains("°C"));
     }
 
     @Test
