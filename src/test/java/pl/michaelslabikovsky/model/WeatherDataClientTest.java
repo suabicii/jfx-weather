@@ -10,8 +10,7 @@ import org.mockito.quality.Strictness;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.isA;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
@@ -131,7 +130,42 @@ class WeatherDataClientTest {
     }
 
     @Test
-    void getPressure() {
+    void shouldGetPressure() {
+        //given
+        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
+        String examplePressure = "1017 hPa";
+
+        //when
+        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
+
+        //then
+        assertThat(dataClient.getPressure(0), is(examplePressure));
+    }
+
+    @Test
+    void shouldGetPressureInHectopascals() {
+        //given
+        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
+
+        //when
+        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
+
+        //then
+        assertTrue(dataClient.getPressure(0).contains("hPa"));
+    }
+
+    @Test
+    void pressureValueShouldBeGreaterThanZero() {
+        //given
+        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
+
+        //when
+        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
+        String pressureWithUnit = dataClient.getPressure(0);
+        int pressureAsNumber = extractNumberValueOfPressureAndConvertToInt(pressureWithUnit);
+
+        //then
+        assertThat(pressureAsNumber, greaterThan(0));
     }
 
     @Test
@@ -158,5 +192,15 @@ class WeatherDataClientTest {
                 "2021-09-07 12:00:00",
                 "2021-09-08 09:00:00"
         };
+    }
+
+    private int extractNumberValueOfPressureAndConvertToInt(String pressureWithUnit) {
+        int pressureAsNumber = 0;
+        for (int i = 0; i < pressureWithUnit.length(); i++) {
+            if (pressureWithUnit.charAt(i) == ' ') {
+                pressureAsNumber = Integer.parseInt(pressureWithUnit.substring(0, i));
+            }
+        }
+        return pressureAsNumber;
     }
 }
