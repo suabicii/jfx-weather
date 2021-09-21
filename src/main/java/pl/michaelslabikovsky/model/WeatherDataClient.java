@@ -93,7 +93,7 @@ public class WeatherDataClient extends WeatherData {
                 .getInt("humidity") + "%";
     }
 
-    public Image setImageUrl(int arrayIndex) {
+    public Image getImageWithUrl(int arrayIndex) {
         String url = getIconUrl(arrayIndex);
         return new Image(url);
     }

@@ -70,7 +70,7 @@ public class WeatherService extends Service<Void> {
                             dataClient.getPressure(i),
                             dataClient.getWindSpeed(i),
                             dataClient.getHumidity(i),
-                            dataClient.setImageUrl(i)
+                            dataClient.getImageWithUrl(i)
                     ));
                 }
             } else {
@@ -78,7 +78,7 @@ public class WeatherService extends Service<Void> {
                     weatherDataReceivedList.add(new WeatherDataReceived(
                             dataClient.getDescription(i),
                             dataClient.getTemperature(i),
-                            dataClient.setImageUrl(i)
+                            dataClient.getImageWithUrl(i)
                     ));
                 }
             }
