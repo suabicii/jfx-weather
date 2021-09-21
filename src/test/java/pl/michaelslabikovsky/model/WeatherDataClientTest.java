@@ -80,10 +80,19 @@ class WeatherDataClientTest {
 
     @Test
     void shouldGetDescription() {
+        //given
+        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
+        String exampleDescription = "pochmurnie";
+
+        //when
+        dataClient.loadWeatherData("Warszawa");
+
+        //then
+        assertThat(dataClient.getDescription(0), is(exampleDescription));
     }
 
     @Test
-    void getTemperature() {
+    void getTemperatureShouldReturnValueGreaterThanZero() {
     }
 
     @Test
