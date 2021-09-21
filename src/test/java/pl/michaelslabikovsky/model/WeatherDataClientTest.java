@@ -181,7 +181,6 @@ class WeatherDataClientTest {
     void shouldGetWindSpeedAsStringValue() {
         //given
         WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
-        String exampleWindSpeed = "7.0 m/s";
 
         //when
         dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
@@ -232,7 +231,6 @@ class WeatherDataClientTest {
     void shouldGetHumidityAsStringValue() {
         //given
         WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
-        String exampleHumidity = "53%";
 
         //when
         dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
