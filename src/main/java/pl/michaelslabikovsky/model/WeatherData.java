@@ -6,9 +6,9 @@ public class WeatherData extends ApiData {
     private final String additionalApiPart;
 
     /*
-    * API parts:
+    * API parts (production code):
     *   Main: "https://api.openweathermap.org/data/2.5/forecast?q=";
-    *   Additional:"&lang=pl&units=metric&appid=";
+    *   Additional: "&lang=pl&units=metric&appid= + API_KEY";
     * */
 
     public WeatherData(String mainApiPart, String additionalApiPart) {

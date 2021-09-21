@@ -11,7 +11,6 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -68,31 +67,19 @@ class WeatherDataClientTest {
     void shouldGetDateTimeBasedOnTimeInterval() {
         //given
         WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
-        String[] dateTimeArray = new String[]{
-                "2021-09-03 12:00:00",
-                "2021-09-04 12:00:00",
-                "2021-09-05 12:00:00",
-                "2021-09-06 12:00:00",
-                "2021-09-07 12:00:00",
-                "2021-09-08 09:00:00"
-        };
+        String[] dateTimeArray = getExampleDateTimes();
 
         //when
         dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
 
         //then
-        assertAll(
-                () -> assertThat(dataClient.getDateTimeBasedOnTimeInterval(0), is(dateTimeArray[0])),
-                () -> assertThat(dataClient.getDateTimeBasedOnTimeInterval(1), is(dateTimeArray[1])),
-                () -> assertThat(dataClient.getDateTimeBasedOnTimeInterval(2), is(dateTimeArray[2])),
-                () -> assertThat(dataClient.getDateTimeBasedOnTimeInterval(3), is(dateTimeArray[3])),
-                () -> assertThat(dataClient.getDateTimeBasedOnTimeInterval(4), is(dateTimeArray[4])),
-                () -> assertThat(dataClient.getDateTimeBasedOnTimeInterval(5), is(dateTimeArray[5]))
-        );
+        for (int i = 0; i < dateTimeArray.length; i++) {
+            assertThat(dataClient.getDateTimeBasedOnTimeInterval(i), is(dateTimeArray[i]));
+        }
     }
 
     @Test
-    void getDescription() {
+    void shouldGetDescription() {
     }
 
     @Test
@@ -116,5 +103,16 @@ class WeatherDataClientTest {
                 .willReturn(aResponse().withHeader("Content-Type", "text/plain")
                         .withStatus(200)
                         .withBodyFile("json/" + API_RESPONSE_EXAMPLE_FILE_NAME)));
+    }
+
+    private String[] getExampleDateTimes() {
+        return new String[]{
+                "2021-09-03 12:00:00",
+                "2021-09-04 12:00:00",
+                "2021-09-05 12:00:00",
+                "2021-09-06 12:00:00",
+                "2021-09-07 12:00:00",
+                "2021-09-08 09:00:00"
+        };
     }
 }
