@@ -17,7 +17,7 @@ public abstract class ApiData {
     private int responseCode;
 
     protected void connectToApi(String cityName, String mainAPIPart, String additionalAPIPart) throws MalformedURLException {
-        this.url = new URL(mainAPIPart + cityName + additionalAPIPart + getApiKey());
+        this.url = new URL(mainAPIPart + cityName + additionalAPIPart);
         HttpURLConnection conn;
         try {
             conn = (HttpURLConnection)url.openConnection();
@@ -28,18 +28,6 @@ public abstract class ApiData {
         } catch (IOException e) {
             DialogUtils.errorDialog(e.getMessage());
         }
-    }
-
-    protected String getApiKey() {
-        final String apiKey;
-        DotenvLoader dotenvLoader = new DotenvLoader(".env");
-        try {
-            dotenvLoader.loadEnvFile();
-        } catch (DotenvException e) {
-            DialogUtils.errorDialog(e.getMessage());
-        }
-        apiKey = dotenvLoader.getEnvVariable("API_KEY");
-        return apiKey;
     }
 
     public String getResult() throws IOException {

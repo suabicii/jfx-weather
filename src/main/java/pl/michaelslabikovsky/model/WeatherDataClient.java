@@ -16,6 +16,10 @@ public class WeatherDataClient extends WeatherData {
 
     private JSONArray allDataJsonArray;
 
+    public WeatherDataClient(String mainApiPart, String additionalApiPart) {
+        super(mainApiPart, additionalApiPart);
+    }
+
     public void loadWeatherData(String cityName)  {
         try {
             connectToApi(cityName, getMainAPIPart(), getAdditionalAPIPart());
@@ -37,16 +41,17 @@ public class WeatherDataClient extends WeatherData {
     public String getDateTimeBasedOnTimeInterval(int timeIntervalInDays) {
         String nearestDateTime = allDataJsonArray.getJSONObject(0).getString("dt_txt");
         String nearestHour = getNearestHour(nearestDateTime);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter mainFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter nearestDateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.parse(nearestDateTime, nearestDateTimeFormatter);
         LocalDateTime laterDate = now.plusDays(timeIntervalInDays);
 
         if (timeIntervalInDays == 5) { // ze względu na mniejszą liczbę rekordów z pogody za 5 dni
             nearestHour = getEarlierHour(nearestHour); // muszę cofnąć czas o 3 godziny
         }
 
-        return formatter.format(laterDate).concat(" ").concat(nearestHour);
+        return mainFormatter.format(laterDate).concat(" ").concat(nearestHour);
     }
 
     public int getDataAmount() {

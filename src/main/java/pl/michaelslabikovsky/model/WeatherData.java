@@ -2,16 +2,27 @@ package pl.michaelslabikovsky.model;
 
 public class WeatherData extends ApiData {
 
-    private final static String MAIN_API_PART = "https://api.openweathermap.org/data/2.5/forecast?q=";
-    private final static String ADDITIONAL_API_PART = "&lang=pl&units=metric&appid=";
+    private final String mainApiPart;
+    private final String additionalApiPart;
+
+    /*
+    * API parts:
+    *   Main: "https://api.openweathermap.org/data/2.5/forecast?q=";
+    *   Additional:"&lang=pl&units=metric&appid=";
+    * */
+
+    public WeatherData(String mainApiPart, String additionalApiPart) {
+        this.mainApiPart = mainApiPart;
+        this.additionalApiPart = additionalApiPart;
+    }
 
     @Override
     protected String getMainAPIPart() {
-        return MAIN_API_PART;
+        return mainApiPart;
     }
 
     @Override
     protected String getAdditionalAPIPart() {
-        return ADDITIONAL_API_PART;
+        return additionalApiPart;
     }
 }
