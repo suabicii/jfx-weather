@@ -1,8 +1,6 @@
 package pl.michaelslabikovsky.model;
 
-import io.github.cdimascio.dotenv.DotenvException;
 import pl.michaelslabikovsky.utils.DialogUtils;
-import pl.michaelslabikovsky.utils.DotenvLoader;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
