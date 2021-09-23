@@ -8,8 +8,10 @@ import java.util.List;
 
 public class LocationsDBModel {
 
+    public static final String DB_URL = "jdbc:sqlite:LocationsDB.sqlite";
+
     public boolean insertIntoTable(String value) {
-        try (Connection c = DriverManager.getConnection("jdbc:sqlite:LocationsDB.sqlite"); Statement stmt = c.createStatement()) {
+        try (Connection c = DriverManager.getConnection(DB_URL); Statement stmt = c.createStatement()) {
             c.setAutoCommit(true);
             String sql = "INSERT INTO locations" + " VALUES (null , '" + value + "');";
             stmt.executeUpdate(sql);
@@ -21,7 +23,7 @@ public class LocationsDBModel {
     }
 
     public List<String> selectAllFromDB() {
-        try (Connection c = DriverManager.getConnection("jdbc:sqlite:LocationsDB.sqlite"); Statement stmt = c.createStatement()) {
+        try (Connection c = DriverManager.getConnection(DB_URL); Statement stmt = c.createStatement()) {
             c.setAutoCommit(false);
 
             ResultSet rs = stmt.executeQuery("SELECT * FROM locations;");
@@ -40,7 +42,7 @@ public class LocationsDBModel {
     }
 
     public boolean deleteFromTable(String value) {
-        try (Connection c = DriverManager.getConnection("jdbc:sqlite:LocationsDB.sqlite"); Statement stmt = c.createStatement()) {
+        try (Connection c = DriverManager.getConnection(DB_URL); Statement stmt = c.createStatement()) {
             c.setAutoCommit(true);
 
             String sql = "DELETE FROM locations WHERE name = '" + value + "';";
