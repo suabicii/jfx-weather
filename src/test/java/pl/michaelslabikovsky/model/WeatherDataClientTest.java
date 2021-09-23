@@ -301,6 +301,7 @@ class WeatherDataClientTest {
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) == ' ') {
                 pressureAsNumber = Integer.parseInt(str.substring(0, i));
+                break;
             }
         }
         return pressureAsNumber;
@@ -311,6 +312,7 @@ class WeatherDataClientTest {
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) == ' ') {
                 extractedValue = Double.parseDouble(str.substring(0, i));
+                break;
             }
         }
         return extractedValue;
