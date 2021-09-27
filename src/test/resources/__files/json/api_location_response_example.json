@@ -1,0 +1,63 @@
+[
+  {
+    "name": "Województwo Lubelskie",
+    "local_names": {
+      "ascii": "Wojewodztwo Lubelskie",
+      "ca": "Voivodat de Lublin",
+      "da": "Województwo lubelskie",
+      "de": "Woiwodschaft Lublin",
+      "en": "Lublin Voivodeship",
+      "feature_name": "Województwo Lubelskie",
+      "fr": "Voïvodie de Lublin",
+      "id": "Provinsi Lublin",
+      "it": "Voivodato di Lublino",
+      "ja": "ルブリン県",
+      "lt": "Liublino vaivadija",
+      "nl": "Lublin",
+      "pl": "Województwo lubelskie",
+      "pt": "Província de Lublin",
+      "ro": "Voievodatul Lublin",
+      "ru": "Люблинское воеводство",
+      "sr": "Војводство Лублин"
+    },
+    "lat": 51,
+    "lon": 23,
+    "country": "PL"
+  },
+  {
+    "name": "Lublin",
+    "local_names": {
+      "ar": "لوبلين",
+      "ascii": "Lublin",
+      "bg": "Люблин",
+      "de": "Lublin",
+      "el": "Λούμπλιν",
+      "en": "Lublin",
+      "eu": "Lublin",
+      "fa": "لوبلین",
+      "feature_name": "Lublin",
+      "fi": "Lublin",
+      "fr": "Lublin",
+      "gl": "Lublin",
+      "he": "לובלין",
+      "hu": "Lublin",
+      "id": "Lublin",
+      "it": "Lublino",
+      "ja": "ルブリン",
+      "la": "Lublinum",
+      "lt": "Liublinas",
+      "nl": "Lublin",
+      "no": "Lublin",
+      "pl": "Lublin",
+      "pt": "Lublin",
+      "ro": "Lublin",
+      "ru": "Люблин",
+      "sr": "Лублин",
+      "th": "ลูบลิน",
+      "tr": "Lublin"
+    },
+    "lat": 51.25,
+    "lon": 22.5667,
+    "country": "PL"
+  }
+]
