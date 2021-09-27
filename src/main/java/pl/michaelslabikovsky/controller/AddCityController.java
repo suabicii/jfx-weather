@@ -1,5 +1,6 @@
 package pl.michaelslabikovsky.controller;
 
+import io.github.cdimascio.dotenv.DotenvException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +14,7 @@ import pl.michaelslabikovsky.model.LocationClient;
 import pl.michaelslabikovsky.model.LocationsDBModel;
 import pl.michaelslabikovsky.model.SavedLocation;
 import pl.michaelslabikovsky.utils.DialogUtils;
+import pl.michaelslabikovsky.utils.DotenvLoader;
 import pl.michaelslabikovsky.view.ViewFactory;
 
 import java.io.IOException;
@@ -23,8 +25,10 @@ import java.util.TimerTask;
 
 public class AddCityController extends BaseController implements Initializable {
 
-    public static final String SUCCESS_MESSAGE = "Dodano miejscowość";
-    public static final String ERROR_MESSAGE = "Nie udało się dodać miejscowości";
+    private static final String MAIN_API_PART = "https://api.openweathermap.org/geo/1.0/direct?q=";
+    private static final String ADDITIONAL_API_PART = "&limit=5&appid=" + getApiKey();
+    private static final String SUCCESS_MESSAGE = "Dodano miejscowość";
+    private static final String ERROR_MESSAGE = "Nie udało się dodać miejscowości";
 
     @FXML
     private TextField citySearchField;
@@ -85,11 +89,23 @@ public class AddCityController extends BaseController implements Initializable {
         viewFactory.closeStage((Stage) citySearchField.getScene().getWindow());
     }
 
+    private static String getApiKey() {
+        final String apiKey;
+        DotenvLoader dotenvLoader = new DotenvLoader(".env");
+        try {
+            dotenvLoader.loadEnvFile();
+        } catch (DotenvException e) {
+            DialogUtils.errorDialog(e.getMessage());
+        }
+        apiKey = dotenvLoader.getEnvVariable("API_KEY");
+        return apiKey;
+    }
+
     private void getLocationsFromApi() {
         new Thread(() -> {
             try {
                 locationTable.getItems().clear();
-                locationClient = new LocationClient();
+                locationClient = new LocationClient(MAIN_API_PART, ADDITIONAL_API_PART);
                 locationClient.loadLocationData(searchFieldValue);
                 fillTableColumn();
             } catch (IOException e) {

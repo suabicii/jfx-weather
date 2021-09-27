@@ -10,6 +10,10 @@ public class LocationClient extends Location {
 
     private JSONArray resultsJSONArray;
 
+    public LocationClient(String mainApiPart, String additionalApiPart) {
+        super(mainApiPart, additionalApiPart);
+    }
+
     public void loadLocationData(String searchFieldValue) throws IOException {
         connectToApi(searchFieldValue, getMainAPIPart(), getAdditionalAPIPart());
         String result = getResult();

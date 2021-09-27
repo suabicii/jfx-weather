@@ -2,16 +2,27 @@ package pl.michaelslabikovsky.model;
 
 public class Location extends ApiData {
 
-    private final static String MAIN_API_PART = "https://api.openweathermap.org/geo/1.0/direct?q=";
-    private final static String ADDITIONAL_API_PART = "&limit=5&appid=";
+    private final String mainApiPart;
+    private final String additionalApiPart;
+
+    /*
+     * API parts (production code):
+     *   Main: "https://api.openweathermap.org/geo/1.0/direct?q=";
+     *   Additional: "&limit=5&appid= + API_KEY";
+     * */
+
+    public Location(String mainApiPart, String additionalApiPart) {
+        this.mainApiPart = mainApiPart;
+        this.additionalApiPart = additionalApiPart;
+    }
 
     @Override
     protected String getMainAPIPart() {
-        return MAIN_API_PART;
+        return mainApiPart;
     }
 
     @Override
     protected String getAdditionalAPIPart() {
-        return ADDITIONAL_API_PART;
+        return additionalApiPart;
     }
 }

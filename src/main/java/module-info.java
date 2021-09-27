@@ -8,6 +8,7 @@ module pl.michaelslabikovsky {
     requires sqlite.jdbc;
 
     opens pl.michaelslabikovsky to javafx.fxml;
+    opens pl.michaelslabikovsky.model to javafx.base;
     opens pl.michaelslabikovsky.controller to javafx.fxml;
     opens pl.michaelslabikovsky.controller.currentweather to javafx.fxml;
     opens pl.michaelslabikovsky.controller.forecast to javafx.fxml;
