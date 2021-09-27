@@ -26,22 +26,25 @@ public class LocationClient extends Location {
 
     public String getFoundLocation(int arrayIndex, String searchFieldValue) {
         String finalResult = "";
-        JSONObject resultPart = resultsJSONArray.getJSONObject(arrayIndex);
-        if (resultPart.has("local_names")) {
-            if (resultPart.getJSONObject("local_names").has("pl")) {
-                String polishLocalName = resultPart.getJSONObject("local_names").getString("pl");
-                finalResult += polishLocalName.contains("Województwo") ? searchFieldValue + ", " + polishLocalName : polishLocalName;
+
+        if (resultsJSONArray.length() > 0) {
+            JSONObject resultPart = resultsJSONArray.getJSONObject(arrayIndex);
+            if (resultPart.has("local_names")) {
+                if (resultPart.getJSONObject("local_names").has("pl")) {
+                    String polishLocalName = resultPart.getJSONObject("local_names").getString("pl");
+                    finalResult += polishLocalName.contains("Województwo") ? searchFieldValue + ", " + polishLocalName : polishLocalName;
+                } else {
+                    finalResult += resultPart.getJSONObject("local_names").getString("feature_name");
+                }
             } else {
-                finalResult += resultPart.getJSONObject("local_names").getString("feature_name");
+                finalResult += resultPart.getString("name");
             }
-        } else {
-            finalResult += resultPart.getString("name");
-        }
 
-        finalResult += ", " + resultPart.getString("country");
+            finalResult += ", " + resultPart.getString("country");
 
-        if (resultPart.has("state")) {
-            finalResult += ", " + resultPart.getString("state");
+            if (resultPart.has("state")) {
+                finalResult += ", " + resultPart.getString("state");
+            }
         }
 
         return finalResult;
