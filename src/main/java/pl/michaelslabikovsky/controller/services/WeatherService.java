@@ -6,6 +6,7 @@ import javafx.concurrent.Task;
 import pl.michaelslabikovsky.model.WeatherDataClient;
 import pl.michaelslabikovsky.model.WeatherDataReceived;
 import pl.michaelslabikovsky.utils.DialogUtils;
+import pl.michaelslabikovsky.utils.DotenvClient;
 import pl.michaelslabikovsky.utils.DotenvLoader;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class WeatherService extends Service<Void> {
         this.cityName = cityName;
         this.timeIntervalInDays = timeIntervalInDays;
         this.mainApiPart = "https://api.openweathermap.org/data/2.5/forecast?q=";
-        this.additionalApiPart = "&lang=pl&units=metric&appid=" + getApiKey();
+        this.additionalApiPart = "&lang=pl&units=metric&appid=" + DotenvClient.getApiKey();
     }
 
     public WeatherService(String mainApiPart, String additionalApiPart, String cityName, int timeIntervalInDays) {
@@ -45,18 +46,6 @@ public class WeatherService extends Service<Void> {
                 return null;
             }
         };
-    }
-
-    private String getApiKey() {
-        final String apiKey;
-        DotenvLoader dotenvLoader = new DotenvLoader(".env");
-        try {
-            dotenvLoader.loadEnvFile();
-        } catch (DotenvException e) {
-            DialogUtils.errorDialog(e.getMessage());
-        }
-        apiKey = dotenvLoader.getEnvVariable("API_KEY");
-        return apiKey;
     }
 
     private void saveWeatherDataToList(WeatherDataClient dataClient, String dateTimeBasedOnTimeInterval) {

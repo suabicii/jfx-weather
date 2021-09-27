@@ -14,6 +14,7 @@ import pl.michaelslabikovsky.model.LocationClient;
 import pl.michaelslabikovsky.model.LocationsDBModel;
 import pl.michaelslabikovsky.model.SavedLocation;
 import pl.michaelslabikovsky.utils.DialogUtils;
+import pl.michaelslabikovsky.utils.DotenvClient;
 import pl.michaelslabikovsky.utils.DotenvLoader;
 import pl.michaelslabikovsky.view.ViewFactory;
 
@@ -26,7 +27,7 @@ import java.util.TimerTask;
 public class AddCityController extends BaseController implements Initializable {
 
     private static final String MAIN_API_PART = "https://api.openweathermap.org/geo/1.0/direct?q=";
-    private static final String ADDITIONAL_API_PART = "&limit=5&appid=" + getApiKey();
+    private static final String ADDITIONAL_API_PART = "&limit=5&appid=" + DotenvClient.getApiKey();
     private static final String SUCCESS_MESSAGE = "Dodano miejscowość";
     private static final String ERROR_MESSAGE = "Nie udało się dodać miejscowości";
 
@@ -87,18 +88,6 @@ public class AddCityController extends BaseController implements Initializable {
     @FXML
     public void cancelAction() {
         viewFactory.closeStage((Stage) citySearchField.getScene().getWindow());
-    }
-
-    private static String getApiKey() {
-        final String apiKey;
-        DotenvLoader dotenvLoader = new DotenvLoader(".env");
-        try {
-            dotenvLoader.loadEnvFile();
-        } catch (DotenvException e) {
-            DialogUtils.errorDialog(e.getMessage());
-        }
-        apiKey = dotenvLoader.getEnvVariable("API_KEY");
-        return apiKey;
     }
 
     private void getLocationsFromApi() {
