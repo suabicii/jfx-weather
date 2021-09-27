@@ -1,13 +1,10 @@
 package pl.michaelslabikovsky.controller.services;
 
-import io.github.cdimascio.dotenv.DotenvException;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import pl.michaelslabikovsky.model.WeatherDataClient;
 import pl.michaelslabikovsky.model.WeatherDataReceived;
-import pl.michaelslabikovsky.utils.DialogUtils;
 import pl.michaelslabikovsky.utils.DotenvClient;
-import pl.michaelslabikovsky.utils.DotenvLoader;
 
 import java.util.ArrayList;
 import java.util.List;

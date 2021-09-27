@@ -1,6 +1,5 @@
 package pl.michaelslabikovsky.controller;
 
-import io.github.cdimascio.dotenv.DotenvException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,7 +14,6 @@ import pl.michaelslabikovsky.model.LocationsDBModel;
 import pl.michaelslabikovsky.model.SavedLocation;
 import pl.michaelslabikovsky.utils.DialogUtils;
 import pl.michaelslabikovsky.utils.DotenvClient;
-import pl.michaelslabikovsky.utils.DotenvLoader;
 import pl.michaelslabikovsky.view.ViewFactory;
 
 import java.io.IOException;
