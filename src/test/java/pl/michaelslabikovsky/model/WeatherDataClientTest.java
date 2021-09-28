@@ -1,7 +1,9 @@
 package pl.michaelslabikovsky.model;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
@@ -10,9 +12,6 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
 @MockitoSettings(strictness = Strictness.LENIENT)
 class WeatherDataClientTest {
@@ -45,21 +44,6 @@ class WeatherDataClientTest {
                 get(LOCALHOST_URL + ENDPOINT).
                 then().
                 assertThat().statusCode(200);
-    }
-
-
-    @Test
-    void shouldConnectToUrlWhenLoadWeatherDataMethodIsInvoked() {
-        //given
-        WeatherDataClient dataClient = mock(WeatherDataClient.class);
-        given(dataClient.getMainAPIPart()).willReturn(LOCALHOST_URL + MAIN_API_PART);
-        given(dataClient.getAdditionalAPIPart()).willReturn(ADDITIONAL_API_PART);
-
-        //when
-        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
-
-        //then
-        verify(dataClient).loadWeatherData(EXAMPLE_CITY_NAME);
     }
 
     @Test
