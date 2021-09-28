@@ -18,8 +18,7 @@ class LocationClientTest {
     private static final String API_RESPONSE_EXAMPLE_FILE_NAME = "api_location_response_example.json";
     private static final String EMPTY_RESPONSE_FILE_NAME = "empty.json";
     private final static String MAIN_API_PART = "/geo/1.0/direct?q=";
-    private final static String EXAMPLE_API_KEY = "a4df15c3943fe91408e1436c4fad4208ceb29b02";
-    private final static String ADDITIONAL_API_PART = "&limit=5&appid=" + EXAMPLE_API_KEY;
+    private final static String ADDITIONAL_API_PART = "&limit=5&appid=a4df15c3943fe91408e1436c4fad4208ceb29b02";
     private final static String ENDPOINT = MAIN_API_PART + EXAMPLE_SEARCH_FIELD_VALUE + ADDITIONAL_API_PART;
     private final static String ENDPOINT_EMPTY_RESULT = MAIN_API_PART + SEARCH_FIELD_NO_RESULTS + ADDITIONAL_API_PART;
     public static final String LOCALHOST_URL = "http://localhost:8080";
