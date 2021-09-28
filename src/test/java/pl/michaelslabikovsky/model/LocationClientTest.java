@@ -47,6 +47,7 @@ class LocationClientTest {
         //when
         locationClient.loadLocationData(EXAMPLE_SEARCH_FIELD_VALUE);
 
+        //then
         assertThat(locationClient.getFoundLocation(0, EXAMPLE_SEARCH_FIELD_VALUE), is(exampleFoundCity));
     }
 
@@ -57,9 +58,9 @@ class LocationClientTest {
 
         //when
         locationClient.loadLocationData(SEARCH_FIELD_NO_RESULTS);
-        String emptyResult = locationClient.getFoundLocation(0, SEARCH_FIELD_NO_RESULTS);
 
-        assertThat(emptyResult, is(""));
+        //then
+        assertThat(locationClient.getFoundLocation(0, SEARCH_FIELD_NO_RESULTS), is(""));
     }
 
     private static void setupStub() {
