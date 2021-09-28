@@ -24,13 +24,6 @@ public class WeatherService extends Service<Void> {
         this.additionalApiPart = "&lang=pl&units=metric&appid=" + DotenvClient.getApiKey();
     }
 
-    public WeatherService(String mainApiPart, String additionalApiPart, String cityName, int timeIntervalInDays) {
-        this.mainApiPart = mainApiPart;
-        this.additionalApiPart = additionalApiPart;
-        this.cityName = cityName;
-        this.timeIntervalInDays = timeIntervalInDays;
-    }
-
     @Override
     protected Task<Void> createTask() {
         return new Task<>() {
