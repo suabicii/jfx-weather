@@ -28,8 +28,6 @@ class LocationClientTest {
     static void setup() {
         wireMockServer = new WireMockServer(8080);
         wireMockServer.start();
-        setupStub();
-        setupEmptyStub();
     }
 
     @AfterAll
@@ -40,6 +38,7 @@ class LocationClientTest {
     @Test
     void shouldGetFoundLocation() throws IOException {
         //given
+        setupStub();
         LocationClient locationClient = new LocationClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
 
         //when
@@ -52,6 +51,7 @@ class LocationClientTest {
     @Test
     void getFoundLocationShouldReturnEmptyStringIfNoResultsAreFound() throws IOException {
         //given
+        setupEmptyStub();
         LocationClient locationClient = new LocationClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
 
         //when
