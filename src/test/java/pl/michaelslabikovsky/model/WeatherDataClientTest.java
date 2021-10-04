@@ -9,7 +9,6 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class WeatherDataClientTest {
 
@@ -71,18 +70,6 @@ class WeatherDataClientTest {
     }
 
     @Test
-    void shouldGetTemperatureAsStringValue() {
-        //given
-        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
-
-        //when
-        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
-
-        //then
-        assertThat(dataClient.getTemperature(0), isA(String.class));
-    }
-
-    @Test
     void shouldGetTemperature() {
         //given
         WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
@@ -93,18 +80,6 @@ class WeatherDataClientTest {
 
         //then
         assertThat(dataClient.getTemperature(0), is(exampleTemperature));
-    }
-
-    @Test
-    void shouldGetTemperatureInCelsiusDegrees() {
-        //given
-        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
-
-        //when
-        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
-
-        //then
-        assertTrue(dataClient.getTemperature(0).contains("°C"));
     }
 
     @Test
@@ -133,43 +108,6 @@ class WeatherDataClientTest {
     }
 
     @Test
-    void shouldGetPressureInHectopascals() {
-        //given
-        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
-
-        //when
-        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
-
-        //then
-        assertTrue(dataClient.getPressure(0).contains("hPa"));
-    }
-
-    @Test
-    void pressureValueShouldBeGreaterThanZero() {
-        //given
-        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
-
-        //when
-        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
-        int pressureExtracted = extractNumberFromStringAndConvertToInt(dataClient.getPressure(0));
-
-        //then
-        assertThat(pressureExtracted, greaterThan(0));
-    }
-
-    @Test
-    void shouldGetWindSpeedAsStringValue() {
-        //given
-        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
-
-        //when
-        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
-
-        //then
-        assertThat(dataClient.getWindSpeed(0), isA(String.class));
-    }
-
-    @Test
     void shouldGetWindSpeed() {
         //given
         WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
@@ -183,43 +121,6 @@ class WeatherDataClientTest {
     }
 
     @Test
-    void shouldGetWindSpeedInMetersPerSecond() {
-        //given
-        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
-
-        //when
-        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
-
-        //then
-        assertTrue(dataClient.getWindSpeed(0).contains("m/s"));
-    }
-
-    @Test
-    void windSpeedValueShouldBeGreaterOrEqualZero() {
-        //given
-        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
-
-        //when
-        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
-        double windSpeedExtracted = extractNumberFromStringAndConvertToDouble(dataClient.getWindSpeed(0));
-
-        //then
-        assertThat(windSpeedExtracted, greaterThanOrEqualTo(0.0));
-    }
-
-    @Test
-    void shouldGetHumidityAsStringValue() {
-        //given
-        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
-
-        //when
-        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
-
-        //then
-        assertThat(dataClient.getHumidity(0), isA(String.class));
-    }
-
-    @Test
     void shouldGetHumidity() {
         //given
         WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
@@ -230,32 +131,6 @@ class WeatherDataClientTest {
 
         //then
         assertThat(dataClient.getHumidity(0), is(exampleHumidity));
-    }
-
-    @Test
-    void shouldGetHumidityInPercents() {
-        //given
-        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
-
-        //when
-        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
-
-        //then
-        assertTrue(dataClient.getHumidity(0).contains("%"));
-    }
-
-    @Test
-    void humidityValueShouldBeGreaterOrEqualZero() {
-        //given
-        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
-
-        //when
-        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
-        String humidityWithPercentSign = dataClient.getHumidity(0);
-        int humidityExtracted = Integer.parseInt(humidityWithPercentSign.substring(0, humidityWithPercentSign.length() - 1));
-
-        //then
-        assertThat(humidityExtracted, greaterThanOrEqualTo(0));
     }
 
     private static void setupStub() {
