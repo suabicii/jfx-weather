@@ -45,15 +45,14 @@ class WeatherDataClientTest {
     void shouldGetDateTimeBasedOnTimeInterval() {
         //given
         WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
-        String[] dateTimeArray = getExampleDateTimes();
+        String[] expectedDateTimeArray = getExpectedDateTimes();
 
         //when
         dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
+        String[] actualDateTimeArray = getActualDateTimeArray(dataClient, expectedDateTimeArray);
 
         //then
-        for (int i = 0; i < dateTimeArray.length; i++) {
-            assertThat(dataClient.getDateTimeBasedOnTimeInterval(i), is(dateTimeArray[i]));
-        }
+        assertThat(actualDateTimeArray, is(expectedDateTimeArray));
     }
 
     @Test
@@ -140,7 +139,7 @@ class WeatherDataClientTest {
                         .withBodyFile("json/" + API_RESPONSE_EXAMPLE_FILE_NAME)));
     }
 
-    private String[] getExampleDateTimes() {
+    private String[] getExpectedDateTimes() {
         return new String[]{
                 "2021-09-03 12:00:00",
                 "2021-09-04 12:00:00",
@@ -149,5 +148,13 @@ class WeatherDataClientTest {
                 "2021-09-07 12:00:00",
                 "2021-09-08 09:00:00"
         };
+    }
+
+    private String[] getActualDateTimeArray(WeatherDataClient dataClient, String[] expectedDateTimeArray) {
+        String[] actualDateTimeArray = new String[6];
+        for (int i = 0; i < expectedDateTimeArray.length; i++) {
+            actualDateTimeArray[i] = dataClient.getDateTimeBasedOnTimeInterval(i);
+        }
+        return actualDateTimeArray;
     }
 }
