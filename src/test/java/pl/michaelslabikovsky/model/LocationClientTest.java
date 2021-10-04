@@ -41,13 +41,12 @@ class LocationClientTest {
     void shouldGetFoundLocation() throws IOException {
         //given
         LocationClient locationClient = new LocationClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
-        String exampleFoundCity = "Lublin, Województwo lubelskie, PL";
 
         //when
         locationClient.loadLocationData(EXAMPLE_SEARCH_FIELD_VALUE);
 
         //then
-        assertThat(locationClient.getFoundLocation(0, EXAMPLE_SEARCH_FIELD_VALUE), is(exampleFoundCity));
+        assertThat(locationClient.getFoundLocation(0, EXAMPLE_SEARCH_FIELD_VALUE), is("Lublin, Województwo lubelskie, PL"));
     }
 
     @Test

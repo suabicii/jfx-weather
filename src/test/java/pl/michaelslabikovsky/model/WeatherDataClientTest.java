@@ -59,77 +59,60 @@ class WeatherDataClientTest {
     void shouldGetDescription() {
         //given
         WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
-        String exampleDescription = "pochmurnie";
 
         //when
         dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
 
         //then
-        assertThat(dataClient.getDescription(0), is(exampleDescription));
+        assertThat(dataClient.getDescription(0), is("pochmurnie"));
     }
 
     @Test
     void shouldGetTemperature() {
         //given
         WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
-        String exampleTemperature = "19°C";
 
         //when
         dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
 
         //then
-        assertThat(dataClient.getTemperature(0), is(exampleTemperature));
-    }
-
-    @Test
-    void shouldGetPressureAsStringValue() {
-        //given
-        WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
-
-        //when
-        dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
-
-        //then
-        assertThat(dataClient.getPressure(0), isA(String.class));
+        assertThat(dataClient.getTemperature(0), is("19°C"));
     }
 
     @Test
     void shouldGetPressure() {
         //given
         WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
-        String examplePressure = "1017 hPa";
 
         //when
         dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
 
         //then
-        assertThat(dataClient.getPressure(0), is(examplePressure));
+        assertThat(dataClient.getPressure(0), is("1017 hPa"));
     }
 
     @Test
     void shouldGetWindSpeed() {
         //given
         WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
-        String exampleWindSpeed = "7.0 m/s";
 
         //when
         dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
 
         //then
-        assertThat(dataClient.getWindSpeed(0), is(exampleWindSpeed));
+        assertThat(dataClient.getWindSpeed(0), is("7.0 m/s"));
     }
 
     @Test
     void shouldGetHumidity() {
         //given
         WeatherDataClient dataClient = new WeatherDataClient(LOCALHOST_URL + MAIN_API_PART, ADDITIONAL_API_PART);
-        String exampleHumidity = "53%";
 
         //when
         dataClient.loadWeatherData(EXAMPLE_CITY_NAME);
 
         //then
-        assertThat(dataClient.getHumidity(0), is(exampleHumidity));
+        assertThat(dataClient.getHumidity(0), is("53%"));
     }
 
     private static void setupStub() {
