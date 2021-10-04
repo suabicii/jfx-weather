@@ -150,26 +150,4 @@ class WeatherDataClientTest {
                 "2021-09-08 09:00:00"
         };
     }
-
-    private int extractNumberFromStringAndConvertToInt(String str) {
-        int pressureAsNumber = 0;
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == ' ') {
-                pressureAsNumber = Integer.parseInt(str.substring(0, i));
-                break;
-            }
-        }
-        return pressureAsNumber;
-    }
-
-    private double extractNumberFromStringAndConvertToDouble(String str) {
-        double extractedValue = 0;
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == ' ') {
-                extractedValue = Double.parseDouble(str.substring(0, i));
-                break;
-            }
-        }
-        return extractedValue;
-    }
 }
