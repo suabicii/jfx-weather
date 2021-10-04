@@ -18,7 +18,7 @@ class WeatherDataClientTest {
     private final static String MAIN_API_PART = "/data/2.5/forecast?q=";
     private final static String ADDITIONAL_API_PART = "&lang=pl&units=metric&appid=a4df15c3943fe91408e1436c4fad4208ceb29b02";
     private final static String ENDPOINT = MAIN_API_PART + EXAMPLE_CITY_NAME + ADDITIONAL_API_PART;
-    public static final String LOCALHOST_URL = "http://localhost:8090";
+    private static final String LOCALHOST_URL = "http://localhost:8090";
     private static WireMockServer wireMockServer;
 
     @BeforeAll
