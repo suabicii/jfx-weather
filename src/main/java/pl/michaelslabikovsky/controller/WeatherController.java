@@ -20,7 +20,7 @@ public class WeatherController {
         WeatherService service = new WeatherService(cityName, timeIntervalInDays);
         service.start();
         service.setOnSucceeded(event -> {
-            List<WeatherDataReceived> weatherDataReceivedList = service.getWeatherDataReceivedList();
+            List<WeatherDataReceived> weatherDataReceivedList = service.getValue();
             for (WeatherDataReceived weatherDataReceived : weatherDataReceivedList) {
                 weatherLabel.textProperty().bind(weatherDataReceived.descriptionProperty());
                 temperatureLabel.textProperty().bind(weatherDataReceived.temperatureProperty());
@@ -40,7 +40,7 @@ public class WeatherController {
         WeatherService service = new WeatherService(cityName, timeIntervalInDays);
         service.start();
         service.setOnSucceeded(event -> {
-            List<WeatherDataReceived> weatherDataReceivedList = service.getWeatherDataReceivedList();
+            List<WeatherDataReceived> weatherDataReceivedList = service.getValue();
             for (WeatherDataReceived weatherDataReceived : weatherDataReceivedList) {
                 weatherLabel.textProperty().bind(weatherDataReceived.descriptionProperty());
                 temperatureLabel.textProperty().bind(weatherDataReceived.temperatureProperty());
